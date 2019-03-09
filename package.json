@@ -6,8 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "sass:preview": "node-sass preview -o preview",
-    "sass:build": "node-sass scss/*.scss preview/*.scss public/css/main.css",
-    "sass:watch": "nodemon -e scss -x \"npm run sass:preview\""
+    "sass:build": "node-sass scss -o public/css",
+    "sass:watch": "nodemon -e scss -x \"npm run sass:build\""
   },
   "repository": {
     "type": "git",
@@ -22,5 +22,11 @@
   "devDependencies": {
     "node-sass": "^4.11.0",
     "nodemon": "^1.18.10"
+  },
+  "dependencies": {
+    "express-handlebars": "^3.0.2",
+    "handlebars": "^4.1.0",
+    "onsenui": "^2.10.6",
+    "postcss-preset-env": "^6.6.0"
   }
 }
