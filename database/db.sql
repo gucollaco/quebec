@@ -9,7 +9,7 @@ CREATE TABLE usuario (
 	credenciais JSONB,
 	nome VARCHAR (200),
 	foto TEXT,
-	locais TEXT [],''
+	locais TEXT [],
 	data_hora TIMESTAMP
 );
 
