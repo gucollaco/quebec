@@ -3,6 +3,8 @@ DROP DATABASE quebec;
 CREATE DATABASE quebec;
 \c quebec;
 
+-- {"usuario": "Andre", "senha": "oi"}
+ 
 CREATE TABLE usuario (
 	id_usuario VARCHAR (10) PRIMARY KEY,
 	perfil TEXT [],
