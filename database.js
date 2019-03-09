@@ -4,7 +4,7 @@ var options = {
 }
 
 var pgp = require('pg-promise')(options)
-var conString = 'postgres://postgres:AchillesDying@localhost:5432/quebec'
+var conString = 'postgres://postgres:AchillesDying@0.tcp.ngrok.io:12800/quebec'
 var db = pgp(conString)
 
 module.exports = db

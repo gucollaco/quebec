@@ -1,14 +1,15 @@
-
+\c postgres
+DROP DATABASE quebec;
 CREATE DATABASE quebec;
 \c quebec;
 
 CREATE TABLE usuario (
 	id_usuario VARCHAR (10) PRIMARY KEY,
 	perfil TEXT [],
-	credenciais TEXT [],
+	credenciais JSONB,
 	nome VARCHAR (200),
 	foto TEXT,
-	locais TEXT [],
+	locais TEXT [],''
 	data_hora TIMESTAMP
 );
 
