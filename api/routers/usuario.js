@@ -5,13 +5,14 @@ const UsuarioController = require('../controllers/usuario');
 
 
 router.post('/', (req, res, next) => {
-    UsuarioController.create(req.body).then(dados => {
-        res.json({ success: true, data: dados })
+    UsuarioController.criar(req.body).then(dados => {
+        res.json({ success: true })
+
     }).catch(next)
 })
 
 router.get('/:id', (req, res, next) => {
-    UsuarioController.get(req.params.id).then(dados => {
+    UsuarioController.buscar(req.params.id).then(dados => {
         res.json({ success: true, data: dados })
     }).catch(next)
 })

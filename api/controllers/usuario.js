@@ -2,12 +2,12 @@ const { Usuario } = require('../models')
 
 class UsuarioController {
 
-    static async create(dados) {
+    static async criar(dados) {
         await Usuario.insert(dados)
     }
 
-    static async get(id) {
-        await Usuario.select(id)
+    static async buscar(id) {
+        return await Usuario.select(id)
     }
 }
 
