@@ -13,7 +13,7 @@ myApp.services = {
       create: function(data) {
         // Task item template.
         var taskItem = ons.createElement(
-          '<ons-list-item tappable category="' + myApp.services.categories.parseId(data.category)+ '">' +
+          '<ons-list-item tappable category="none">' +
             '<label class="left">' +
              '<ons-checkbox></ons-checkbox>' +
             '</label>' +
@@ -56,9 +56,6 @@ myApp.services = {
               }
             );
         };
-  
-        // Check if it's necessary to create new categories for this item.
-        myApp.services.categories.updateAdd(taskItem.data.category);
   
         // Add the highlight if necessary.
         if (taskItem.data.highlight) {
@@ -104,88 +101,6 @@ myApp.services = {
           // Check if the category has no items and remove it in that case.
           myApp.services.categories.updateRemove(taskItem.data.category);
         });
-      }
-    },
-  
-    /////////////////////
-    // Category Service //
-    ////////////////////
-    categories: {
-  
-      // Creates a new category and attaches it to the custom category list.
-      create: function(categoryLabel) {
-        var categoryId = myApp.services.categories.parseId(categoryLabel);
-  
-        // Category item template.
-        var categoryItem = ons.createElement(
-          '<ons-list-item tappable category-id="' + categoryId + '">' +
-            '<div class="left">' +
-              '<ons-radio name="categoryGroup" input-id="radio-'  + categoryId + '"></ons-radio>' +
-            '</div>' +
-            '<label class="center" for="radio-' + categoryId + '">' +
-              (categoryLabel || 'No category') +
-            '</label>' +
-          '</ons-list-item>'
-        );
-  
-        // Adds filtering functionality to this category item.
-        myApp.services.categories.bindOnCheckboxChange(categoryItem);
-  
-        // Attach the new category to the corresponding list.
-        document.querySelector('#custom-category-list').appendChild(categoryItem);
-      },
-  
-      // On task creation/update, updates the category list adding new categories if needed.
-      updateAdd: function(categoryLabel) {
-        var categoryId = myApp.services.categories.parseId(categoryLabel);
-        var categoryItem = document.querySelector('#menuPage ons-list-item[category-id="' + categoryId + '"]');
-  
-        if (!categoryItem) {
-          // If the category doesn't exist already, create it.
-          myApp.services.categories.create(categoryLabel);
-        }
-      },
-  
-      // On task deletion/update, updates the category list removing categories without tasks if needed.
-      updateRemove: function(categoryLabel) {
-        var categoryId = myApp.services.categories.parseId(categoryLabel);
-        var categoryItem = document.querySelector('#tabbarPage ons-list-item[category="' + categoryId + '"]');
-  
-        if (!categoryItem) {
-          // If there are no tasks under this category, remove it.
-          myApp.services.categories.remove(document.querySelector('#custom-category-list ons-list-item[category-id="' + categoryId + '"]'));
-        }
-      },
-  
-      // Deletes a category item and its listeners.
-      remove: function(categoryItem) {
-        if (categoryItem) {
-          // Remove listeners and the item itself.
-          categoryItem.removeEventListener('change', categoryItem.updateCategoryView);
-          categoryItem.remove();
-        }
-      },
-  
-      // Adds filtering functionality to a category item.
-      bindOnCheckboxChange: function(categoryItem) {
-        var categoryId = categoryItem.getAttribute('category-id');
-        var allItems = categoryId === null;
-  
-        categoryItem.updateCategoryView = function() {
-          var query = '[category="' + (categoryId || '') + '"]';
-  
-          var taskItems = document.querySelectorAll('#tabbarPage ons-list-item');
-          for (var i = 0; i < taskItems.length; i++) {
-            taskItems[i].style.display = (allItems || taskItems[i].getAttribute('category') === categoryId) ? '' : 'none';
-          }
-        };
-  
-        categoryItem.addEventListener('change', categoryItem.updateCategoryView);
-      },
-  
-      // Transforms a category name into a valid id.
-      parseId: function(categoryLabel) {
-        return categoryLabel ? categoryLabel.replace(/\s\s+/g, ' ').toLowerCase() : '';
       }
     },
   
