@@ -1,6 +1,6 @@
 
 CREATE DATABASE quebec;
-\q quebec;
+\c quebec;
 
 CREATE TABLE usuario (
 	id_usuario VARCHAR (10) PRIMARY KEY,

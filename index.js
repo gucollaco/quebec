@@ -1,14 +1,20 @@
 const express = require('express');
+const bodyParser = require('body-parser')
 
 const app = express();
 const server = require('http').createServer(app);
 require('dotenv').config();
 
 const cors = require('cors');
-const router = require('./routers/router')
+const routerAPI = require('./api/routers')
+const routerRender = require('./render/routers')
+
+app.use(bodyParser.urlencoded({ extended: true }))
+app.use(bodyParser.json())
 
 app.use(cors());
-app.use('/', cors(), router);
+app.use('/api', cors(), routerAPI);
+app.use('/', cors(), routerRender);
 app.use((error, req, res, next) => {
     res.status(error.status || 500).json({
         success: false,
