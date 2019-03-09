@@ -6,8 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "sass:preview": "node-sass preview -o preview",
-    "sass:build": "node-sass scss/*.scss preview/*.scss public/css/main.css",
-    "sass:watch": "nodemon -e scss -x \"npm run sass:preview\""
+    "sass:build": "node-sass scss -o public/css",
+    "sass:watch": "nodemon -e scss -x \"npm run sass:build\"",
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",
@@ -29,6 +30,11 @@
     "cors": "^2.8.5",
     "dotenv": "^6.2.0",
     "express": "^4.16.4",
-    "pg-promise": "^8.6.3"
+    "express-handlebars": "^3.0.2",
+    "express3-handlebars": "^0.5.2",
+    "handlebars": "^4.1.0",
+    "onsenui": "^2.10.6",
+    "pg-promise": "^8.6.3",
+    "postcss-preset-env": "^6.6.0"
   }
 }

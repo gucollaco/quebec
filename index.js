@@ -1,20 +1,35 @@
 const express = require('express');
+var exphbs  = require('express-handlebars');
 const bodyParser = require('body-parser')
+const path = require('path')
 
 const app = express();
 const server = require('http').createServer(app);
 require('dotenv').config();
 
 const cors = require('cors');
-const routerAPI = require('./api/routers')
-const routerRender = require('./render/routers')
+
+app.engine('handlebars', exphbs({
+    defaultLayout: 'main',
+    helpers: {
+        title: () => 'Quebec'
+    }
+}));
+app.set('views', path.join(__dirname, 'render/views'));
+app.set('view engine', 'handlebars');
 
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 
 app.use(cors());
-app.use('/api', cors(), routerAPI);
-app.use('/', cors(), routerRender);
+
+app.use(express.static('public'));
+app.use('/onsenui', express.static(__dirname + '/node_modules/onsenui'));
+
+app.use('/api', cors(), require('./api/routers'));
+app.use('/', cors(), require('./render/routers'));
+
+
 app.use((error, req, res, next) => {
     res.status(error.status || 500).json({
         success: false,
