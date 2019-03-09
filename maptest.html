@@ -21,12 +21,18 @@
     <h1>My Google Map</h1>
     <div id="map"></div>
     <script>
+        var map
+        var options
+
         function initMap() {
-            var options = {
+            options = {
                 zoom: 15,
                 center: {lat: -23.2237,lng: -45.9009}
             }
-            var map = new google.maps.Map(document.getElementById('map'), options);
+            map = new google.maps.Map(document.getElementById('map'), options);
+
+            // Call the codeAddress function (once) when the map is idle (ready)
+            // google.maps.event.addListenerOnce(map, 'idle', codeAddress);
 
             // Marker
             function addMarker(props) {
@@ -77,6 +83,33 @@
                 // Browser doesn't support Geolocation
                 handleLocationError(false, infoWindow, map.getCenter());
             }
+        }
+
+        function codeAddress() {
+
+            // Define address to center map to
+            var address = 'Rua Professor Luiz Eurico Ferreira, 119';
+
+            geocoder.geocode({
+                'address': address
+            }, function (results, status) {
+
+                if (status == google.maps.GeocoderStatus.OK) {
+
+                    // Center map on location
+                    map.setCenter(results[0].geometry.location);
+
+                    // Add marker on location
+                    var marker = new google.maps.Marker({
+                        map: map,
+                        position: results[0].geometry.location
+                    });
+
+                } else {
+
+                    alert("Geocode was not successful for the following reason: " + status);
+                }
+            });
         }
 
         function handleLocationError(browserHasGeolocation, infoWindow, pos) {
