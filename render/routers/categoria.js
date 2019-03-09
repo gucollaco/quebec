@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
 
-const CategoriaController = require('../controllers/categoria');
+const CriterioController = require('../controllers/criterio');
 
 module.exports = router;
