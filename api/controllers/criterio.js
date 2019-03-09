@@ -7,10 +7,10 @@ class CriterioController {
         await Criterio.insert(dados)
     }
     
-    static async criar(dados) {
+    static async buscar(dados) {
         if (!dados) throw new Error("Sem dados")
 
-        await Criterio.insert(dados)
+        return await Criterio.select(dados)
     } 
 }
 
