@@ -1,5 +1,7 @@
 const express = require('express');
-const exphbs  = require('express-handlebars');
+var exphbs  = require('express-handlebars');
+const bodyParser = require('body-parser')
+const path = require('path')
 
 const app = express();
 const server = require('http').createServer(app);
@@ -7,24 +9,27 @@ require('dotenv').config();
 
 const cors = require('cors');
 
-var hbs = exphbs.create({
+app.engine('handlebars', exphbs({
     defaultLayout: 'main',
-    // Specify helpers which are only registered on this instance.
     helpers: {
-        title: function () { return 'Quebec'; }
+        title: () => 'Quebec'
     }
-});
-app.engine('handlebars', hbs.engine);
+}));
+app.set('views', path.join(__dirname, 'render/views'));
 app.set('view engine', 'handlebars');
 
-const router = require('./routers/router')
+app.use(bodyParser.urlencoded({ extended: true }))
+app.use(bodyParser.json())
 
 app.use(cors());
+
 app.use(express.static('public'));
+app.use('/onsenui', express.static(__dirname + '/node_modules/onsenui'));
 
-app.use('/', express.static(__dirname + '/node_modules/onsenui'));
+app.use('/api', cors(), require('./api/routers'));
+app.use('/', cors(), require('./render/routers'));
 
-app.use('/', cors(), router);
+
 app.use((error, req, res, next) => {
     res.status(error.status || 500).json({
         success: false,
