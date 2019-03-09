@@ -23,8 +23,10 @@
     <script>
         var map
         var options
+        var geocoder
 
         function initMap() {
+            geocoder = new google.maps.Geocoder();
             options = {
                 zoom: 15,
                 center: {lat: -23.2237,lng: -45.9009}
@@ -32,35 +34,35 @@
             map = new google.maps.Map(document.getElementById('map'), options);
 
             // Call the codeAddress function (once) when the map is idle (ready)
-            // google.maps.event.addListenerOnce(map, 'idle', codeAddress);
+            google.maps.event.addListenerOnce(map, 'idle', codeAddress);
 
-            // Marker
-            function addMarker(props) {
-                var marker = new google.maps.Marker({
-                    position: props.coords,
-                    map: map
-                })
-                if(props.content) {
-                    var infoWindow = new google.maps.InfoWindow({
-                        content: props.content 
-                    });
-                    marker.addListener('click', function() {
-                        infoWindow.open(map, marker);
-                    })
-                }
-            }
+            // // Marker
+            // function addMarker(props) {
+            //     var marker = new google.maps.Marker({
+            //         position: props.coords,
+            //         map: map
+            //     })
+            //     if(props.content) {
+            //         var infoWindow = new google.maps.InfoWindow({
+            //             content: props.content 
+            //         });
+            //         marker.addListener('click', function() {
+            //             infoWindow.open(map, marker);
+            //         })
+            //     }
+            // }
 
-            var markers = [{
-                coords: {lat: -23.2232,lng: -45.9007},
-                content: '<h3>Rua A...</h3>'
-            },{
-                coords: {lat: -23.2237,lng: -45.9008},
-                content: '<h3>Rua B...</h3>'
-            }];
+            // var markers = [{
+            //     coords: {lat: -23.2232,lng: -45.9007},
+            //     content: '<h3>Rua A...</h3>'
+            // },{
+            //     coords: {lat: -23.2237,lng: -45.9008},
+            //     content: '<h3>Rua B...</h3>'
+            // }];
 
-            for(var i = 0; i < markers.length; i++) {
-                addMarker(markers[i])
-            }
+            // for(var i = 0; i < markers.length; i++) {
+            //     addMarker(markers[i])
+            // }
 
             // Geolocation
             var infoWindow = new google.maps.InfoWindow;
@@ -73,7 +75,7 @@
                     };
 
                     infoWindow.setPosition(pos);
-                    infoWindow.setContent('Location found.');
+                    infoWindow.setContent('<h3>Estou aqui!</h3>');
                     infoWindow.open(map);
                     map.setCenter(pos);
                 }, function() {
@@ -86,7 +88,7 @@
         }
 
         function codeAddress() {
-
+            // percorrer para cada imovel - for()
             // Define address to center map to
             var address = 'Rua Professor Luiz Eurico Ferreira, 119';
 
@@ -104,6 +106,12 @@
                         map: map,
                         position: results[0].geometry.location
                     });
+                    var infoWindow = new google.maps.InfoWindow({
+                        content: `<h3>${address}</h3>`
+                    });
+                    marker.addListener('click', function() {
+                        infoWindow.open(map, marker);
+                    })
 
                 } else {
 
