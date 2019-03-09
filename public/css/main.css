@@ -1,0 +1,16 @@
+#profile {
+  padding-top: 15px; }
+  #profile .thumbnail {
+    border-radius: 50%;
+    max-height: 150px;
+    overflow: hidden;
+    max-width: 150px;
+    margin: 0 auto;
+    margin-bottom: 15px;
+    border: solid #757575 3px; }
+  #profile .name {
+    font-size: 1.5em;
+    text-align: center;
+    width: 100%; }
+    #profile .name span {
+      text-align: center; }
