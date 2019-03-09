@@ -4,7 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "sass:preview": "node-sass preview -o preview",
+    "sass:build": "node-sass scss/*.scss preview/*.scss public/css/main.css",
+    "sass:watch": "nodemon -e scss -x \"npm run sass:preview\""
   },
   "repository": {
     "type": "git",
@@ -15,5 +18,9 @@
   "bugs": {
     "url": "https://github.com/gucollaco/quebec/issues"
   },
-  "homepage": "https://github.com/gucollaco/quebec#readme"
+  "homepage": "https://github.com/gucollaco/quebec#readme",
+  "devDependencies": {
+    "node-sass": "^4.11.0",
+    "nodemon": "^1.18.10"
+  }
 }
