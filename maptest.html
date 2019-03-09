@@ -75,7 +75,7 @@
                     };
 
                     infoWindow.setPosition(pos);
-                    infoWindow.setContent('<h3>Estou aqui!</h3>');
+                    infoWindow.setContent('<h3>Você está aqui.</h3>');
                     infoWindow.open(map);
                     map.setCenter(pos);
                 }, function() {
@@ -90,7 +90,7 @@
         function codeAddress() {
             // percorrer para cada imovel - for()
             // Define address to center map to
-            var address = 'Rua Professor Luiz Eurico Ferreira, 119';
+            var address = 'Rua Professor Luiz Eurico Ferreira 119';
 
             geocoder.geocode({
                 'address': address
