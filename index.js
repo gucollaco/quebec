@@ -41,7 +41,7 @@ app.use((error, req, res, next) => {
     })
 })
 
-const port = process.env.PORT || 4001;
+const port = process.env.PORT || 4002;
 server.listen(port, () => {
     console.log(`Server listening on port ${port}`);
 });
