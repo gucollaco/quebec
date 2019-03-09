@@ -17,7 +17,7 @@ document.addEventListener('init', function(event) {
       && !document.querySelector('#pendingTasksPage ons-list-item')
     ) {
       myApp.services.fixtures.forEach(function(data) {
-        myApp.services.tasks.create(data);
+        //myApp.services.tasks.create(data);
       });
     }
   }
