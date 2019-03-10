@@ -8,6 +8,12 @@ class Avaliacao {
         return database.query(query)
     }
 
+    static getAllByImovel(id) {
+        let query = `SELECT * FROM avaliacao WHERE id_imovel = ${id}`
+
+        return database.query(query)
+    }
+
     static insert(dados) {
         let query = `INSERT INTO avaliacao
                     VALUES ('${dados.id_avaliacao}', NOW(), '${JSON.stringify(dados.criterios)}', '${JSON.stringify(dados.historico)}', ${dados.id_imovel}, '${dados.id_usuario}')`

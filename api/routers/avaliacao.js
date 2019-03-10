@@ -16,6 +16,12 @@ router.put('/:id', (req, res, next) => {
     }).catch(next)
 })
 
+router.get('/:id/imovel', (req, res, next) => {
+    AvaliacaoController.buscarPorImovel(req.params.id).then(dados => {
+        res.json({ success: true, data: dados })
+    }).catch(next)
+})
+
 router.get('/:id', (req, res, next) => {
     AvaliacaoController.buscar(req.params.id).then(dados => {
         res.json({ success: true, data: dados })

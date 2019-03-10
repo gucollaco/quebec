@@ -17,6 +17,10 @@ class AvaliacaoController {
     static async buscar(id) {
         return await Avaliacao.select(id)
     }
+
+    static async buscarPorImovel(id) {
+        return await Avaliacao.getByImovel(id)
+    }
 }
 
 module.exports = AvaliacaoController
