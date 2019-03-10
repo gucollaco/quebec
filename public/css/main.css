@@ -2,7 +2,7 @@
   background: rgba(128, 128, 128, 0.075); }
   #pending-list .imovel-card {
     position: relative;
-    padding-top: 5px; }
+    padding-top: 10px; }
     #pending-list .imovel-card img {
       object-fit: cover;
       width: calc(100% + 32px);
@@ -10,6 +10,8 @@
       margin-left: -16px;
       overflow: hidden; }
     #pending-list .imovel-card .title {
+      padding-top: 7.5px;
+      font-size: 1.1em;
       margin-bottom: 0;
       display: flex;
       flex-direction: row;
@@ -24,7 +26,6 @@
         font-weight: bold;
         font-size: 1.3em; }
     #pending-list .imovel-card::after {
-      content: "";
       display: block;
       background: #2142a5;
       width: 100%;

@@ -27,6 +27,7 @@
   "dependencies": {
     "bluebird": "^3.5.3",
     "body-parser": "^1.18.3",
+    "bootstrap": "^4.3.1",
     "cors": "^2.8.5",
     "date-time": "^3.0.0",
     "dotenv": "^6.2.0",

@@ -2,7 +2,7 @@
     background: rgba(gray, 0.075);
     .imovel-card{
         position: relative;
-        padding-top: 5px;
+        padding-top: 10px;
 
         img{
             object-fit: cover;
@@ -13,6 +13,8 @@
         }
 
         .title{
+            padding-top: 7.5px;
+            font-size: 1.1em;
             margin-bottom: 0;
             display: flex;
             flex-direction: row;
@@ -35,7 +37,7 @@
         }
 
         &::after{
-            content: "";
+            // content: "";
             display: block;
             background: rgb(33, 66, 165);
             width: 100%;
