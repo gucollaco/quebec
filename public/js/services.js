@@ -135,7 +135,43 @@ myApp.services = {
   },
 
   imovel: {
-    
+    // Creates a new task and attaches it to the pending task list.
+    create: function(data, at="#pending-list") {
+      let address = data.endereco.split('-')
+      let grade = parseFloat(data.nota).toFixed(1).split('.')
+
+      // Task item template.
+      var taskItem = ons.createElement(
+        `<ons-card class="imovel-card">
+          <img src="${data.foto}" alt="${data.endereco}">
+          <div class="title">
+            <div class="address">${address[0]}<span class="low">${address[1]}</span></div>
+            <div class="grade">${grade[0]}<span class="decimal">.${grade[1]}</span></div>            
+          </div>
+        </ons-card>`
+      );
+      
+
+      // Store data within the element.
+      taskItem.data = data;
+
+      // Insert urgent tasks at the top and non urgent tasks at the bottom.
+      var pendingList = document.querySelector(at);
+      pendingList.insertBefore(taskItem, taskItem.data.urgent ? pendingList.firstChild : null);
+    },
+
+    createImage: function(data, at){
+      let imageItem = ons.createElement(
+        `<ons-carousel-item>
+            <img src="${data.foto}" />
+        </ons-carousel-item>`
+      )
+
+      imageItem.data = data
+
+      var pendingList = document.querySelector(at);
+      pendingList.insertBefore(imageItem, null);
+    }
   },
 
   //////////////////////
