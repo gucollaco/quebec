@@ -1,4 +1,4 @@
-#pending-list{
+#pending-list, #result-list{
     background: #eceff1;
     .imovel-card{
         position: relative;
@@ -52,8 +52,14 @@
     }
 }
 
-#areaCard{
-    .list{
-        background: #eceff1;
+#imovelPage{
+    .carousel{
+        .carousel-item{
+            text-align: center;
+        }
     }
+}
+
+#map {
+    height: 600px;
 }

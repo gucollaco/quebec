@@ -1,15 +1,15 @@
-#pending-list {
+#pending-list, #result-list {
   background: #eceff1; }
-  #pending-list .imovel-card {
+  #pending-list .imovel-card, #result-list .imovel-card {
     position: relative;
     padding-top: 10px; }
-    #pending-list .imovel-card img {
+    #pending-list .imovel-card img, #result-list .imovel-card img {
       object-fit: cover;
       width: calc(100% + 32px);
       max-height: 150px;
       margin-left: -16px;
       overflow: hidden; }
-    #pending-list .imovel-card .title {
+    #pending-list .imovel-card .title, #result-list .imovel-card .title {
       padding-top: 7.5px;
       font-size: 1.1em;
       margin-bottom: 0;
@@ -17,15 +17,15 @@
       flex-direction: row;
       justify-content: space-between;
       align-items: center; }
-      #pending-list .imovel-card .title .address {
+      #pending-list .imovel-card .title .address, #result-list .imovel-card .title .address {
         font-size: 0.9em; }
-        #pending-list .imovel-card .title .address .low {
+        #pending-list .imovel-card .title .address .low, #result-list .imovel-card .title .address .low {
           display: block;
           font-size: 0.75em; }
-      #pending-list .imovel-card .title .grade {
+      #pending-list .imovel-card .title .grade, #result-list .imovel-card .title .grade {
         font-weight: bold;
         font-size: 1.3em; }
-    #pending-list .imovel-card::after {
+    #pending-list .imovel-card::after, #result-list .imovel-card::after {
       display: block;
       background: #2142a5;
       width: 100%;
@@ -38,3 +38,6 @@
 
 #areaCard .list {
   background: #eceff1; }
+
+#map {
+  height: 600px; }

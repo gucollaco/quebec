@@ -10,13 +10,14 @@ router.post('/', (req, res, next) => {
 })
 
 router.get('/:id', (req, res, next) => {
+
     ImovelController.buscar(req.params.id).then(dados => {
         res.json({ success: true, data: dados })
     }).catch(next)
 })
 
-router.get('/:id', (req, res, next) => {
-    ImovelController.buscar(req.params.id).then(dados => {
+router.get('/', (req, res, next) => {
+    ImovelController.buscaFiltrada(req.query).then(dados => {
         res.json({ success: true, data: dados })
     }).catch(next)
 })

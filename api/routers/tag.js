@@ -12,7 +12,7 @@ router.post('/', (req, res, next) => {
 })
 
 router.get('/:id', (req, res, next) => {
-    TagController.buscar(req.params.id).then(dados => {
+    TagController.buscar(req.params).then(dados => {
         res.json({ success: true, data:dados })
     }).catch(next)
 })

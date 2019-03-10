@@ -9,7 +9,7 @@ class Tag {
     }
 
     static select(dados) {
-        let query = `SELECT * from tag WHERE id_tag = ${dados.id_tag}`
+        let query = `SELECT * FROM tag WHERE id_tag = '${dados.id}'`
         
         return database.query(query)
     }
