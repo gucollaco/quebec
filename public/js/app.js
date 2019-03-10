@@ -1,7 +1,7 @@
 // App logic.
 window.myApp = {};
 
-var IMOVEL;
+var IMOVEL, SPLITTER;
 
 document.addEventListener('init', function(event) {
   var page = event.target;
@@ -67,21 +67,42 @@ document.addEventListener('init', function(event) {
       }
     });
   }
+  if(page.id === 'splitterPage'){ 
+    SPLITTER = event.target.data
+  }
 
   if(page.id === 'tabbarPage'){    
-    let _tabs = event.target.data.tabs
+    let _tabs = SPLITTER.tabs
+    let perfil = SPLITTER.usuario.user.perfil
+
+    let tabs_por_perfil = {
+      'IMOBILIARIA': ['pending_tasks', 'completed_tasks'],
+      'PROPRIETARIO': ['pending_tasks'],
+      'COLABORADOR': ['pending_tasks', 'cadastros_pendentes', 'avaliacoes_pendentes']
+    }
+
+    let __tabs = perfil.map(p => tabs_por_perfil[p]).reduce((acc, cur) => acc.concat(cur || []), [])
+    _tabs = (_tabs || []).concat(__tabs)
 
     if(_tabs){
       let tabs = $('#tabbarPage ons-tabbar ons-tab').toArray()
 
+      let to_hide = []
       let result = false
+      let i = 0
       for(let tab of tabs){
         result = _tabs.filter(t => tab.page.includes(t)).length > 0
         
         if(!result){
           $(tab).hide()
+        }else if(i > 0){
+          // $('#tabbarPage ons-tabbar').get(0).setActiveTab(2)
+          // i = -1000
         }
+        i++
+
       }
+
     }
   }
 
@@ -205,11 +226,11 @@ document.addEventListener('init', function(event) {
 
   if(page.id === 'loginPage'){
     $(document).on('click', '#entrar', function(){
-      return document.querySelector('#myNavigator').resetToPage('html/splitter.html', {
-        data: {
-            title: 'Quebec'
-        }
-      })
+      // return document.querySelector('#myNavigator').resetToPage('html/splitter.html', {
+      //   data: {
+      //       title: 'Quebec'
+      //   }
+      // })
 
       var usuario = document.getElementById('username').value;
       var senha = document.getElementById('password').value;
@@ -231,11 +252,11 @@ document.addEventListener('init', function(event) {
             let token = data.data.token
             document.querySelector('#myNavigator').resetToPage('html/splitter.html', {
               data: {
-                  imovel: this.data,
+                  usuario: data.data,
                   title: 'Quebec'
               }
             })
-            ons.notification.alert(token)
+            // ons.notification.alert(token)
           } else {
             ons.notification.alert('Problema ao cadastrar.')
           }

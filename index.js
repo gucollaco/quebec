@@ -37,6 +37,7 @@ app.post('/api/usuario', (req, res, next) => {
 })
 app.post('/api/usuario/login', (req, res, next) => {
     UsuarioController.login(req.body).then(dados => {
+        UsuarioController.buscar()
         res.json({ success: true, data: dados })
     }).catch(next)
 })
