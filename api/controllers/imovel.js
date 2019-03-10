@@ -9,8 +9,16 @@ class ImovelController {
         return await Imovel.select(id)
     }
 
-    static async adicionarTag(dados) {
-        await Imovel.addTag(dados)
+    static async buscaFiltrada(filtros) {
+        return await Imovel.selectFiltered(filtros)
+    }
+
+    static async adicionarTags(dados) {
+        await Imovel.addTags(dados)
+    }
+
+    static async listarAvaliacoesAprovadas(dados) {
+        await Imovel.selectApproved(dados)
     }
 
     

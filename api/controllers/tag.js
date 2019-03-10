@@ -8,10 +8,16 @@ class TagController {
         await Tag.insert(dados)
     }
 
-    static async criar(dados) {
+    static async buscar(dados) {
         if (!dados) throw new Error("Sem dados")
 
-        return await Tag.insert(dados)
+        return await Tag.select(dados)
+    }
+
+    static async excluir(id) {
+        if (!id) throw new Error("Sem dados")
+
+        await Tag.delete(id)
     }
 }
 

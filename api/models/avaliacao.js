@@ -30,8 +30,6 @@ class Avaliacao {
 
         return database.query(query)
     }
-
-
 }
 
 module.exports = Avaliacao
