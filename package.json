@@ -6,8 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "sass:preview": "node-sass preview -o preview",
-    "sass:build": "node-sass sass -o public/css",
-    "sass:watch": "nodemon --watch sass -x \"npm run sass:build\"",
+    "build:sass": "node-sass sass -o public/css",
+    "watch:sass": "npm run build:sass && npm run build:sass -- -w",
     "start": "node index.js"
   },
   "repository": {
@@ -27,6 +27,7 @@
   "dependencies": {
     "bluebird": "^3.5.3",
     "body-parser": "^1.18.3",
+    "bootstrap": "^4.3.1",
     "cors": "^2.8.5",
     "date-time": "^3.0.0",
     "dotenv": "^6.2.0",
