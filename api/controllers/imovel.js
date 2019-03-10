@@ -13,9 +13,15 @@ class ImovelController {
         return await Imovel.selectFiltered(filtros)
     }
 
-    static async adicionarTag(dados) {
-        await Imovel.addTag(dados)
+    static async adicionarTags(dados) {
+        await Imovel.addTags(dados)
     }
+
+    static async listarAvaliacoesAprovadas(dados) {
+        await Imovel.selectApproved(dados)
+    }
+
+    
 }
 
 module.exports = ImovelController

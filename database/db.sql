@@ -26,7 +26,7 @@ CREATE TABLE imovel (
 
 CREATE TABLE tag(
 	id_tag VARCHAR (10) PRIMARY KEY,
-	descricao TEXT[]
+	descricao TEXT
 );
 
 -- criterios {{id, nota[], observacao}, {id, nota[], observacao}, ... }

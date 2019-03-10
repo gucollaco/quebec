@@ -13,6 +13,12 @@ class TagController {
 
         return await Tag.select(dados)
     }
+
+    static async excluir(id) {
+        if (!id) throw new Error("Sem dados")
+
+        await Tag.delete(dados)
+    }
 }
 
 module.exports = TagController
