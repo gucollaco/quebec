@@ -147,6 +147,15 @@
         $(document).on('click', '#btnMostrarMais', function() {
             $("#divMaisFiltros").show();
         });
+        $(document).on('click', '#fabToggleMap', function() {
+            if($('#areaMap').css('display') == 'none') {
+                $("#areaFilter").hide();
+                $("#areaMap").show();
+            } else {
+                $("#areaMap").hide();
+                $("#areaFilter").show();
+            }
+        });
     </script>
 </body>
 
