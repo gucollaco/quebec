@@ -182,8 +182,10 @@ document.addEventListener('init', function(event) {
         success: function(data) {
           if(data.success) {
             ons.notification.alert('Obrigado por se cadastrar. Entraremos em contato em breve, com o retorno sobre sua solicitação.')
+            window.location.href = ''
           } else {
             ons.notification.alert('Problema ao cadastrar.')
+            window.location.href = ''
           }
         }
       });
