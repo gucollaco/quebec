@@ -183,6 +183,22 @@
                 }
             })
         })
+        $(document).on('click', '#teste', function(){
+            console.log(document.querySelector('#myNavigator'))
+            document.querySelector('#myNavigator').pushPage('html/score.html', {
+                data: {
+                    imovel: this.data,
+                    title: 'Avaliação'
+                }
+            })
+        })
+        $(document).on('change', '.submit-avaliacao', function(){
+            let selected_values = $('.submit-avaliacao').toArray().map((v) => $(v).val())
+            if(selected_values.includes('') || selected_values.reduce((acc, cur) => acc || (cur.constructor.name == `Array` && cur.length == 0), false)) { 
+            } else {
+                $('#areaSubmitAvaliacao').show()
+            }
+        })
     </script>
 </body>
 

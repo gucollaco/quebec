@@ -46,6 +46,7 @@ document.addEventListener('init', function(event) {
     datas.forEach(function(data) {
       myApp.services.imovel.create(data, '');
     });
+  }
     
   if(page.id === 'newTaskPage'){
     if (document.querySelector('#map')){
