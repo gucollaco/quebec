@@ -28,6 +28,7 @@ document.addEventListener('init', function(event) {
       && document.querySelector('#pendingTasksPage')
       && !document.querySelector('#pendingTasksPage ons-list-item')
     ) {
+
       var url = '/api/imovel?pontuacao=true'
       $.ajax({
         type: "GET",
@@ -45,7 +46,6 @@ document.addEventListener('init', function(event) {
         }
       });
 
-<<<<<<< HEAD
       if(navigator.geolocation){
             
         navigator.geolocation.getCurrentPosition(function(position) {
@@ -72,27 +72,13 @@ document.addEventListener('init', function(event) {
 
         })
       }
-=======
-      url = '/api/imovel?proximidade=true'
-      $.ajax({
-        type: "GET",
-        url: url,
-        data: {},
-        success: function(data) {
-          datas = data.data.result
-          if(data.success) {
-            datas.forEach(function(data) {
-              myApp.services.imovel.create(data, '#notification-list');
-            });
-            console.log('load ok')
-          } else {
-            console.log('load problem')
-          }
-        }
-      });
->>>>>>> 3d1725a77d2dd52cb65105e9fe7faab41fa7d0f9
+
+
+
+
     }
   }
+
 
   if(page.id === 'completedTasksPage'){
     var datas
@@ -113,6 +99,7 @@ document.addEventListener('init', function(event) {
       }
     });
   }
+
   if(page.id === 'splitterPage'){ 
     SPLITTER = event.target.data
   }
@@ -186,7 +173,7 @@ document.addEventListener('init', function(event) {
             myApp.services.imovel.createImage(data, '#imovelPage .carousel');
           });
 
-          initMap($('#imovelPage .map').get(0))
+          initMap($('#imovelPage .map').get(0), datas.coords)
           myApp.services.imovel.createPanel(datas, '#imovelPage .panel');
         } else {
           // ons.notification.alert('Problema ao cadastrar.')
@@ -213,30 +200,6 @@ document.addEventListener('init', function(event) {
         }
       }
     });
-    // var datas = {
-    //   avaliacao: {
-    //     status: 'Reprovada',
-    //     nota: 3.2,
-    //     criterios: [
-    //       {
-    //         nome: 'Critério #1',
-    //         descricao: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-    //         nota: '5'
-    //       },
-    //       {
-    //         nome: 'Critério #2',
-    //         descricao: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-    //         nota: 'Danificada, Pintura Ruim'
-    //       },
-    //     ]
-    //   }
-    // }
-    // if(datas.avaliacao){
-    //   myApp.services.imovel.createAvaliacaoNotaFinal(datas.avaliacao);
-    //   datas.avaliacao.criterios.forEach(function(data) {
-    //     myApp.services.imovel.createAvaliacao(data);
-    //   });
-    // }
   }
 
   if(page.id === 'imovelAnalise'){
@@ -287,7 +250,9 @@ document.addEventListener('init', function(event) {
 
   if(page.id === 'newTaskPage'){
     if (document.querySelector('#map')){
-      initMap()
+      getGeocode().then(pos => {
+        initMap(undefined, undefined, true, pos)
+      })
     }
   }
 
@@ -344,6 +309,7 @@ document.addEventListener('init', function(event) {
       })
     });
   }
+
   if(page.id === 'scorePage'){
     var data = [
       {
@@ -364,6 +330,7 @@ document.addEventListener('init', function(event) {
       myApp.services.score.createAvaliacao(d, '#scorePage .carousel')
     })
   }
+
   if(page.id === 'cadastrarPage'){
     $(document).on('click', '#confirmarCadastro', function(){
       let url = '/api/usuario/'
@@ -399,6 +366,7 @@ document.addEventListener('init', function(event) {
       });
     })
   }
+
   if(page.id === 'cadastrosPage'){
     let url = '/api/usuario/pendente'
 
@@ -418,34 +386,6 @@ document.addEventListener('init', function(event) {
         }
       }
     });
-    // let data = [
-    //   {
-    //     nome: 'Usuário #1',
-    //     email: 'usuario.1@host.com',
-    //     datahora: "10/03/2019 05:56"
-    //   },
-    //   {
-    //     nome: 'Usuário #2',
-    //     email: 'usuario.2@host.com',
-    //     datahora: "10/03/2019 05:56"
-    //   },
-    //   {
-    //     nome: 'Usuário #3',
-    //     email: 'usuario.3@host.com',
-    //     datahora: "08/03/2019 05:56",
-    //     tag: 'Atrasado'
-    //   },
-    //   {
-    //     nome: 'Usuário #4',
-    //     email: 'usuario.4@host.com',
-    //     datahora: "10/02/2019 05:56",
-    //     tag: 'Urgente'
-    //   },
-    // ]
-
-    // data.forEach(function(d) {
-    //   myApp.services.cadastro.create(d)
-    // })
   }
   
   if(page.id === 'pendenciasPage'){

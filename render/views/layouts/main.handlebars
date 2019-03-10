@@ -32,67 +32,80 @@
         var options
         var geocoder
 
-        function initMap(at) {
+        function getGeocode(){
+            return new Promise((resolve, reject) => {
+                
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(
+                    function(position) {
+                        var pos = {
+                            lat: position.coords.latitude,
+                            lng: position.coords.longitude
+                        };
+
+                        resolve(pos)
+                    }, 
+                    function() {
+                        handleLocationError(true, infoWindow, map.getCenter());
+                        reject()
+                    })
+                } else {
+                    // Browser doesn't support Geolocation
+                    handleLocationError(false, infoWindow, map.getCenter());
+                    reject()
+                }
+            })
+        }
+
+        function initMap(at, coords, no_marker=false, center) {
             if(at == undefined) at = document.getElementById('map')
             options = {
                 zoom: 15,
-                center: {lat: -23.2237,lng: -45.9009}
+                center: center
             }
             
             map = new google.maps.Map(at, options);
 
             // Call the codeAddress function (once) when the map is idle (ready)
-            google.maps.event.addListenerOnce(map, 'idle', codeAddress);
-
-            // // Marker
-            // function addMarker(props) {
-            //     var marker = new google.maps.Marker({
-            //         position: props.coords,
-            //         map: map
-            //     })
-            //     if(props.content) {
-            //         var infoWindow = new google.maps.InfoWindow({
-            //             content: props.content 
-            //         });
-            //         marker.addListener('click', function() {
-            //             infoWindow.open(map, marker);
-            //         })
-            //     }
-            // }
-
-            // var markers = [{
-            //     coords: {lat: -23.2232,lng: -45.9007},
-            //     content: '<h3>Rua A...</h3>'
-            // },{
-            //     coords: {lat: -23.2237,lng: -45.9008},
-            //     content: '<h3>Rua B...</h3>'
-            // }];
-
-            // for(var i = 0; i < markers.length; i++) {
-            //     addMarker(markers[i])
-            // }
-
-            // Geolocation
-            var infoWindow = new google.maps.InfoWindow;
-            // Try HTML5 geolocation.
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(function(position) {
-                    var pos = {
-                        lat: position.coords.latitude,
-                        lng: position.coords.longitude
-                    };
-
-                    infoWindow.setPosition(pos);
-                    infoWindow.setContent('<h3>Você está aqui.</h3>');
-                    infoWindow.open(map);
-                    map.setCenter(pos);
-                }, function() {
-                    handleLocationError(true, infoWindow, map.getCenter());
-                });
-            } else {
-                // Browser doesn't support Geolocation
-                handleLocationError(false, infoWindow, map.getCenter());
+            if(coords == undefined){
+                google.maps.event.addListenerOnce(map, 'idle', codeAddress);
             }
+
+            // Try HTML5 geolocation.
+            let fn = ((lat, lng) => {
+                return new Promise(resolve => {
+                    resolve({lat, lng, marker:true})
+                })
+            })
+            if(coords == undefined){
+                fn = getGeocode
+                coords = {}
+            }
+
+            if(!no_marker){
+                fn(coords.x, coords.y).then(pos => {
+                    if(pos.marker){
+                        pos.marker = undefined
+                    
+                        var marker = new google.maps.Marker({
+                            map: map,
+                            position: new google.maps.LatLng(pos.lat, pos.lng)
+                        });
+                        
+                        marker.setMap(map);
+                    }else{
+                        // Geolocation
+                        var infoWindow = new google.maps.InfoWindow;
+                        infoWindow.setPosition(pos);
+                        infoWindow.setContent('<h3>Você está aqui.</h3>');
+                        infoWindow.open(map);
+                    }
+
+
+                    map.setCenter(pos);
+                })
+            }
+                
         }
 
         function codeAddress() {
@@ -103,11 +116,11 @@
                 url: url,
                 data: null,
                 success: function(datas) {
-                    datas.data.result.forEach(function(data) {
-                        console.log(`test`, data)
+                    datas.data.filter(d => !!d.coords).forEach(function(data) {
+                        
                         // Define address to center map to
                         var address = data.endereco;
-
+                        
                         let geocoder = new google.maps.Geocoder();
                         geocoder.geocode({
                             'address': address
@@ -128,6 +141,11 @@
                                 });
                                 marker.addListener('click', function() {
                                     infoWindow.open(map, marker);
+                                })
+
+                    
+                                getGeocode().then(pos => {
+                                    map.setCenter(pos)
                                 })
 
                             } else {
@@ -180,7 +198,7 @@
                     url: url,
                     data: {localizacao: value},
                     success: function(data) {
-                    datas = data.data.result
+                    datas = data.data
                     if(data.success) {
                         datas.forEach(function(data) {
                             myApp.services.imovel.create(data, '#result-list');
