@@ -215,8 +215,12 @@ myApp.services = {
         <div class="nome">
           ${data.nome}
         </div>
+        <div class="desc">
+          ${data.descricao}
+        </div>
 
         <div class="nota">
+          <span>Avaliação:</span>
           ${data.nota}
         </div>
 
@@ -231,14 +235,14 @@ myApp.services = {
     createAvaliacaoNotaFinal: function(data, at="#avaliacao-list"){
 
       let panelItem = ons.createElement(
-        `<div class="avaliacao">
-        
-        <div class="status ${data.status.toLowerCase()[0]}">${data.status}</div>
-        <div class="nota-final">
-          ${data.nota}
-        </div>
+        `<ons-list-title>
 
-        </div>`)
+        <span class="nota-final">
+          <span>NOTA FINAL</span>${data.nota}
+        </span>
+        <span class="status ${data.status.toLowerCase()[0]}">${data.status}</span>
+
+        </ons-list-title>`)
 
         panelItem.data = data
   
@@ -275,6 +279,42 @@ myApp.services = {
 
       // Store data within the element.
       scoreItem.data = data;
+
+      // Insert urgent tasks at the top and non urgent tasks at the bottom.
+      var pendingList = document.querySelector(at);
+      pendingList.insertBefore(scoreItem, null);
+    },
+
+    createAnalise: function(data, at="#analise-list"){
+      let influencias = {
+        '3': 'angle-double-up',
+        "2": 'angle-up',
+        "1": 'caret-up',
+        "-1": 'caret-down',
+        '-2': 'angle-down',
+        '-3': 'angle-double-down',
+      }
+
+      let scoreItem = ons.createElement(
+        `<div class="inf inf-${data.influencia}">
+
+        <div class="influence">
+          <ons-icon icon="fa-${influencias[String(data.influencia)]}"></ons-icon>
+        </div>
+
+        <div class="nome">
+          ${data.nome}
+        </div>
+
+        </div>`
+      )
+
+      // Store data within the element.
+      scoreItem.data = data;
+
+      scoreItem.onclick = function(){
+        ons.notification.alert(this.data.descricao)
+      }
 
       // Insert urgent tasks at the top and non urgent tasks at the bottom.
       var pendingList = document.querySelector(at);

@@ -5,7 +5,7 @@
   background: #eceff1; }
   #pending-list .imovel-card, #result-list .imovel-card, #completed-list .imovel-card {
     position: relative;
-    padding-top: 10px; }
+    padding-top: 0px; }
     #pending-list .imovel-card img, #result-list .imovel-card img, #completed-list .imovel-card img {
       object-fit: cover;
       width: calc(100% + 32px);
@@ -125,33 +125,93 @@
   background: #eceff1; }
   #avaliacao-list .avaliacao {
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    padding: 15px 10px;
+    flex-direction: column;
+    padding: 20px 20px;
     background: #fff;
-    margin-top: 2px;
-    font-size: 1.1em; }
+    margin-bottom: 15px;
+    font-size: 1.1em;
+    margin-left: 10px;
+    margin-right: 10px;
+    border-radius: 8px; }
+    #avaliacao-list .avaliacao.status {
+      background: lightgray;
+      margin: 0; }
+  #avaliacao-list .nome {
+    font-size: 1.1em;
+    opacity: 0.65;
+    margin-bottom: 10px; }
+  #avaliacao-list .desc {
+    font-size: 0.825em;
+    padding: 0 15px; }
   #avaliacao-list .nota {
-    font-weight: bold; }
+    font-size: 0.95em;
+    margin-top: 15px;
+    margin-left: -20px;
+    margin-right: -20px;
+    background: rgba(211, 211, 211, 0.275);
+    padding: 3px 20px; }
+    #avaliacao-list .nota span {
+      opacity: 0.625;
+      font-size: 0.85em; }
   #avaliacao-list .status {
-    font-size: 1.3em;
-    font-weight: bold;
-    width: 100%;
-    text-align: center; }
+    float: right;
+    text-align: center;
+    margin-right: 16px; }
     #avaliacao-list .status.r {
-      color: #af0000; }
+      color: #d30000;
+      opacity: 0.65; }
     #avaliacao-list .status.a {
-      color: #006b00; }
+      color: #008300;
+      opacity: 0.65; }
   #avaliacao-list .nota-final {
-    font-size: 1.3em;
     font-weight: bolder;
     width: 100%;
     text-align: center; }
     #avaliacao-list .nota-final span {
-      display: block;
-      font-weight: 300;
-      font-size: 0.65em;
-      opacity: 0.9; }
+      opacity: 0.6;
+      margin-right: 10px; }
+
+#imovelAnalise .title {
+  width: 100%;
+  padding: 20px;
+  background: #fff; }
+  #imovelAnalise .title .nota-futura {
+    display: flex;
+    align-items: center;
+    padding: 0 10px; }
+    #imovelAnalise .title .nota-futura div {
+      text-align: center; }
+    #imovelAnalise .title .nota-futura #nota_prevista {
+      padding-left: 25px;
+      font-size: 1.5em;
+      font-weight: bold; }
+
+#analise-positivo-list, #analise-negativo-list {
+  background: #eceff1;
+  border-left: 3px solid black;
+  overflow: hidden; }
+  #analise-positivo-list#analise-positivo-list, #analise-negativo-list#analise-positivo-list {
+    border-left: 3px solid #00a100;
+    border-right: 3px solid #00a100; }
+  #analise-positivo-list#analise-negativo-list, #analise-negativo-list#analise-negativo-list {
+    border-left: 3px solid #c20000;
+    border-right: 3px solid #c20000; }
+  #analise-positivo-list .inf, #analise-negativo-list .inf {
+    position: relative;
+    background: #fff;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 2px solid #eceff1; }
+    #analise-positivo-list .inf .influence, #analise-negativo-list .inf .influence {
+      font-size: 1.3em;
+      margin: 0 15px; }
+    #analise-positivo-list .inf.inf-3 .influence, #analise-positivo-list .inf.inf-2 .influence, #analise-positivo-list .inf.inf-1 .influence, #analise-negativo-list .inf.inf-3 .influence, #analise-negativo-list .inf.inf-2 .influence, #analise-negativo-list .inf.inf-1 .influence {
+      color: green; }
+    #analise-positivo-list .inf.inf--3 .influence, #analise-positivo-list .inf.inf--2 .influence, #analise-positivo-list .inf.inf--1 .influence, #analise-negativo-list .inf.inf--3 .influence, #analise-negativo-list .inf.inf--2 .influence, #analise-negativo-list .inf.inf--1 .influence {
+      color: #c50000; }
 
 #loginPage .page__content {
   display: flex;
