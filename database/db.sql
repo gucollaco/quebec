@@ -21,7 +21,15 @@ CREATE TABLE imovel (
 	preco NUMERIC,
 	localizacao JSONB,
 	data_hora TIMESTAMP,
-	tags TEXT []
+	tags TEXT [],
+	banheiros INTEGER,
+	quartos INTEGER,
+	suites INTEGER,
+	area INTEGER,
+	titulo TEXT,
+	descricao TEXT,
+	estacionamento INTEGER,
+	links TEXT[]
 );
 
 CREATE TABLE tag(
@@ -36,8 +44,8 @@ CREATE TABLE avaliacao (
 	data_hora TIMESTAMP,
 	criterios JSONB,
 	historico JSONB,
-	id_imovel VARCHAR (10) REFERENCES imovel(id_imovel),
-	id_usuario VARCHAR (10) REFERENCES usuario(id_usuario)
+	id_imovel VARCHAR (10),
+	id_usuario VARCHAR (10)
 );
 
 -- notas 
