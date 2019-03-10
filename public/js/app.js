@@ -30,32 +30,47 @@ document.addEventListener('init', function(event) {
   }
 
   if(page.id === 'completedTasksPage'){
-    var datas = [
-      {
-        datahora: '10/03/2019 02:30',
-        endereco: 'Av. Paulista, 1578 - Bela Vista, São Paulo - SP, 01310-200',
-        nota: 5.0,
-        foto: 'https://www.ligadoemviagem.com.br/wp-content/uploads/2018/09/masp-museu-artes-sao-paulo-19.jpg',
-        status: 'Pendente'
-      },
-      {
-        datahora: '10/03/2019 02:30',
-        endereco: 'Av. Torre, 1578 - Eifell, Paris - FR, 01310-200',
-        nota: 4.0,
-        foto: 'https://cdn.getyourguide.com/img/tour_img-1290852-145.jpg',
-        status: 'Aprovada'
-      },
-      {
-        datahora: '10/03/2019 02:30',
-        endereco: 'Av. Paulista, 1578 - Bela Vista, São Paulo - SP, 01310-200',
-        nota: 1.0,
-        foto: 'https://www.ligadoemviagem.com.br/wp-content/uploads/2018/09/masp-museu-artes-sao-paulo-19.jpg',
-        status: 'Reprovada'
-      },
-    ]
-    datas.forEach(function(data) {
-      myApp.services.avaliacoes.create(data);
+    var datas
+    let url = '/api/imovel'
+    $.ajax({
+      type: "GET",
+      url: url,
+      data: null,
+      success: function(data) {
+        if(data.success) {
+          datas = data.data.result
+          datas.forEach(function(data) {
+            myApp.services.avaliacoes.create(data);
+          });
+        } else {
+          ons.notification.alert('Problema ao cadastrar.')
+        }
+      }
     });
+
+    // var datas = [
+    //   {
+    //     datahora: '10/03/2019 02:30',
+    //     endereco: 'Av. Paulista, 1578 - Bela Vista, São Paulo - SP, 01310-200',
+    //     nota: 5.0,
+    //     foto: 'https://www.ligadoemviagem.com.br/wp-content/uploads/2018/09/masp-museu-artes-sao-paulo-19.jpg',
+    //     status: 'Pendente'
+    //   },
+    //   {
+    //     datahora: '10/03/2019 02:30',
+    //     endereco: 'Av. Torre, 1578 - Eifell, Paris - FR, 01310-200',
+    //     nota: 4.0,
+    //     foto: 'https://cdn.getyourguide.com/img/tour_img-1290852-145.jpg',
+    //     status: 'Aprovada'
+    //   },
+    //   {
+    //     datahora: '10/03/2019 02:30',
+    //     endereco: 'Av. Paulista, 1578 - Bela Vista, São Paulo - SP, 01310-200',
+    //     nota: 1.0,
+    //     foto: 'https://www.ligadoemviagem.com.br/wp-content/uploads/2018/09/masp-museu-artes-sao-paulo-19.jpg',
+    //     status: 'Reprovada'
+    //   },
+    // ]
   }
 
   if(page.id === 'imovelData'){
