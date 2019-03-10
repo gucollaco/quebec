@@ -29,7 +29,7 @@ document.addEventListener('init', function(event) {
       && !document.querySelector('#pendingTasksPage ons-list-item')
     ) {
 
-      let url = '/api/imovel'
+      let url = '/api/imovel?pontuacao=true'
       $.ajax({
         type: "GET",
         url: url,
@@ -39,6 +39,24 @@ document.addEventListener('init', function(event) {
           if(data.success) {
             datas.forEach(function(data) {
               myApp.services.imovel.create(data);
+            });
+            console.log('load ok')
+          } else {
+            console.log('load problem')
+          }
+        }
+      });
+
+      let url = '/api/imovel?proximidade=true'
+      $.ajax({
+        type: "GET",
+        url: url,
+        data: {},
+        success: function(data) {
+          datas = data.data.result
+          if(data.success) {
+            datas.forEach(function(data) {
+              myApp.services.imovel.create(data, '#notification-list');
             });
             console.log('load ok')
           } else {
