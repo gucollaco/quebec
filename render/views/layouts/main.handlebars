@@ -169,12 +169,18 @@
     </script>
     <script>
         $(document).on('change', '#rangeDistancia', function() {
-            console.log($("#rangeDistancia").val() + ' km')
+            //console.log($("#rangeDistancia").val() + ' km')
             $("#inputDistancia").show();
             $("#inputDistancia").text($("#rangeDistancia").val() + ' km');
         });
         $(document).on('click', '#btnMostrarMais', function() {
-            $("#divMaisFiltros").show();
+            let visible = !!$("#divMaisFiltros").data('visible')
+            $("#divMaisFiltros").data('visible', !visible)
+            if(!visible){
+                $("#divMaisFiltros").show();
+            }else{
+                $("#divMaisFiltros").hide();
+            }
         });
         $(document).on('click', '#fabToggleMap', function() {
             if($('#areaMap').css('display') == 'none') {
