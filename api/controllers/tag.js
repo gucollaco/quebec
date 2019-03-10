@@ -14,6 +14,11 @@ class TagController {
         return await Tag.select(dados)
     }
 
+    static async buscarTodos() {
+
+        return await Tag.selectAll()
+    }
+
     static async excluir(id) {
         if (!id) throw new Error("Sem dados")
 

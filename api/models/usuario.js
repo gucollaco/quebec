@@ -1,4 +1,5 @@
 const database = require('../../database')
+const crypto = require('crypto')
 
 class Usuario {
 
@@ -9,8 +10,9 @@ class Usuario {
     }
 
     static insert(dados) {
+        var id = crypto.randomBytes(3).toString('hex');
         let query = `INSERT INTO usuario
-                    VALUES ('${dados.id_usuario}', '{${dados.perfil}}', '${JSON.stringify(dados.credenciais)}', '${dados.nome}', '${dados.foto}', '{${dados.locais}}', NOW())`
+                    VALUES ('${id}', '{${dados.perfil}}', '${JSON.stringify(dados.credenciais)}', '${dados.nome}', '${dados.pendente}', '', '{${dados.locais}}', NOW())`
 
         return database.query(query)
     }

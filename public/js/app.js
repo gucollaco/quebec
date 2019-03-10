@@ -154,5 +154,40 @@ document.addEventListener('init', function(event) {
       myApp.services.score.createAvaliacao(d, '#scorePage .carousel')
     })
   }
+  if(page.id === 'cadastrarPage'){
+    $(document).on('click', '#confirmarCadastro', function(){
+      let url = '/api/usuario/'
+
+      let nome = $('#nome').val()
+      let username = $('#email').val()
+      let password = $('#passwordUsuario').val()
+      let endereco = $('#endereco').val()
+      let numero = $('#numero').val()
+      
+      let data = {
+        nome: nome,
+        perfil: 'COLABORADOR',
+        pendente: true,
+        credenciais: {
+          usuario: username,
+          senha: password,
+        },
+        locais: endereco + ' ' + numero
+      }
+
+      $.ajax({
+        type: "POST",
+        url: url,
+        data: data,
+        success: function(data) {
+          if(data.success) {
+            ons.notification.alert('Obrigado por se cadastrar. Entraremos em contato em breve, com o retorno sobre sua solicitação.')
+          } else {
+            ons.notification.alert('Problema ao cadastrar.')
+          }
+        }
+      });
+    })
+  }
 
 });
