@@ -197,9 +197,9 @@
         margin-bottom: 15px;
         font-size: 1.1em;
 
-        margin-left: 10px;
-        margin-right: 10px;
-        border-radius: 8px;
+        // margin-left: 10px;
+        // margin-right: 10px;
+        // border-radius: 8px;
 
         &.status{
             background: lightgray;
@@ -375,5 +375,45 @@
     bottom: 5px;
     width: 100%;
     button{
+    }
+}
+
+#cadastros-list, #pendencias-list{
+    background: #eceff1;
+
+    .cadastro-card, .dual, .direita{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+
+        &.direita{
+            flex-direction: column;
+        }
+    }
+
+
+    .nome{
+        font-weight: 500;
+        font-size: 1.1em;
+    }
+
+    .data{
+        margin-top: 10px;
+        opacity: 0.75;
+        font-size: 0.9em;
+    }
+
+    .tag{
+        text-align: right;
+
+        &.a{
+            color: goldenrod;
+            font-weight: 500;
+        }
+
+        &.u{
+            color: red;
+            font-weight: bolder;
+        }
     }
 }

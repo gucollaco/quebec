@@ -293,5 +293,71 @@ document.addEventListener('init', function(event) {
       });
     })
   }
+  if(page.id === 'cadastrosPage'){
+    let data = [
+      {
+        nome: 'Usuário #1',
+        email: 'usuario.1@host.com',
+        datahora: "10/03/2019 05:56"
+      },
+      {
+        nome: 'Usuário #2',
+        email: 'usuario.2@host.com',
+        datahora: "10/03/2019 05:56"
+      },
+      {
+        nome: 'Usuário #3',
+        email: 'usuario.3@host.com',
+        datahora: "08/03/2019 05:56",
+        tag: 'Atrasado'
+      },
+      {
+        nome: 'Usuário #4',
+        email: 'usuario.4@host.com',
+        datahora: "10/02/2019 05:56",
+        tag: 'Urgente'
+      },
+    ]
+
+    data.forEach(function(d) {
+      myApp.services.cadastro.create(d)
+    })
+  }
+  
+  if(page.id === 'pendenciasPage'){
+    let data = [
+      {
+        proprietario: 'Proprietário #1',
+        endereco: 'Avenida Paulista, 1582 - Jardim, São Paulo - SP',
+        colaborador: 'Colaborador #1',
+        datahora: "10/03/2019 05:56"
+      },
+      {
+        proprietario: 'Proprietário #2',
+        endereco: 'Avenida Paulista, 1582 - Jardim, São Paulo - SP',
+        colaborador: 'Colaborador #2',
+        datahora: "10/03/2019 05:56"
+      },
+      {
+        proprietario: 'Proprietário #3',
+        endereco: 'Avenida Paulista, 1582 - Jardim, São Paulo - SP',
+        colaborador: 'Colaborador #3',
+        datahora: "10/03/2019 05:56",
+        tag: 'Atrasado'
+      },
+      {
+        proprietario: 'Proprietário #3',
+        endereco: 'Avenida Paulista, 1582 - Jardim, São Paulo - SP',
+        colaborador: 'Colaborador #3',
+        datahora: "10/03/2019 05:56",
+        tag: 'Urgente'
+      },
+    ]
+
+    data.forEach(function(d) {
+      myApp.services.avaliacoes.createPendencia(d)
+    })
+  }
+
 
 });
