@@ -5,7 +5,7 @@ class Imovel {
     static insert(dados) {
         let query = `INSERT INTO imovel
                     VALUES ('${dados.id_imovel}', '${dados.tipo}', ${dados.preco}, '${JSON.stringify(dados.localizacao)}', NOW(), '{${dados.tags}}'
-                    , '${dados.banheiros}', '${dados.quartos}', '${dados.suites}', '${dados.area}', '${dados.titulo}', '${dados.descricao}', '${dados.estacionamento}', '{${dados.links}}')`
+                    , '${dados.banheiros}', '${dados.quartos}', '${dados.suites}', '${dados.area}', '${dados.titulo}', '${dados.descricao}', '${dados.estacionamento}', '{${dados.links}}', '(${dados.latitude},${dados.longitude})')`
 
         return database.query(query)
     }
@@ -57,6 +57,11 @@ class Imovel {
         }
         
         return database.query(query)
+    }
+    static selectTop(){
+        let query = `
+        SELECT * FROM 
+        `
     }
 
     // static selectByTag(tags_ids) {

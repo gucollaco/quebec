@@ -25,7 +25,7 @@ class UsuarioController {
         if (!user) throw new Error("Credenciais inválidas.")
         else {
             let token = jwt.sign({ user }, '53nh4')
-            return { token }
+            return { token, user }
         }
     }
 }

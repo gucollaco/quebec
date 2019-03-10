@@ -37,6 +37,7 @@ app.post('/api/usuario', (req, res, next) => {
 })
 app.post('/api/usuario/login', (req, res, next) => {
     UsuarioController.login(req.body).then(dados => {
+        UsuarioController.buscar()
         res.json({ success: true, data: dados })
     }).catch(next)
 })
@@ -115,15 +116,19 @@ global.SCORE = (() => {
         let normal;
         if(modelo.intervalo){
           normal = (resultado - modelo.valor[0])/(modelo.valor[1] - modelo.valor[0])
-        }else if(modelo.boleano){
+        }else if(modelo.booleano){
           normal = +(resultado == modelo.valor) * modelo.peso
         }else if(modelo.lista){
-          let soma = modelo.lista.filter((v, i) => i in resultado).reduce((acc, cur) => acc + cur.valor, 0)
+          let soma = modelo.lista.filter((v, i) => {
+              return i in resultado
+          }).reduce((acc, cur) => {
+              return acc + cur.valor
+          }, 0)
           let lista_ordenada = modelo.lista.sort((a, b) => a.valor - b.valor)
           let len_lista = modelo.lista.length
   
-          let minimo = lista_ordenada[0].valor + lista_ordenada[1].valor
-          let maximo = lista_ordenada[len_lista-1].valor + lista_ordenada[len_lista-2].valor
+          let minimo = lista_ordenada[0].valor
+          let maximo = lista_ordenada[len_lista-1].valor
   
           normal = (soma - minimo) / (maximo - minimo)
         }
