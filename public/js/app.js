@@ -165,11 +165,6 @@ document.addEventListener('init', function(event) {
         }
       }
     });
-    // datas.fotos.forEach(function(data) {
-    //   myApp.services.imovel.createImage(data, '#imovelPage .carousel');
-    // });
-    // initMap($('#imovelPage .map').get(0))
-    // myApp.services.imovel.createPanel(datas, '#imovelPage .panel');
   }
 
   if(page.id === 'imovelAvaliacao'){
@@ -181,42 +176,13 @@ document.addEventListener('init', function(event) {
       data: null,
       success: function(data) {
         var datas = data.data[0] || []
-        // var datas = {
-        //   avaliacao: {
-        //     status: 'Reprovada',
-        //     nota: 3.2,
-        //     criterios: [
-        //       {
-        //         nome: 'Critério #1',
-        //         descricao: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-        //         nota: '5'
-        //       },
-        //       {
-        //         nome: 'Critério #2',
-        //         descricao: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-        //         nota: 'Danificada, Pintura Ruim'
-        //       },
-        //     ]
-        //   }
-        // }
+
         if(datas.length > 0){
           myApp.services.imovel.createAvaliacaoNotaFinal(datas);
           datas.criterios.forEach(function(data) {
             myApp.services.imovel.createAvaliacao(data);
           });
         }
-        // if(data.success) {
-        //   datas = data.data.result[0]
-
-        //   datas.links.forEach(function(data) {
-        //     myApp.services.imovel.createImage(data, '#imovelPage .carousel');
-        //   });
-
-        //   initMap($('#imovelPage .map').get(0))
-        //   myApp.services.imovel.createPanel(datas, '#imovelPage .panel');
-        // } else {
-        //   // ons.notification.alert('Problema ao cadastrar.')
-        // }
       }
     });
     // var datas = {
