@@ -270,5 +270,41 @@ document.addEventListener('init', function(event) {
       myApp.services.cadastro.create(d)
     })
   }
+  
+  if(page.id === 'pendenciasPage'){
+    let data = [
+      {
+        proprietario: 'Proprietário #1',
+        endereco: 'Avenida Paulista, 1582 - Jardim, São Paulo - SP',
+        colaborador: 'Colaborador #1',
+        datahora: "10/03/2019 05:56"
+      },
+      {
+        proprietario: 'Proprietário #2',
+        endereco: 'Avenida Paulista, 1582 - Jardim, São Paulo - SP',
+        colaborador: 'Colaborador #2',
+        datahora: "10/03/2019 05:56"
+      },
+      {
+        proprietario: 'Proprietário #3',
+        endereco: 'Avenida Paulista, 1582 - Jardim, São Paulo - SP',
+        colaborador: 'Colaborador #3',
+        datahora: "10/03/2019 05:56",
+        tag: 'Atrasado'
+      },
+      {
+        proprietario: 'Proprietário #3',
+        endereco: 'Avenida Paulista, 1582 - Jardim, São Paulo - SP',
+        colaborador: 'Colaborador #3',
+        datahora: "10/03/2019 05:56",
+        tag: 'Urgente'
+      },
+    ]
+
+    data.forEach(function(d) {
+      myApp.services.avaliacoes.createPendencia(d)
+    })
+  }
+
 
 });

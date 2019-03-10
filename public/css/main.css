@@ -230,28 +230,26 @@
   bottom: 5px;
   width: 100%; }
 
-#cadastros-list {
+#cadastros-list, #pendencias-list {
   background: #eceff1; }
-  #cadastros-list .cadastro-card {
+  #cadastros-list .cadastro-card, #cadastros-list .dual, #cadastros-list .direita, #pendencias-list .cadastro-card, #pendencias-list .dual, #pendencias-list .direita {
     display: flex;
     flex-direction: row;
     justify-content: space-between; }
-  #cadastros-list .nome {
+    #cadastros-list .cadastro-card.direita, #cadastros-list .dual.direita, #cadastros-list .direita.direita, #pendencias-list .cadastro-card.direita, #pendencias-list .dual.direita, #pendencias-list .direita.direita {
+      flex-direction: column; }
+  #cadastros-list .nome, #pendencias-list .nome {
     font-weight: 500;
     font-size: 1.1em; }
-  #cadastros-list .data {
+  #cadastros-list .data, #pendencias-list .data {
     margin-top: 10px;
     opacity: 0.75;
     font-size: 0.9em; }
-  #cadastros-list .direita {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between; }
-  #cadastros-list .tag {
+  #cadastros-list .tag, #pendencias-list .tag {
     text-align: right; }
-    #cadastros-list .tag.a {
+    #cadastros-list .tag.a, #pendencias-list .tag.a {
       color: goldenrod;
       font-weight: 500; }
-    #cadastros-list .tag.u {
+    #cadastros-list .tag.u, #pendencias-list .tag.u {
       color: red;
       font-weight: bolder; }

@@ -378,14 +378,19 @@
     }
 }
 
-#cadastros-list{
+#cadastros-list, #pendencias-list{
     background: #eceff1;
 
-    .cadastro-card{
+    .cadastro-card, .dual, .direita{
         display: flex;
         flex-direction: row;
         justify-content: space-between;
+
+        &.direita{
+            flex-direction: column;
+        }
     }
+
 
     .nome{
         font-weight: 500;
@@ -396,12 +401,6 @@
         margin-top: 10px;
         opacity: 0.75;
         font-size: 0.9em;
-    }
-
-    .direita{
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
     }
 
     .tag{
