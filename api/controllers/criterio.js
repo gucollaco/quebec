@@ -12,6 +12,10 @@ class CriterioController {
 
         return await Criterio.select(dados)
     } 
+    
+    static async todos() {
+        return await Criterio.select_all()
+    } 
 }
 
 module.exports = CriterioController

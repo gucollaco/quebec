@@ -137,6 +137,9 @@ myApp.services = {
   imovel: {
     // Creates a new task and attaches it to the pending task list.
     create: function(data, at="#pending-list") {
+      let title = '.' + at.slice(1).split('-')[0] + 'title'
+      $(title).display('')
+
       let address = data.endereco.split('-')
       let grade = parseFloat(data.nota).toFixed(1).split('.')
 
