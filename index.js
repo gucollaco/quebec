@@ -25,6 +25,7 @@ app.use(cors());
 
 app.use(express.static('public'));
 app.use('/onsenui', express.static(__dirname + '/node_modules/onsenui'));
+app.use('/jquery', express.static(__dirname + '/node_modules/jquery'));
 
 app.use('/api', cors(), require('./api/routers'));
 app.use('/', cors(), require('./render/routers'));
