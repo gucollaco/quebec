@@ -1,20 +1,6 @@
 <ons-page id="pendingTasksPage">
-    <div>
-        <p style="margin-top:5px; margin-bottom:5px; height:100%; width:100%; overflow:auto">
-            <ons-search-input style="width:100%;" placeholder="Filtrar" onchange="ons.notification.alert('Searched for: ' + this.value)"></ons-search-input>
-        </p>
-    </div>
-    <ons-carousel swipeable overscrollable auto-scroll var="carousel" style="height: 300px">
-        <ons-carousel-item style="margin: auto; text-align: center">
-            <img src="https://images.freeimages.com/images/large-previews/53a/house-2-1232910.jpg" style="height: 100%; margin: auto">
-        </ons-carousel-item>
-        <ons-carousel-item style="margin: auto; text-align: center">
-            <img src="https://images.freeimages.com/images/large-previews/719/xmas-house-1223360.jpg" style="height: 100%; margin: auto">
-        </ons-carousel-item>
-        <ons-carousel-item style="margin: auto; text-align: center">
-            <img src="https://images.freeimages.com/images/large-previews/4b4/beach-house-1225387.jpg" style="height: 100%; margin: auto">
-        </ons-carousel-item>
-    </ons-carousel>
+    <ons-list id="pending-list">
+    </ons-list>
 
-    <div style="height:500px; width: 100%" id="map"></div>
+    <!-- <div style="height:500px; width: 100%" id="map"></div> -->
 </ons-page>

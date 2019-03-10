@@ -1,16 +1,36 @@
-#profile {
-  padding-top: 15px; }
-  #profile .thumbnail {
-    border-radius: 50%;
-    max-height: 150px;
-    overflow: hidden;
-    max-width: 150px;
-    margin: 0 auto;
-    margin-bottom: 15px;
-    border: solid #757575 3px; }
-  #profile .name {
-    font-size: 1.5em;
-    text-align: center;
-    width: 100%; }
-    #profile .name span {
-      text-align: center; }
+#pending-list {
+  background: rgba(128, 128, 128, 0.075); }
+  #pending-list .imovel-card {
+    position: relative;
+    padding-top: 5px; }
+    #pending-list .imovel-card img {
+      object-fit: cover;
+      width: calc(100% + 32px);
+      max-height: 150px;
+      margin-left: -16px;
+      overflow: hidden; }
+    #pending-list .imovel-card .title {
+      margin-bottom: 0;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center; }
+      #pending-list .imovel-card .title .address {
+        font-size: 0.9em; }
+        #pending-list .imovel-card .title .address .low {
+          display: block;
+          font-size: 0.75em; }
+      #pending-list .imovel-card .title .grade {
+        font-weight: bold;
+        font-size: 1.3em; }
+    #pending-list .imovel-card::after {
+      content: "";
+      display: block;
+      background: #2142a5;
+      width: 100%;
+      height: 10px;
+      position: absolute;
+      top: 0;
+      left: 0;
+      border-top-left-radius: 2px;
+      border-top-right-radius: 2px; }
