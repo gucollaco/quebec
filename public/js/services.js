@@ -151,7 +151,6 @@ myApp.services = {
         </ons-card>`
       );
       
-      console.log('data', data)
       // Store data within the element.
       taskItem.data = data;
 

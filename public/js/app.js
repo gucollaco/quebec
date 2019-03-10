@@ -1,6 +1,8 @@
 // App logic.
 window.myApp = {};
 
+var IMOVEL;
+
 document.addEventListener('init', function(event) {
   var page = event.target;
 
@@ -60,7 +62,7 @@ document.addEventListener('init', function(event) {
           //   myApp.services.avaliacoes.create(data);
           // });
         } else {
-          ons.notification.alert('Problema ao cadastrar.')
+          // ons.notification.alert('Problema ao cadastrar.')
         }
       }
     });
@@ -83,7 +85,12 @@ document.addEventListener('init', function(event) {
     }
   }
 
+  if(page.id === `imovelPage`){
+    IMOVEL = event.target.data.imovel
+  }
+
   if(page.id === 'imovelData'){
+
     var datas = {
         endereco: 'Av. Paulista, 1578 - Bela Vista, São Paulo - SP, 01310-200',
         nota: 5.0,
@@ -93,6 +100,7 @@ document.addEventListener('init', function(event) {
           'https://cdn.getyourguide.com/img/tour_img-1290852-145.jpg'
         ],
     }
+    console.log('a',IMOVEL)
 
     datas.fotos.forEach(function(data) {
       myApp.services.imovel.createImage(data, '#imovelPage .carousel');
