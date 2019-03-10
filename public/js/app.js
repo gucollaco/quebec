@@ -181,15 +181,9 @@ document.addEventListener('init', function(event) {
         data: data,
         success: function(data) {
           if(data.success) {
-            alert('Obrigado por se cadastrar. Entraremos em contato em breve, com o retorno sobre sua solicitação.')
-            document.querySelector('#myNavigator').resetToPage('html/login.html', {
-              data: {
-                  imovel: this.data,
-                  title: ''
-              }
-            })
+            ons.notification.alert('Obrigado por se cadastrar. Entraremos em contato em breve, com o retorno sobre sua solicitação.')
           } else {
-            alert('Problema ao cadastrar.')
+            ons.notification.alert('Problema ao cadastrar.')
           }
         }
       });
