@@ -133,6 +133,15 @@
     font-size: 1.1em; }
   #avaliacao-list .nota {
     font-weight: bold; }
+  #avaliacao-list .status {
+    font-size: 1.3em;
+    font-weight: bold;
+    width: 100%;
+    text-align: center; }
+    #avaliacao-list .status.r {
+      color: #af0000; }
+    #avaliacao-list .status.a {
+      color: #006b00; }
   #avaliacao-list .nota-final {
     font-size: 1.3em;
     font-weight: bolder;
@@ -143,7 +152,3 @@
       font-weight: 300;
       font-size: 0.65em;
       opacity: 0.9; }
-      #avaliacao-list .nota-final span.r {
-        color: red; }
-      #avaliacao-list .nota-final span.a {
-        color: green; }

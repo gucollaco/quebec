@@ -58,7 +58,7 @@ document.addEventListener('init', function(event) {
     });
   }
 
-  if(page.id === 'imovelPage'){
+  if(page.id === 'imovelData'){
     var datas = {
         endereco: 'Av. Paulista, 1578 - Bela Vista, São Paulo - SP, 01310-200',
         nota: 5.0,
@@ -67,20 +67,6 @@ document.addEventListener('init', function(event) {
           'https://www.ligadoemviagem.com.br/wp-content/uploads/2018/09/masp-museu-artes-sao-paulo-19.jpg', 
           'https://cdn.getyourguide.com/img/tour_img-1290852-145.jpg'
         ],
-        avaliacao: {
-          status: 'Reprovada',
-          nota: 3.2,
-          criterios: [
-            {
-              nome: 'Critério #1',
-              nota: '5'
-            },
-            {
-              nome: 'Critério #2',
-              nota: 'Danificada, Pintura Ruim'
-            },
-          ]
-        }
     }
 
     datas.fotos.forEach(function(data) {
@@ -88,11 +74,30 @@ document.addEventListener('init', function(event) {
     });
     initMap($('#imovelPage .map').get(0))
     myApp.services.imovel.createPanel(datas, '#imovelPage .panel');
+  }
+
+  if(page.id === 'imovelAvaliacao'){
+    var datas = {
+      avaliacao: {
+        status: 'Reprovada',
+        nota: 3.2,
+        criterios: [
+          {
+            nome: 'Critério #1',
+            nota: '5'
+          },
+          {
+            nome: 'Critério #2',
+            nota: 'Danificada, Pintura Ruim'
+          },
+        ]
+      }
+    }
     if(datas.avaliacao){
+      myApp.services.imovel.createAvaliacaoNotaFinal(datas.avaliacao);
       datas.avaliacao.criterios.forEach(function(data) {
         myApp.services.imovel.createAvaliacao(data);
       });
-      myApp.services.imovel.createAvaliacaoNotaFinal(datas.avaliacao);
     }
   }
 

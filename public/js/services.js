@@ -233,9 +233,9 @@ myApp.services = {
       let panelItem = ons.createElement(
         `<div class="avaliacao">
         
+        <div class="status ${data.status.toLowerCase()[0]}">${data.status}</div>
         <div class="nota-final">
           ${data.nota}
-          <span class="${data.status.toLowerCase()[0]}">(${data.status})</span>
         </div>
 
         </div>`)

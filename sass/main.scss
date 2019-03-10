@@ -205,6 +205,21 @@
         font-weight: bold;
     }
 
+    .status{
+        font-size: 1.3em;
+        font-weight: bold;
+        width: 100%;
+        text-align: center;
+
+        &.r{
+            color: rgb(175, 0, 0);
+        }
+
+        &.a{
+            color: rgb(0, 107, 0);
+        }
+    }
+
     .nota-final{
         font-size: 1.3em;
         font-weight: bolder;
@@ -216,14 +231,6 @@
             font-weight: 300;
             font-size: 0.65em;
             opacity: 0.9;
-
-            &.r{
-                color: red;
-            }
-
-            &.a{
-                color: green;
-            }
         }
     }
 }
