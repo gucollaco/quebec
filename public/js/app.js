@@ -59,4 +59,32 @@ document.addEventListener('init', function(event) {
     }
   }
 
+  if(page.id === 'loginPage'){
+    $(document).on('click', '#entrar', function(){
+      // var username = document.getElementById('username').value;
+      // var password = document.getElementById('password').value;
+    
+      // if (username === 'bob' && password === 'secret') {
+      //   ons.notification.alert('Congratulations!');
+      // } else {
+      //   ons.notification.alert('Incorrect username or password.');
+      // }
+      document.querySelector('#myNavigator').resetToPage('html/splitter.html', {
+        data: {
+            imovel: this.data,
+            title: 'Quebec'
+        }
+    })
+    });
+
+    $(document).on('click', '#cadastrar', function(){
+      document.querySelector('#myNavigator').pushPage('html/cadastrar.html', {
+          data: {
+              imovel: this.data,
+              title: 'Cadastro'
+          }
+      })
+    });
+  }
+
 });
