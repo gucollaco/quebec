@@ -327,7 +327,7 @@ document.addEventListener('init', function(event) {
     });
 
     $(document).on('click', '#cadastrar', function(){
-      document.querySelector('#myNavigator').pushPage('html/cadastrar.html', {
+      document.querySelector('#myNavigator').resetToPage('html/cadastrar.html', {
           data: {
               imovel: this.data,
               title: 'Cadastro'
@@ -383,40 +383,56 @@ document.addEventListener('init', function(event) {
         success: function(data) {
           if(data.success) {
             ons.notification.alert('Obrigado por se cadastrar. Entraremos em contato em breve, com o retorno sobre sua solicitação.')
-            window.location.href = ''
           } else {
             ons.notification.alert('Problema ao cadastrar.')
-            window.location.href = ''
           }
         }
       });
     })
   }
   if(page.id === 'cadastrosPage'){
-    let data = [
-      {
-        nome: 'Usuário #1',
-        email: 'usuario.1@host.com',
-        datahora: "10/03/2019 05:56"
-      },
-      {
-        nome: 'Usuário #2',
-        email: 'usuario.2@host.com',
-        datahora: "10/03/2019 05:56"
-      },
-      {
-        nome: 'Usuário #3',
-        email: 'usuario.3@host.com',
-        datahora: "08/03/2019 05:56",
-        tag: 'Atrasado'
-      },
-      {
-        nome: 'Usuário #4',
-        email: 'usuario.4@host.com',
-        datahora: "10/02/2019 05:56",
-        tag: 'Urgente'
-      },
-    ]
+    let url = '/api/usuario/pendente'
+
+    $.ajax({
+      type: "GET",
+      url: url,
+      data: data,
+      success: function(data) {
+        if(data.success) {
+          datas = data.data.result
+
+          datas.forEach(function(d) {
+            myApp.services.cadastro.create(d)
+          })
+        } else {
+          ons.notification.alert('Problema encontrado.')
+        }
+      }
+    });
+    // let data = [
+    //   {
+    //     nome: 'Usuário #1',
+    //     email: 'usuario.1@host.com',
+    //     datahora: "10/03/2019 05:56"
+    //   },
+    //   {
+    //     nome: 'Usuário #2',
+    //     email: 'usuario.2@host.com',
+    //     datahora: "10/03/2019 05:56"
+    //   },
+    //   {
+    //     nome: 'Usuário #3',
+    //     email: 'usuario.3@host.com',
+    //     datahora: "08/03/2019 05:56",
+    //     tag: 'Atrasado'
+    //   },
+    //   {
+    //     nome: 'Usuário #4',
+    //     email: 'usuario.4@host.com',
+    //     datahora: "10/02/2019 05:56",
+    //     tag: 'Urgente'
+    //   },
+    // ]
 
     data.forEach(function(d) {
       myApp.services.cadastro.create(d)
