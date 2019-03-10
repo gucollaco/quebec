@@ -1,7 +1,5 @@
 # quebec
 
-Projeto do curso engenharia de software. Feito por alunos, para os alunos.
-
 
 ### Índice
 
