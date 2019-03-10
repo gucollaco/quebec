@@ -35,9 +35,8 @@ document.addEventListener('init', function(event) {
         url: url,
         data: {},
         success: function(data) {
-          datas = data.data.result
           if(data.success) {
-            datas.forEach(function(data) {
+            data.data.forEach(function(data) {
               myApp.services.imovel.create(data);
             });
             console.log('load ok')
@@ -47,23 +46,32 @@ document.addEventListener('init', function(event) {
         }
       });
 
-      let url = '/api/imovel?proximidade=true'
-      $.ajax({
-        type: "GET",
-        url: url,
-        data: {},
-        success: function(data) {
-          datas = data.data.result
-          if(data.success) {
-            datas.forEach(function(data) {
-              myApp.services.imovel.create(data, '#notification-list');
-            });
-            console.log('load ok')
-          } else {
-            console.log('load problem')
-          }
-        }
-      });
+      if(navigator.geolocation){
+            
+        navigator.geolocation.getCurrentPosition(function(position) {
+          var pos = {
+              lat: position.coords.latitude,
+              lng: position.coords.longitude
+          };
+          
+          url = `/api/imovel?proximidade=true&lat=${pos.lat}&lng=${pos.lng}`
+          $.ajax({
+            type: "GET",
+            url: url,
+            data: {},
+            success: function(data) {
+              if(data.success) {
+                data.data.forEach(function(data) {
+                  myApp.services.imovel.createProximity(data, '#notification-list');
+                });
+              } else {
+                console.log('load problem')
+              }
+            }
+          });
+
+        })
+      }
     }
   }
 
@@ -300,20 +308,18 @@ document.addEventListener('init', function(event) {
 
   if(page.id === 'loginPage'){
     $(document).on('click', '#entrar', function(){
-      // return document.querySelector('#myNavigator').resetToPage('html/splitter.html', {
-      //   data: {
-      //       title: 'Quebec'
-      //   }
-      // })
+            
+      // var usuario = document.getElementById('username').value;
+      // var senha = document.getElementById('password').value;
 
-      var usuario = document.getElementById('username').value;
-      var senha = document.getElementById('password').value;
+      var usuario = 'gustavo'
+      var senha = 'gustavo'
       
       let data = {
         credenciais: {
           usuario,
           senha,
-        },
+        }
       }
 
       let url = '/api/usuario/login'

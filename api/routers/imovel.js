@@ -17,15 +17,23 @@ router.get('/:id', (req, res, next) => {
     }).catch(next)
 })
 
-router.get('/', (req, res, next) => {
-    ImovelController.buscaFiltrada(req.query).then(async result => {
-        if(req.query.pontuacao){
-            let avaliacoes = await ImovelController.listarAvaliacoesAprovadas
-            let criterios = await CriterioController.todos()
-            let index = {}
-            for(let criterio of criterios){
-                index[criterio.id_criterio] = criterio
-            }
+router.get('/', async (req, res, next) => {
+    let result
+    if(req.query.proximidade){
+        result = await ImovelController.buscaGeolocation(req.query.lat, req.query.lng, 46)
+    }else{
+        result = (await ImovelController.buscaFiltrada(req.query)).result        
+    }
+
+    if(req.query.pontuacao){
+        let criterios = await CriterioController.todos()
+        let index = {}
+        for(let criterio of criterios){
+            index[criterio.id_criterio] = criterio
+        }
+
+        for(let imovel of result){
+            let avaliacoes = await ImovelController.listarAvaliacoesAprovadas(imovel.id_imovel)
 
             for(let avaliacao of avaliacoes){
                 let _criterios = avaliacao.criterios.map(c => {
@@ -38,12 +46,12 @@ router.get('/', (req, res, next) => {
                 avaliacao.pontuacao = AvaliacaoController.evaluate(_criterios)
             }
 
-            result.avaliacoes = avaliacoes
-            result.nota = avaliacoes.reduce((acc, cur) => acc + cur.pontuacao, 0) / avaliacoes.length
+            imovel.avaliacoes = avaliacoes
+            imovel.nota = avaliacoes.length == 0 ? undefined : avaliacoes.reduce((acc, cur) => acc + cur.pontuacao, 0) / avaliacoes.length
         }
+    }
 
-        res.json({ success: true, data: result })
-    }).catch(next)
+    res.json({ success: true, data: result })
 })
 
 router.put('/:id/tags', (req, res, next) => {

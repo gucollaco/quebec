@@ -79,6 +79,22 @@ class Imovel {
         return database.query(query)
     }
 
+    static selectGeolocation(lat, lng, radius){
+        return database.query(`
+        SELECT
+            id_imovel, point(${lat}, ${lng}) <@> coords :: point AS distancia
+        FROM
+            imovel
+        WHERE
+            (
+            point(${lat}, ${lng}) <@> coords
+            ) <= ${radius} -- radius
+        ORDER BY
+            distancia 
+        LIMIT 3
+        `)
+    }
+
 }
 
 module.exports = Imovel
