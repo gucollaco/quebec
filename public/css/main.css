@@ -35,3 +35,9 @@
       left: 0;
       border-top-left-radius: 2px;
       border-top-right-radius: 2px; }
+
+#areaCard .list {
+  background: #eceff1; }
+
+#map {
+  height: 600px; }

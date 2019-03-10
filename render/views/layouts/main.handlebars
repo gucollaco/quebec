@@ -42,7 +42,7 @@
             map = new google.maps.Map(document.getElementById('map'), options);
 
             // Call the codeAddress function (once) when the map is idle (ready)
-            //google.maps.event.addListenerOnce(map, 'idle', codeAddress);
+            google.maps.event.addListenerOnce(map, 'idle', codeAddress);
 
             // // Marker
             // function addMarker(props) {
