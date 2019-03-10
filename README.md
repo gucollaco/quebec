@@ -18,7 +18,7 @@ Projeto desenvolvido com o objetivo de melhorar questões relacionadas ao ramo i
 
 * [ONSEN](https://onsen.io/) - Framework
 * [NodeJS](https://nodejs.org/en/) - Servidor
-* [Postman](https://www.getpostman.com/) - API
+* [Postman](https://www.getpostman.com/) - API - (https://documenter.getpostman.com/view/5394220/S11RJvEj -> mapeamento das rotas da API)
 * [VSCode](https://code.visualstudio.com/) - Editor de texto
 
 
