@@ -77,7 +77,7 @@ global.SCORE = (() => {
     // recebe uma lista de criterios (cada criterio com NOTAS (direto do banco) e RESULTADO (o valor do criterio pelo colaborador))
     function evaluate(criterios){
       for(let criterio of criterios){
-        let modelo = criterio.notas
+        let modelo = criterio.notas.modelo
         let resultado = criterio.resultado
   
         /*
@@ -114,9 +114,9 @@ global.SCORE = (() => {
   
         let normal;
         if(modelo.intervalo){
-          normal = (resultado - modelo.valor[0])/(modelo.valor[1] - modelo.valor[0])
+          normal = (resultado - modelo.intervalo.valor[0])/(modelo.intervalo.valor[1] - modelo.intervalo.valor[0])
         }else if(modelo.booleano){
-          normal = +(resultado == modelo.valor) * modelo.peso
+          normal = +(resultado == modelo.booleano.valor) * modelo.booleano.peso
         }else if(modelo.lista){
           let soma = modelo.lista.filter((v, i) => {
               return i in resultado
