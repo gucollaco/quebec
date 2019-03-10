@@ -1,4 +1,8 @@
-#pending-list, #result-list{
+#completed-list{
+    font-size: 1.1em;
+}
+
+#pending-list, #result-list, #completed-list{
     background: #eceff1;
     .imovel-card{
         position: relative;
@@ -48,6 +52,42 @@
             
             border-top-left-radius: 2px;
             border-top-right-radius: 2px;
+        }
+
+        .status{
+            border-top-left-radius: 0.25rem;
+            border-top-right-radius: 0.25rem;
+            padding-top: 7px;
+            padding-left: 12px;
+            padding-bottom: 7px;
+            margin-top: -10px;
+            margin-left: -16px;
+            margin-right: -16px;
+
+            background: rgba(lightgray, 0.2);
+            font-size: 0.9em;
+
+            &.p{
+                border-bottom: solid 4px dimgray;
+            }
+
+            &.a{
+                // background: rgba(green, 0.1);
+                // font-weight: bold;
+                border-bottom: solid 4px green;
+            }
+
+            &.r{
+                // background: rgba(189, 0, 0, 0.1);
+                border-bottom: solid 4px rgb(196, 0, 0);
+                // font-weight: bold;
+            }
+        }
+
+        .hora{
+            margin-top: 10px;
+            font-size: 0.8em;
+            opacity: 0.75;
         }
     }
 }
@@ -141,5 +181,49 @@
         bottom: 5px;
         z-index: 100;
         width: 100%;
+    }
+}
+
+#avaliacao-list{
+    padding-bottom: 20px;
+    background: #eceff1;
+    .avaliacao{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+
+        padding: 15px 10px;
+        background: #fff;
+        margin-top: 2px;
+        font-size: 1.1em;
+    }
+
+    .nome{
+    }
+
+    .nota{
+        font-weight: bold;
+    }
+
+    .nota-final{
+        font-size: 1.3em;
+        font-weight: bolder;
+        width: 100%;
+        text-align: center;
+
+        span{
+            display: block;
+            font-weight: 300;
+            font-size: 0.65em;
+            opacity: 0.9;
+
+            &.r{
+                color: red;
+            }
+
+            &.a{
+                color: green;
+            }
+        }
     }
 }

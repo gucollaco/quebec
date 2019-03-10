@@ -205,6 +205,45 @@ myApp.services = {
   
         var pendingList = document.querySelector(at);
         pendingList.insertBefore(panelItem, null);
+    },
+
+    createAvaliacao: function(data, at="#avaliacao-list"){
+
+      let panelItem = ons.createElement(
+        `<div class="avaliacao">
+        
+        <div class="nome">
+          ${data.nome}
+        </div>
+
+        <div class="nota">
+          ${data.nota}
+        </div>
+
+        </div>`)
+
+        panelItem.data = data
+  
+        var pendingList = document.querySelector(at);
+        pendingList.insertBefore(panelItem, null);
+    },
+
+    createAvaliacaoNotaFinal: function(data, at="#avaliacao-list"){
+
+      let panelItem = ons.createElement(
+        `<div class="avaliacao">
+        
+        <div class="nota-final">
+          ${data.nota}
+          <span class="${data.status.toLowerCase()[0]}">(${data.status})</span>
+        </div>
+
+        </div>`)
+
+        panelItem.data = data
+  
+        var pendingList = document.querySelector(at);
+        pendingList.insertBefore(panelItem, null);
     }
   },
 
@@ -241,6 +280,37 @@ myApp.services = {
       var pendingList = document.querySelector(at);
       pendingList.insertBefore(scoreItem, null);
     }
+  },
+
+  avaliacoes: {
+    
+    // Creates a new task and attaches it to the pending task list.
+    create: function(data, at="#completed-list") {
+      let address = data.endereco.split('-')
+      let grade = parseFloat(data.nota).toFixed(1).split('.')
+
+      // Task item template.
+      var taskItem = ons.createElement(
+        `<ons-card class="imovel-card">
+          <div class="status ${data.status[0].toLowerCase()}">${data.status}</div>
+          <div class="title">
+            <div class="address">${address[0]}<span class="low">${address[1]}</span></div>
+            <div class="grade">${grade[0]}<span class="decimal">.${grade[1]}</span></div>            
+          </div>
+          <div class="hora">
+            ${data.datahora}
+          </div>
+        </ons-card>`
+      );
+      
+
+      // Store data within the element.
+      taskItem.data = data;
+
+      // Insert urgent tasks at the top and non urgent tasks at the bottom.
+      var pendingList = document.querySelector(at);
+      pendingList.insertBefore(taskItem, null);
+    },
   },
 
   //////////////////////
