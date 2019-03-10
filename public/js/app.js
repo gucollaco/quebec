@@ -35,8 +35,8 @@ document.addEventListener('init', function(event) {
     }
   }
 
-  if(page.id === 'newTaskPages'){
-    $('.selectpicker').selectpicker();
-  }
+  // if(page.id === 'newTaskPages'){
+  //   $('.selectpicker').selectpicker();
+  // }
 
 });
