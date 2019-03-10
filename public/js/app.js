@@ -180,7 +180,7 @@ document.addEventListener('init', function(event) {
       url: url,
       data: null,
       success: function(data) {
-        var datas = data.data[0]
+        var datas = data.data[0] || []
         // var datas = {
         //   avaliacao: {
         //     status: 'Reprovada',
