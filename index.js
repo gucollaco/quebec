@@ -25,6 +25,7 @@ app.use(cors());
 
 app.use(express.static('public'));
 app.use('/onsenui', express.static(__dirname + '/node_modules/onsenui'));
+app.use('/jquery', express.static(__dirname + '/node_modules/jquery'));
 
 app.use('/api', cors(), require('./api/routers'));
 app.use('/', cors(), require('./render/routers'));
@@ -41,7 +42,7 @@ app.use((error, req, res, next) => {
     })
 })
 
-const port = process.env.PORT || 4002;
+const port = process.env.PORT || 4001;
 server.listen(port, () => {
     console.log(`Server listening on port ${port}`);
 });

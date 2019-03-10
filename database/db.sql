@@ -20,8 +20,15 @@ CREATE TABLE imovel (
 	tipo VARCHAR (50),
 	preco NUMERIC,
 	localizacao TEXT,
-	data_hora TIMESTAMP
+	data_hora TIMESTAMP,
+	tags TEXT []
 );
+
+CREATE tag{
+	id_tag VARCHAR (10) PRIMARY KEY,
+	descricao TEXT[]
+};
+
 -- criterios {{id, nota[], observacao}, {id, nota[], observacao}, ... }
 -- historico {{estado, id_usuario,data_hora}, {estado, id_usuario,data_hora}, ...}
 CREATE TABLE avaliacao (
