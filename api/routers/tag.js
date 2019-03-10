@@ -11,6 +11,12 @@ router.post('/', (req, res, next) => {
     }).catch(next)
 })
 
+router.get('/', (req, res, next) => {
+    TagController.buscarTodos(req.params).then(dados => {
+        res.json({ success: true, data:dados })
+    }).catch(next)
+})
+
 router.get('/:id', (req, res, next) => {
     TagController.buscar(req.params).then(dados => {
         res.json({ success: true, data:dados })

@@ -14,6 +14,12 @@ class Tag {
         return database.query(query)
     }
 
+    static selectAll() {
+        let query = `SELECT * FROM tag`
+        
+        return database.query(query)
+    }
+
     static delete(id) {
         let query = `DELETE from tag WHERE id_tag = '${id}'`
         
