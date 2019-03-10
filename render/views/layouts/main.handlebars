@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="/onsenui/css/onsenui.css">
     <link rel="stylesheet" href="/onsenui/css/onsen-css-components.css">
     <link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/bootstrap-select/dist/css/bootstrap-select.css">
     {{/if}}
 
     <link rel="stylesheet" href="/css/main.css">
@@ -27,7 +26,6 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBXkuJm0jYAjeyqsqxeT8fByvvUPa8Atts"></script> 
     <script src="/jquery/dist/jquery.min.js"></script>   
     <script src="/bootstrap/dist/js/bootstrap.bundle.min.js"></script>   
-    <script src="/bootstrap-select/dist/js/bootstrap-select.js"></script>   
     
     <script>
         var map
@@ -156,6 +154,35 @@
                 $("#areaCard").show();
             }
         });
+        var lastSearch = ''
+        $(document).on('keydown', '#inputAddress', function(){
+            let value = $(this).val()
+
+            if(value != lastSearch){
+                
+                var datas = [
+                    {
+                        endereco: 'Av. Resultado, ??? - Da Pesquisa, São Paulo - SP, 01310-200',
+                        nota: 4.0,
+                        foto: 'https://cdn.getyourguide.com/img/tour_img-1290852-145.jpg'
+                    },
+                ]
+                datas.forEach(function(data) {
+                    myApp.services.imovel.create(data, '#result-list');
+                });
+            }
+
+            lastSearch = value
+        })
+        $(document).on('click', '.imovel-card', function(){
+            console.log(document.querySelector('#myNavigator'))
+            document.querySelector('#myNavigator').pushPage('html/imovel.html', {
+                data: {
+                    imovel: this.data,
+                    title: 'Imóvel'
+                }
+            })
+        })
     </script>
 </body>
 

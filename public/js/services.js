@@ -136,7 +136,7 @@ myApp.services = {
 
   imovel: {
     // Creates a new task and attaches it to the pending task list.
-    create: function(data) {
+    create: function(data, at="#pending-list") {
       let address = data.endereco.split('-')
       let grade = parseFloat(data.nota).toFixed(1).split('.')
 
@@ -155,14 +155,23 @@ myApp.services = {
       // Store data within the element.
       taskItem.data = data;
 
-      taskItem.onclick = function(){
-        alert(`click on ${this.data.endereco}`)
-      }
-
       // Insert urgent tasks at the top and non urgent tasks at the bottom.
-      var pendingList = document.querySelector('#pending-list');
+      var pendingList = document.querySelector(at);
       pendingList.insertBefore(taskItem, taskItem.data.urgent ? pendingList.firstChild : null);
     },
+
+    createImage: function(data, at){
+      let imageItem = ons.createElement(
+        `<ons-carousel-item>
+            <img src="${data.foto}" />
+        </ons-carousel-item>`
+      )
+
+      imageItem.data = data
+
+      var pendingList = document.querySelector(at);
+      pendingList.insertBefore(imageItem, null);
+    }
   },
 
   //////////////////////
