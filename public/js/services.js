@@ -205,7 +205,112 @@ myApp.services = {
   
         var pendingList = document.querySelector(at);
         pendingList.insertBefore(panelItem, null);
+    },
+
+    createAvaliacao: function(data, at="#avaliacao-list"){
+
+      let panelItem = ons.createElement(
+        `<div class="avaliacao">
+        
+        <div class="nome">
+          ${data.nome}
+        </div>
+
+        <div class="nota">
+          ${data.nota}
+        </div>
+
+        </div>`)
+
+        panelItem.data = data
+  
+        var pendingList = document.querySelector(at);
+        pendingList.insertBefore(panelItem, null);
+    },
+
+    createAvaliacaoNotaFinal: function(data, at="#avaliacao-list"){
+
+      let panelItem = ons.createElement(
+        `<div class="avaliacao">
+        
+        <div class="status ${data.status.toLowerCase()[0]}">${data.status}</div>
+        <div class="nota-final">
+          ${data.nota}
+        </div>
+
+        </div>`)
+
+        panelItem.data = data
+  
+        var pendingList = document.querySelector(at);
+        pendingList.insertBefore(panelItem, null);
     }
+  },
+
+  score: {
+    createAvaliacao: function(data, at){
+      let scoreItem = ons.createElement(
+        `<ons-carousel-item style="background-color: transparent;">
+          <ons-card class="criterio-data">
+              <div class="title">
+                  ${data.nome}
+              </div>
+              <div class="content">
+                  ${data.descricao}
+              </div>
+          </ons-card>
+          
+          <ons-card class="criterio-nota">
+              <select class="submit-avaliacao form-control">
+                  <option value="">Nenhuma</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+              </select>
+          </ons-card>
+        </ons-carousel-item>`
+      )
+
+      // Store data within the element.
+      scoreItem.data = data;
+
+      // Insert urgent tasks at the top and non urgent tasks at the bottom.
+      var pendingList = document.querySelector(at);
+      pendingList.insertBefore(scoreItem, null);
+    }
+  },
+
+  avaliacoes: {
+    
+    // Creates a new task and attaches it to the pending task list.
+    create: function(data, at="#completed-list") {
+      let address = data.endereco.split('-')
+      let grade = parseFloat(data.nota).toFixed(1).split('.')
+
+      // Task item template.
+      var taskItem = ons.createElement(
+        `<ons-card class="imovel-card">
+          <div class="status ${data.status[0].toLowerCase()}">${data.status}</div>
+          <div class="title">
+            <div class="address">${address[0]}<span class="low">${address[1]}</span></div>
+            <div class="grade">${grade[0]}<span class="decimal">.${grade[1]}</span></div>            
+          </div>
+          <div class="hora">
+            ${data.datahora}
+          </div>
+        </ons-card>`
+      );
+      
+
+      // Store data within the element.
+      taskItem.data = data;
+
+      // Insert urgent tasks at the top and non urgent tasks at the bottom.
+      var pendingList = document.querySelector(at);
+      pendingList.insertBefore(taskItem, null);
+    },
   },
 
   //////////////////////
