@@ -259,11 +259,11 @@ document.addEventListener('init', function(event) {
   if(page.id === 'loginPage'){
     $(document).on('click', '#entrar', function(){
             
-      // var usuario = document.getElementById('username').value;
-      // var senha = document.getElementById('password').value;
+      var usuario = document.getElementById('username').value;
+      var senha = document.getElementById('password').value;
 
-      var usuario = 'gustavo'
-      var senha = 'gustavo'
+      // var usuario = 'gustavo'
+      // var senha = 'gustavo'
       
       let data = {
         credenciais: {

@@ -1,8 +1,58 @@
+.page--material__background {
+  background: #333333; }
+
+.btn-dark {
+  background: black;
+  border-color: black; }
+
+.btn-primary {
+  background: #ff6600;
+  border-color: #ff6600; }
+
+ons-input input[type="text"], ons-input input[type="password"] {
+  color: #aaa; }
+
+ons-input .text-input--material:focus {
+  background-image: linear-gradient(#ff6600, #ff6600), linear-gradient(to top, transparent 1px, #afafaf 1px); }
+
+ons-input .text-input__label {
+  color: #e77427; }
+
+ons-toolbar.toolbar {
+  background: #222; }
+  ons-toolbar.toolbar .toolbar__title {
+    color: #eee; }
+
+ons-icon {
+  color: #ff6600; }
+
+.tabbar, .tabbar.tabbar--material {
+  background: #252525; }
+  .tabbar .tabbar__button, .tabbar.tabbar--material .tabbar__button {
+    color: #ddd; }
+    .tabbar .tabbar__button .tabbar__icon ons-icon, .tabbar.tabbar--material .tabbar__button .tabbar__icon ons-icon {
+      color: #ddd; }
+
+ons-list, ons-list.list--material {
+  background-color: #222; }
+
+ons-list ons-list-item.list-item {
+  color: #ddd; }
+
+.back-button--material__icon {
+  fill: #ff6600; }
+
+ons-card.card {
+  background: #dedede; }
+
+ons-fab.fab {
+  background: #ff6600; }
+
 #completed-list {
   font-size: 1.1em; }
 
 #pending-list, #result-list, #completed-list, #notification-list {
-  background: #eceff1; }
+  background: #383838; }
   #pending-list .imovel-card, #result-list .imovel-card, #completed-list .imovel-card, #notification-list .imovel-card {
     position: relative;
     padding-top: 0px; }
@@ -61,11 +111,11 @@
       opacity: 0.75; }
 
 #pendingTasksPage .notification-title {
-  color: royalblue !important; }
+  color: #ff6600 !important; }
 
 #pendingTasksPage .distance {
   margin-top: 15px;
-  color: royalblue;
+  color: #ff6600;
   font-weight: bold;
   text-align: center; }
   #pendingTasksPage .distance span {
@@ -99,18 +149,19 @@
         display: block;
         font-size: 0.7em; }
         #imovelPage .panel .title .address .low .fa {
-          color: royalblue; }
+          color: #ff6600; }
     #imovelPage .panel .title .grade {
       font-size: 1.8em;
       font-weight: bold;
       color: white;
-      background: royalblue;
+      background: #ff6600;
       padding: 7px 10px;
       height: 100%;
       display: flex;
       align-items: center; }
   #imovelPage .panel .desc {
-    background: #fff;
+    background: #eee;
+    color: #333;
     padding: 15px 25px;
     font-size: 0.9em;
     margin-top: 3px; }
@@ -118,10 +169,8 @@
 #imovelPage .map {
   height: 500px; }
 
-#imovelPage #fabAvaliar {
-  background: royalblue !important; }
-  #imovelPage #fabAvaliar .fab--material__icon {
-    color: #fff !important; }
+#imovelPage #fabAvaliar .fab--material__icon {
+  color: #fff !important; }
 
 #map {
   height: 600px; }
@@ -134,7 +183,7 @@
 
 #avaliacao-list {
   padding-bottom: 20px;
-  background: #eceff1; }
+  background: #383838; }
   #avaliacao-list .avaliacao {
     display: flex;
     flex-direction: column;
@@ -183,7 +232,8 @@
 #imovelAnalise .title {
   width: 100%;
   padding: 20px;
-  background: #fff; }
+  background: #494949;
+  color: white; }
   #imovelAnalise .title .nota-futura {
     display: flex;
     align-items: center;
@@ -193,33 +243,35 @@
     #imovelAnalise .title .nota-futura #nota_prevista {
       padding-left: 25px;
       font-size: 1.5em;
-      font-weight: bold; }
+      font-weight: bold;
+      color: #ff6600; }
 
 #analise-positivo-list, #analise-negativo-list {
-  background: #eceff1;
+  background: #383838;
   border-left: 3px solid black;
   overflow: hidden; }
   #analise-positivo-list#analise-positivo-list, #analise-negativo-list#analise-positivo-list {
-    border-left: 3px solid #00a100;
-    border-right: 3px solid #00a100; }
+    border-left: 8px solid #00a100;
+    border-right: 8px solid #00a100; }
   #analise-positivo-list#analise-negativo-list, #analise-negativo-list#analise-negativo-list {
-    border-left: 3px solid #c20000;
-    border-right: 3px solid #c20000; }
+    border-left: 8px solid #c20000;
+    border-right: 8px solid #c20000; }
   #analise-positivo-list .inf, #analise-negativo-list .inf {
     position: relative;
-    background: #fff;
+    color: #eee;
+    background: #2c2c2c;
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
     padding: 10px;
-    border-bottom: 2px solid #eceff1; }
+    border-bottom: 2px solid #383838; }
     #analise-positivo-list .inf .influence, #analise-negativo-list .inf .influence {
       font-size: 1.3em;
       margin: 0 15px; }
-    #analise-positivo-list .inf.inf-3 .influence, #analise-positivo-list .inf.inf-2 .influence, #analise-positivo-list .inf.inf-1 .influence, #analise-negativo-list .inf.inf-3 .influence, #analise-negativo-list .inf.inf-2 .influence, #analise-negativo-list .inf.inf-1 .influence {
+    #analise-positivo-list .inf.inf-3 .influence, #analise-positivo-list .inf.inf-3 .influence ons-icon, #analise-positivo-list .inf.inf-2 .influence, #analise-positivo-list .inf.inf-2 .influence ons-icon, #analise-positivo-list .inf.inf-1 .influence, #analise-positivo-list .inf.inf-1 .influence ons-icon, #analise-negativo-list .inf.inf-3 .influence, #analise-negativo-list .inf.inf-3 .influence ons-icon, #analise-negativo-list .inf.inf-2 .influence, #analise-negativo-list .inf.inf-2 .influence ons-icon, #analise-negativo-list .inf.inf-1 .influence, #analise-negativo-list .inf.inf-1 .influence ons-icon {
       color: green; }
-    #analise-positivo-list .inf.inf--3 .influence, #analise-positivo-list .inf.inf--2 .influence, #analise-positivo-list .inf.inf--1 .influence, #analise-negativo-list .inf.inf--3 .influence, #analise-negativo-list .inf.inf--2 .influence, #analise-negativo-list .inf.inf--1 .influence {
+    #analise-positivo-list .inf.inf--3 .influence, #analise-positivo-list .inf.inf--3 .influence ons-icon, #analise-positivo-list .inf.inf--2 .influence, #analise-positivo-list .inf.inf--2 .influence ons-icon, #analise-positivo-list .inf.inf--1 .influence, #analise-positivo-list .inf.inf--1 .influence ons-icon, #analise-negativo-list .inf.inf--3 .influence, #analise-negativo-list .inf.inf--3 .influence ons-icon, #analise-negativo-list .inf.inf--2 .influence, #analise-negativo-list .inf.inf--2 .influence ons-icon, #analise-negativo-list .inf.inf--1 .influence, #analise-negativo-list .inf.inf--1 .influence ons-icon {
       color: #c50000; }
 
 #loginPage .page__content {
@@ -243,7 +295,7 @@
   width: 100%; }
 
 #cadastros-list, #pendencias-list {
-  background: #eceff1; }
+  background: #383838; }
   #cadastros-list .cadastro-card, #cadastros-list .dual, #cadastros-list .direita, #pendencias-list .cadastro-card, #pendencias-list .dual, #pendencias-list .direita {
     display: flex;
     flex-direction: row;
