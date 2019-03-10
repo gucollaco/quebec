@@ -29,10 +29,34 @@ app.use('/jquery', express.static(__dirname + '/node_modules/jquery'));
 app.use('/bootstrap', express.static(__dirname + '/node_modules/bootstrap'));
 app.use('/bootstrap-select', express.static(__dirname + '/node_modules/bootstrap-select'));
 
+const UsuarioController = require('./api/controllers/usuario')
+app.post('/api/usuario', (req, res, next) => {
+    UsuarioController.criar(req.body).then(() => {
+        res.json({ success: true })
+    }).catch(next)
+})
+app.post('/api/usuario/login', (req, res, next) => {
+    UsuarioController.login(req.body).then(dados => {
+        res.json({ success: true, data: dados })
+    }).catch(next)
+})
+app.use(async (req, res, next) => {
+    if (!req.headers.authorization) {
+        let e = new Error("O usuário não possui permissão para executar essa ação.")
+        next(e)
+    }
+    else {
+        let token = req.headers.authorization.split(' ')[1]
+        jwt.verify(token, '53nh4', function(err, decoded){
+            if(err){
+                next(err)
+            }
+            next()
+        })
+    }
+})
 app.use('/api', cors(), require('./api/routers'));
 app.use('/', cors(), require('./render/routers'));
-
-
 app.use((error, req, res, next) => {
     res.status(error.status || 500).json({
         success: false,

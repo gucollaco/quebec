@@ -1,15 +1,18 @@
-#pending-list, #result-list {
+#completed-list {
+  font-size: 1.1em; }
+
+#pending-list, #result-list, #completed-list {
   background: #eceff1; }
-  #pending-list .imovel-card, #result-list .imovel-card {
+  #pending-list .imovel-card, #result-list .imovel-card, #completed-list .imovel-card {
     position: relative;
     padding-top: 10px; }
-    #pending-list .imovel-card img, #result-list .imovel-card img {
+    #pending-list .imovel-card img, #result-list .imovel-card img, #completed-list .imovel-card img {
       object-fit: cover;
       width: calc(100% + 32px);
       max-height: 150px;
       margin-left: -16px;
       overflow: hidden; }
-    #pending-list .imovel-card .title, #result-list .imovel-card .title {
+    #pending-list .imovel-card .title, #result-list .imovel-card .title, #completed-list .imovel-card .title {
       padding-top: 7.5px;
       font-size: 1.1em;
       margin-bottom: 0;
@@ -17,15 +20,15 @@
       flex-direction: row;
       justify-content: space-between;
       align-items: center; }
-      #pending-list .imovel-card .title .address, #result-list .imovel-card .title .address {
+      #pending-list .imovel-card .title .address, #result-list .imovel-card .title .address, #completed-list .imovel-card .title .address {
         font-size: 0.9em; }
-        #pending-list .imovel-card .title .address .low, #result-list .imovel-card .title .address .low {
+        #pending-list .imovel-card .title .address .low, #result-list .imovel-card .title .address .low, #completed-list .imovel-card .title .address .low {
           display: block;
           font-size: 0.75em; }
-      #pending-list .imovel-card .title .grade, #result-list .imovel-card .title .grade {
+      #pending-list .imovel-card .title .grade, #result-list .imovel-card .title .grade, #completed-list .imovel-card .title .grade {
         font-weight: bold;
         font-size: 1.3em; }
-    #pending-list .imovel-card::after, #result-list .imovel-card::after {
+    #pending-list .imovel-card::after, #result-list .imovel-card::after, #completed-list .imovel-card::after {
       display: block;
       background: #2142a5;
       width: 100%;
@@ -35,6 +38,27 @@
       left: 0;
       border-top-left-radius: 2px;
       border-top-right-radius: 2px; }
+    #pending-list .imovel-card .status, #result-list .imovel-card .status, #completed-list .imovel-card .status {
+      border-top-left-radius: 0.25rem;
+      border-top-right-radius: 0.25rem;
+      padding-top: 7px;
+      padding-left: 12px;
+      padding-bottom: 7px;
+      margin-top: -10px;
+      margin-left: -16px;
+      margin-right: -16px;
+      background: rgba(211, 211, 211, 0.2);
+      font-size: 0.9em; }
+      #pending-list .imovel-card .status.p, #result-list .imovel-card .status.p, #completed-list .imovel-card .status.p {
+        border-bottom: solid 4px dimgray; }
+      #pending-list .imovel-card .status.a, #result-list .imovel-card .status.a, #completed-list .imovel-card .status.a {
+        border-bottom: solid 4px green; }
+      #pending-list .imovel-card .status.r, #result-list .imovel-card .status.r, #completed-list .imovel-card .status.r {
+        border-bottom: solid 4px #c40000; }
+    #pending-list .imovel-card .hora, #result-list .imovel-card .hora, #completed-list .imovel-card .hora {
+      margin-top: 10px;
+      font-size: 0.8em;
+      opacity: 0.75; }
 
 #imovelPage .carousel ons-carousel-item {
   text-align: center;
@@ -89,3 +113,62 @@
 
 #map {
   height: 600px; }
+
+#scorePage #areaSubmitAvaliacao {
+  position: absolute;
+  bottom: 5px;
+  z-index: 100;
+  width: 100%; }
+
+#avaliacao-list {
+  padding-bottom: 20px;
+  background: #eceff1; }
+  #avaliacao-list .avaliacao {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 15px 10px;
+    background: #fff;
+    margin-top: 2px;
+    font-size: 1.1em; }
+  #avaliacao-list .nota {
+    font-weight: bold; }
+  #avaliacao-list .status {
+    font-size: 1.3em;
+    font-weight: bold;
+    width: 100%;
+    text-align: center; }
+    #avaliacao-list .status.r {
+      color: #af0000; }
+    #avaliacao-list .status.a {
+      color: #006b00; }
+  #avaliacao-list .nota-final {
+    font-size: 1.3em;
+    font-weight: bolder;
+    width: 100%;
+    text-align: center; }
+    #avaliacao-list .nota-final span {
+      display: block;
+      font-weight: 300;
+      font-size: 0.65em;
+      opacity: 0.9; }
+
+#loginPage .page__content {
+  display: flex;
+  align-items: center; }
+  #loginPage .page__content > div {
+    width: 100%; }
+
+#loginPage ons-input {
+  width: 70%; }
+
+#loginPage button {
+  width: 70%; }
+
+#cadastrarPage .carousel ons-input {
+  width: 70%; }
+
+#areaProximo, #areaConfirmar {
+  position: fixed;
+  bottom: 5px;
+  width: 100%; }

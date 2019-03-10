@@ -1,0 +1,77 @@
+<ons-page id="cadastrarPage">
+    <ons-toolbar>
+        <div class="left"><ons-back-button></ons-back-button></div>
+        <div class="center">Cadastro</div>
+    </ons-toolbar>
+
+    <ons-carousel fullscreen swipeable auto-scroll overscrollable class="carousel">
+        <ons-carousel-item style="background-color: transparent;">
+            <ons-card>
+                <div class="title">
+                    Olá!
+                </div>
+                <div class="content">
+                    <p>Tudo bem? Cumpra as etapas para se cadastrar em nosso sistema, e trabalhar conosco.</p>
+                    <p>Primeiramente, precisamos do seu <b>nome completo</b>.</p>
+                </div>
+            </ons-card>
+            
+            <ons-card>
+                <ons-input class="confirmar-cadastro" id="nome" modifier="underbar" placeholder="Nome" float></ons-input>
+            </ons-card>
+        </ons-carousel-item>
+        <ons-carousel-item style="background-color: transparent;">
+            <ons-card>
+                <div class="title">
+                    Vamos começar!
+                </div>
+                <div class="content">
+                    <p>Agora, do seu <b>e-mail</b>, que será usado para entrar na aplicação.</p>
+                </div>
+            </ons-card>
+            
+            <ons-card>
+                <ons-input class="confirmar-cadastro" id="email" modifier="underbar" placeholder="Email" float></ons-input>
+            </ons-card>
+        </ons-carousel-item>
+        <ons-carousel-item style="background-color: transparent;">
+            <ons-card>
+                <div class="title">
+                    Tenha certeza de escolher uma senha forte.
+                </div>
+                <div class="content">
+                    <p>Insira sua senha, que também vai ser necessária para realizar o login.</p>
+                </div>
+            </ons-card>
+            
+            <ons-card>
+                <ons-input class="confirmar-cadastro" id="password" modifier="underbar" type="password" placeholder="Senha" float></ons-input>
+            </ons-card>
+        </ons-carousel-item>
+        <ons-carousel-item style="background-color: transparent;">
+            <ons-card>
+                <div class="title">
+                    Quase lá!
+                </div>
+                <div class="content">
+                    <p>Por último, nos informe seu endereço, para que possamos te trazer informações relevantes.</p>
+                </div>
+            </ons-card>
+            
+            <ons-card>
+                <ons-input class="confirmar-cadastro" id="endereco" modifier="underbar" type="endereco" placeholder="Endereço" float></ons-input>
+            </ons-card>
+        </ons-carousel-item>
+    
+    
+    </ons-carousel>
+
+    
+    <div id="areaProximo">
+        <button type="button" class="btn btn-dark btn-lg btn-block" onclick="$('#cadastrarPage .carousel').get(0).next()">Próximo</button>
+    </div>
+
+    <div id="areaConfirmar" style="display: none">
+        <button type="button" id="confirmarCadastro" class="btn btn-dark btn-lg btn-block">Confirmar</button>
+    </div>
+</ons-page>

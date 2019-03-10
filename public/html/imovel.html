@@ -11,18 +11,12 @@
         </div> -->
 
     </ons-toolbar>
-
-
-    <ons-carousel swipeable auto-scroll class="carousel">
-    </ons-carousel>
-
-    <div class="panel">
-    </div>
     
-    <div class="map"></div>
-
-    
-    <ons-fab position="right bottom" id="fabAvaliar">
-        <i class="fa fa-marker"></i>
-    </ons-fab>
+      <!-- Auto-positioned Tabbar: top on Android, bottom on iOS/other. -->
+    <ons-tabbar id="myTabbar" position="top">
+        <ons-tab page="html/imovelData.html" label="Dados" active>
+        </ons-tab>
+        <ons-tab page="html/imovelAvaliacao.html" label="Avaliação">
+        </ons-tab>
+    </ons-tabbar>
 </ons-page>
