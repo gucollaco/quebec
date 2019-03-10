@@ -1,4 +1,5 @@
 const { Usuario } = require('../models')
+var jwt = require('jsonwebtoken');
 
 class UsuarioController {
 
@@ -8,6 +9,16 @@ class UsuarioController {
 
     static async buscar(id) {
         return await Usuario.select(id)
+    }
+
+    static async login(credenciais) {
+        let [user] = await Usuario.selectByCredenciais(credenciais)
+
+        if (!user) throw new Error("Credenciais inválidas.")
+        else {
+            let token = jwt.sign({ user }, '53nh4')
+            return { token }
+        }
     }
 }
 

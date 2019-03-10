@@ -17,12 +17,4 @@ router.get('/:id', (req, res, next) => {
     }).catch(next)
 })
 
-// put, delete usam body tambem
-
-router.get('/exemplo', (req, res, next) => {
-    UsuarioController.exemplo(req.query).then(dados => {
-        res.json({ success: true, data: dados })
-    }).catch(next)
-})
-
 module.exports = router;

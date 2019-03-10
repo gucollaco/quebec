@@ -30,18 +30,29 @@ class Imovel {
 
         let c = 0;
 
-        if (filtros.localização) {
+        if (filtros.localizacao) {
             query += (c++ != 0) ? ` AND` : ` WHERE`
-            query += ` (localizacao::jsonb->>'logradouro') LIKE '%${texto}%'
-                    OR (localizacao::jsonb->>'complemento') LIKE '%${texto}%'
-                    OR (localizacao::jsonb->>'bairro') LIKE '%${texto}%'
-                    OR (localizacao::jsonb->>'cidade') LIKE '%${texto}%'
-                    OR (localizacao::jsonb->>'estado') LIKE '%${texto}%'`
+            query += ` ((localizacao::jsonb->>'logradouro') LIKE '%${filtros.localizacao}%'
+                    OR (localizacao::jsonb->>'complemento') LIKE '%${filtros.localizacao}%'
+                    OR (localizacao::jsonb->>'bairro') LIKE '%${filtros.localizacao}%'
+                    OR (localizacao::jsonb->>'cidade') LIKE '%${filtros.localizacao}%'
+                    OR (localizacao::jsonb->>'estado') LIKE '%${filtros.localizacao}%')`
         }
 
         if (filtros.tags) {
             query += (c++ != 0) ? ` AND` : ` WHERE`
-            query += ` ${tags} && tags`
+            query += ` ARRAY${filtros.tags} && tags`
+        }
+
+        if (filtros.preco) {
+            query += (c++ != 0) ? ` AND` : ` WHERE`
+            let preco = JSON.parse(filtros.preco)
+            query += ` preco BETWEEN ${preco[0]} AND ${preco[1]}`
+        }
+
+        if (filtros.tipo) {
+            query += (c++ != 0) ? ` AND` : ` WHERE`
+            query += ` tipo = '${filtros.tipo}'`
         }
         
         return database.query(query)
@@ -57,8 +68,8 @@ class Imovel {
     //     return database.query(query)
     // }
 
-    static selectApproved(dados){
-        let query = `SELECT * FROM avaliacao WHERE historico->jsonb_array_length(historico)-1->>'estado' = 'APROVADA' AND ${dados.id} = id_imovel`;
+    static selectApproved(id){
+        let query = `SELECT * FROM avaliacao WHERE historico->jsonb_array_length(historico)-1->>'estado' = 'APROVADA' AND '${id}' = id_imovel`;
         return database.query(query)
     }
 

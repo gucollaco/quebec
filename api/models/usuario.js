@@ -22,6 +22,15 @@ class Usuario {
 
         return database.query(query)
     }
+
+    static selectByCredenciais(credenciais) {
+        let query = `SELECT *
+                    FROM usuario
+                    WHERE credenciais->>'usuario' = '${credenciais.usuario}'
+                    AND credenciais->>'senha' = '${credenciais.senha}'`
+
+        return database.query(query)
+    }
 }
 
 module.exports = Usuario
