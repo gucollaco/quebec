@@ -1,5 +1,5 @@
 #pending-list {
-  background: rgba(128, 128, 128, 0.075); }
+  background: #eceff1; }
   #pending-list .imovel-card {
     position: relative;
     padding-top: 10px; }
@@ -35,3 +35,6 @@
       left: 0;
       border-top-left-radius: 2px;
       border-top-right-radius: 2px; }
+
+#areaCard .list {
+  background: #eceff1; }
