@@ -28,4 +28,10 @@ router.put('/:id/tags', (req, res, next) => {
     }).catch(next)
 })
 
+router.get('/:id/avaliacoes', (req, res, next) => {
+    ImovelController.listarAvaliacoesAprovadas(req.query).then(dados => {
+        res.json({ success: true, data: dados })
+    }).catch(next)
+})
+
 module.exports = router;
