@@ -55,10 +55,10 @@ document.addEventListener('init', function(event) {
       data: null,
       success: function(data) {
         if(data.success) {
-          datas = data.data.result
-          datas.forEach(function(data) {
-            myApp.services.avaliacoes.create(data);
-          });
+          // datas = data.data.result
+          // datas.forEach(function(data) {
+          //   myApp.services.avaliacoes.create(data);
+          // });
         } else {
           ons.notification.alert('Problema ao cadastrar.')
         }
@@ -67,7 +67,20 @@ document.addEventListener('init', function(event) {
   }
 
   if(page.id === 'imovelPage'){
-    console.log(event.data)
+    let _tabs = event.target.data.tabs
+
+    if(_tabs){
+      let tabs = $('#imovelPage ons-tabbar ons-tab').toArray()
+
+      let result = false
+      for(let tab of tabs){
+        result = _tabs.filter(t => tab.page.includes(t)).length > 0
+        
+        if(!result){
+          $(tab).hide()
+        }
+      }
+    }
   }
 
   if(page.id === 'imovelData'){
