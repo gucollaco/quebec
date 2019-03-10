@@ -25,6 +25,22 @@ class Usuario {
         return database.query(query)
     }
 
+    static selectPending() {
+        let query = `SELECT *
+                    FROM usuario
+                    WHERE pendente = true`
+
+        return database.query(query)
+    }
+
+    static approve(id) {
+        let query = `UPDATE usuario
+                    SET pendente = false
+                    WHERE id_usuario = '${id}'`
+
+        return database.query(query)
+    }
+
     static selectByCredenciais(credenciais) {
         let query = `SELECT *
                     FROM usuario
