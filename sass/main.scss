@@ -377,3 +377,44 @@
     button{
     }
 }
+
+#cadastros-list{
+    background: #eceff1;
+
+    .cadastro-card{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .nome{
+        font-weight: 500;
+        font-size: 1.1em;
+    }
+
+    .data{
+        margin-top: 10px;
+        opacity: 0.75;
+        font-size: 0.9em;
+    }
+
+    .direita{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .tag{
+        text-align: right;
+
+        &.a{
+            color: goldenrod;
+            font-weight: 500;
+        }
+
+        &.u{
+            color: red;
+            font-weight: bolder;
+        }
+    }
+}

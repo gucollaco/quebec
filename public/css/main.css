@@ -229,3 +229,29 @@
   position: fixed;
   bottom: 5px;
   width: 100%; }
+
+#cadastros-list {
+  background: #eceff1; }
+  #cadastros-list .cadastro-card {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between; }
+  #cadastros-list .nome {
+    font-weight: 500;
+    font-size: 1.1em; }
+  #cadastros-list .data {
+    margin-top: 10px;
+    opacity: 0.75;
+    font-size: 0.9em; }
+  #cadastros-list .direita {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; }
+  #cadastros-list .tag {
+    text-align: right; }
+    #cadastros-list .tag.a {
+      color: goldenrod;
+      font-weight: 500; }
+    #cadastros-list .tag.u {
+      color: red;
+      font-weight: bolder; }

@@ -353,6 +353,44 @@ myApp.services = {
     },
   },
 
+  cadastro: {
+    // Creates a new task and attaches it to the pending task list.
+    create: function(data, at="#cadastros-list") {
+
+      // Task item template.
+      var taskItem = ons.createElement(
+        `<ons-card class="cadastro-card">
+          <div class="dados">
+            <div class="nome">${data.nome}</div>
+            <div class="email">${data.email}</div>
+            <div class="data">${data.datahora}</div>
+          </div>
+          <div class="direita">
+            <div class="tag ${(data.tag||'').toLowerCase()[0]}" ${data.tag ? '' : 'style="display: none"'}>${data.tag}</div>
+
+            <div>
+              <ons-button id="aprovarCadastro">
+                <ons-icon icon="fa-check"></ons-icon>
+              </ons-button>
+              
+              <ons-button id="rejeitarCadastro">
+                <ons-icon icon="fa-times"></ons-icon>
+              </ons-button>
+            </div>
+          </div>
+        </ons-card>`
+      );
+      
+
+      // Store data within the element.
+      taskItem.data = data;
+
+      // Insert urgent tasks at the top and non urgent tasks at the bottom.
+      var pendingList = document.querySelector(at);
+      pendingList.insertBefore(taskItem, null);
+    },
+  },
+
   //////////////////////
   // Animation Service //
   /////////////////////

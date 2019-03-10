@@ -23,7 +23,7 @@ document.addEventListener('init', function(event) {
           foto: 'https://www.ligadoemviagem.com.br/wp-content/uploads/2018/09/masp-museu-artes-sao-paulo-19.jpg'
         },
       ]
-      
+
       datas.concat(datas).concat(datas).concat(datas).forEach(function(data) {
         myApp.services.imovel.create(data);
       });
@@ -238,6 +238,36 @@ document.addEventListener('init', function(event) {
           }
         }
       });
+    })
+  }
+  if(page.id === 'cadastrosPage'){
+    let data = [
+      {
+        nome: 'Usuário #1',
+        email: 'usuario.1@host.com',
+        datahora: "10/03/2019 05:56"
+      },
+      {
+        nome: 'Usuário #2',
+        email: 'usuario.2@host.com',
+        datahora: "10/03/2019 05:56"
+      },
+      {
+        nome: 'Usuário #3',
+        email: 'usuario.3@host.com',
+        datahora: "08/03/2019 05:56",
+        tag: 'Atrasado'
+      },
+      {
+        nome: 'Usuário #4',
+        email: 'usuario.4@host.com',
+        datahora: "10/02/2019 05:56",
+        tag: 'Urgente'
+      },
+    ]
+
+    data.forEach(function(d) {
+      myApp.services.cadastro.create(d)
     })
   }
 
