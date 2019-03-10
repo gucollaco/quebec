@@ -6,7 +6,16 @@ class ImovelController {
     }
 
     static async buscar(id) {
-        return await Imovel.select(id)
+        let result = await Imovel.select(id)
+
+        result.map(imovel => {
+            imovel.datahora = imovel.data_hora
+            imovel.endereco = `${imovel.localizacao.logradouro} - ${imovel.localizacao.bairro}, ${imovel.localizacao.cidade} - ${imovel.localizacao.estado}`
+            imovel.nota = Math.random(0, 5)
+            imovel.foto = imovel.links[0]
+        })
+
+        return { result }
     }
 
     static async buscaFiltrada(filtros) {

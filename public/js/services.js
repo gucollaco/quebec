@@ -187,7 +187,7 @@ myApp.services = {
             </span>
           </div>
 
-          <div class="grade">
+          <div class="grade" style="margin-left:3px">
             <div>
               ${grade}
             </div>

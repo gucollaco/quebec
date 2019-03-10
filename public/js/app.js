@@ -127,49 +127,104 @@ document.addEventListener('init', function(event) {
 
   if(page.id === 'imovelData'){
 
-    var datas = {
-        endereco: 'Av. Paulista, 1578 - Bela Vista, São Paulo - SP, 01310-200',
-        nota: 5.0,
-        descricao: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
-        fotos: [
-          'https://www.ligadoemviagem.com.br/wp-content/uploads/2018/09/masp-museu-artes-sao-paulo-19.jpg', 
-          'https://cdn.getyourguide.com/img/tour_img-1290852-145.jpg'
-        ],
-    }
-    console.log('a',IMOVEL)
+    var url = '/api/imovel/'+IMOVEL.id_imovel;
+    $.ajax({
+      type: "GET",
+      url: url,
+      data: null,
+      success: function(data) {
+        if(data.success) {
+          datas = data.data.result[0]
 
-    datas.fotos.forEach(function(data) {
-      myApp.services.imovel.createImage(data, '#imovelPage .carousel');
+          datas.links.forEach(function(data) {
+            myApp.services.imovel.createImage(data, '#imovelPage .carousel');
+          });
+
+          initMap($('#imovelPage .map').get(0))
+          myApp.services.imovel.createPanel(datas, '#imovelPage .panel');
+        } else {
+          // ons.notification.alert('Problema ao cadastrar.')
+        }
+      }
     });
-    initMap($('#imovelPage .map').get(0))
-    myApp.services.imovel.createPanel(datas, '#imovelPage .panel');
+    // datas.fotos.forEach(function(data) {
+    //   myApp.services.imovel.createImage(data, '#imovelPage .carousel');
+    // });
+    // initMap($('#imovelPage .map').get(0))
+    // myApp.services.imovel.createPanel(datas, '#imovelPage .panel');
   }
 
   if(page.id === 'imovelAvaliacao'){
-    var datas = {
-      avaliacao: {
-        status: 'Reprovada',
-        nota: 3.2,
-        criterios: [
-          {
-            nome: 'Critério #1',
-            descricao: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-            nota: '5'
-          },
-          {
-            nome: 'Critério #2',
-            descricao: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-            nota: 'Danificada, Pintura Ruim'
-          },
-        ]
+    var url = '/api/avaliacao/'+IMOVEL.id_imovel+'/imovel/';
+
+    $.ajax({
+      type: "GET",
+      url: url,
+      data: null,
+      success: function(data) {
+        var datas = data.data.result
+        // var datas = {
+        //   avaliacao: {
+        //     status: 'Reprovada',
+        //     nota: 3.2,
+        //     criterios: [
+        //       {
+        //         nome: 'Critério #1',
+        //         descricao: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+        //         nota: '5'
+        //       },
+        //       {
+        //         nome: 'Critério #2',
+        //         descricao: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+        //         nota: 'Danificada, Pintura Ruim'
+        //       },
+        //     ]
+        //   }
+        // }
+        if(datas.avaliacao){
+          myApp.services.imovel.createAvaliacaoNotaFinal(datas.avaliacao);
+          datas.avaliacao.criterios.forEach(function(data) {
+            myApp.services.imovel.createAvaliacao(data);
+          });
+        }
+        // if(data.success) {
+        //   datas = data.data.result[0]
+
+        //   datas.links.forEach(function(data) {
+        //     myApp.services.imovel.createImage(data, '#imovelPage .carousel');
+        //   });
+
+        //   initMap($('#imovelPage .map').get(0))
+        //   myApp.services.imovel.createPanel(datas, '#imovelPage .panel');
+        // } else {
+        //   // ons.notification.alert('Problema ao cadastrar.')
+        // }
       }
-    }
-    if(datas.avaliacao){
-      myApp.services.imovel.createAvaliacaoNotaFinal(datas.avaliacao);
-      datas.avaliacao.criterios.forEach(function(data) {
-        myApp.services.imovel.createAvaliacao(data);
-      });
-    }
+    });
+    // var datas = {
+    //   avaliacao: {
+    //     status: 'Reprovada',
+    //     nota: 3.2,
+    //     criterios: [
+    //       {
+    //         nome: 'Critério #1',
+    //         descricao: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+    //         nota: '5'
+    //       },
+    //       {
+    //         nome: 'Critério #2',
+    //         descricao: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+    //         nota: 'Danificada, Pintura Ruim'
+    //       },
+    //     ]
+    //   }
+    // }
+    // if(datas.avaliacao){
+    //   myApp.services.imovel.createAvaliacaoNotaFinal(datas.avaliacao);
+    //   datas.avaliacao.criterios.forEach(function(data) {
+    //     myApp.services.imovel.createAvaliacao(data);
+    //   });
+    // }
   }
 
   if(page.id === 'imovelAnalise'){

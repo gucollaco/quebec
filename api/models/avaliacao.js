@@ -8,6 +8,12 @@ class Avaliacao {
         return database.query(query)
     }
 
+    static getByImovel(id) {
+        let query = `SELECT * FROM avaliacao WHERE id_imovel = '${id}'`
+
+        return database.query(query)
+    }
+
     static insert(dados) {
         let query = `INSERT INTO avaliacao
                     VALUES ('${dados.id_avaliacao}', NOW(), '${JSON.stringify(dados.criterios)}', '${JSON.stringify(dados.historico)}', ${dados.id_imovel}, '${dados.id_usuario}')`
@@ -19,6 +25,22 @@ class Avaliacao {
         let query = `UPDATE avaliacao
                     SET historico = historico || '[${JSON.stringify(dados.atualizacao)}]'
                     WHERE id_avaliacao = '${dados.id}'`
+
+        return database.query(query)
+    }
+
+    static approve(id) {
+        let query = `UPDATE avaliacao
+                    SET estada = 'APROVADA'
+                    WHERE id_avaliacao = '${id}'`
+
+        return database.query(query)
+    }
+
+    static disapprove(dados) {
+        let query = `UPDATE avaliacao
+                    SET estado = 'REPROVADA'
+                    WHERE id_avaliacao = '${id}'`
 
         return database.query(query)
     }
