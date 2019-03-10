@@ -29,7 +29,7 @@ router.put('/:id/tags', (req, res, next) => {
 })
 
 router.get('/:id/avaliacoes', (req, res, next) => {
-    ImovelController.listarAvaliacoesAprovadas(req.query).then(dados => {
+    ImovelController.listarAvaliacoesAprovadas(req.params.id).then(dados => {
         res.json({ success: true, data: dados })
     }).catch(next)
 })
