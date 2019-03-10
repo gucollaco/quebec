@@ -40,8 +40,9 @@ document.addEventListener('init', function(event) {
         url: url,
         data: {},
         success: function(data) {
+          datas = data.data.result
           if(data.success) {
-            data.data.forEach(function(data) {
+            datas.forEach(function(data) {
               myApp.services.imovel.create(data);
             });
             console.log('load ok')
