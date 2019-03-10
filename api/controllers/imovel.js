@@ -13,6 +13,10 @@ class ImovelController {
         await Imovel.addTag(dados)
     }
 
+    static async listarAvaliacoesAprovadas(dados) {
+        await Imovel.selectApproved(dados)
+    }
+
     
 }
 

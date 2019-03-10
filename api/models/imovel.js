@@ -23,13 +23,19 @@ class Imovel {
         return database.query(query)
     }
 
-    static addTag(dados) {
-        let query = `UPDATE avaliacao
-        SET tag = tag || '[${JSON.stringify(dados.id_tag)}]'
-        WHERE id_avaliacao = '${dados.id}'`
-
+    static addTags(dados) {
+        let query = `UPDATE imovel SET tags = (select array_agg(distinct E) 
+        FROM unnest(tags || '${dados.ids_tags}') E) 
+        WHERE id_imovel = '${dados.id}';`
+        
         return database.query(query)
     }
+
+    static selectApproved(dados){
+        let query = `SELECT * FROM avaliacao WHERE historico->jsonb_array_length(historico)-1->>'estado' = 'APROVADA' AND ${dados.id} = id_imovel`;
+        return database.query(query)
+    }
+
 }
 
 module.exports = Imovel
