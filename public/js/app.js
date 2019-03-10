@@ -109,20 +109,42 @@ document.addEventListener('init', function(event) {
 
   if(page.id === 'loginPage'){
     $(document).on('click', '#entrar', function(){
-      // var username = document.getElementById('username').value;
-      // var password = document.getElementById('password').value;
+      var usuario = document.getElementById('username').value;
+      var senha = document.getElementById('password').value;
+      
+      let data = {
+        credenciais: {
+          usuario,
+          senha,
+        },
+      }
+
+      let url = '/api/usuario/login'
+      $.ajax({
+        type: "POST",
+        url: url,
+        data: data,
+        success: function(data) {
+          if(data.success) {
+            let token = data.data.token
+            document.querySelector('#myNavigator').resetToPage('html/splitter.html', {
+              data: {
+                  imovel: this.data,
+                  title: 'Quebec'
+              }
+            })
+            ons.notification.alert(token)
+          } else {
+            ons.notification.alert('Problema ao cadastrar.')
+          }
+        }
+      });
     
       // if (username === 'bob' && password === 'secret') {
       //   ons.notification.alert('Congratulations!');
       // } else {
       //   ons.notification.alert('Incorrect username or password.');
       // }
-      document.querySelector('#myNavigator').resetToPage('html/splitter.html', {
-        data: {
-            imovel: this.data,
-            title: 'Quebec'
-        }
-    })
     });
 
     $(document).on('click', '#cadastrar', function(){
