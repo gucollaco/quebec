@@ -23,24 +23,8 @@ class Avaliacao {
 
     static update(dados) {
         let query = `UPDATE avaliacao
-                    SET historico = historico || '[${JSON.stringify(dados.atualizacao)}]'
+                    SET historico = historico || '[${JSON.stringify(dados)}]'
                     WHERE id_avaliacao = '${dados.id}'`
-
-        return database.query(query)
-    }
-
-    static approve(id) {
-        let query = `UPDATE avaliacao
-                    SET estada = 'APROVADA'
-                    WHERE id_avaliacao = '${id}'`
-
-        return database.query(query)
-    }
-
-    static disapprove(dados) {
-        let query = `UPDATE avaliacao
-                    SET estado = 'REPROVADA'
-                    WHERE id_avaliacao = '${id}'`
 
         return database.query(query)
     }

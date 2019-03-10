@@ -8,8 +8,8 @@ class Criterio {
         return database.query(query)
     }
 
-    static select(dados) {
-        let query = `SELECT * from criterio WHERE id_criterio = '${dados.id}'`
+    static select(id) {
+        let query = `SELECT * from criterio WHERE id_criterio = '${id}'`
         
         return database.query(query)
     }
