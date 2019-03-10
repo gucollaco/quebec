@@ -13,7 +13,7 @@ var SCORE = (() => {
         #1
         modelo: {
           peso: 1,
-          modelo: {
+          intervalo: {
             tipo: discreto,
             valor: [0, 5]
           }

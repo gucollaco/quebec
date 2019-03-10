@@ -84,10 +84,12 @@ document.addEventListener('init', function(event) {
         criterios: [
           {
             nome: 'Critério #1',
+            descricao: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
             nota: '5'
           },
           {
             nome: 'Critério #2',
+            descricao: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
             nota: 'Danificada, Pintura Ruim'
           },
         ]
@@ -98,6 +100,52 @@ document.addEventListener('init', function(event) {
       datas.avaliacao.criterios.forEach(function(data) {
         myApp.services.imovel.createAvaliacao(data);
       });
+    }
+  }
+
+  if(page.id === 'imovelAnalise'){
+    var data = {
+      criterios: [
+        {
+          nome: 'Criterio #1',
+          influencia: 3,
+          descricao: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+        },
+        {
+          nome: 'Criterio #2',
+          influencia: 2,
+          descricao: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+        },
+        {
+          nome: 'Criterio #3',
+          influencia: -3,
+          descricao: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+        },
+        {
+          nome: 'Criterio #4',
+          influencia: 1,
+          descricao: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+        },
+        {
+          nome: 'Criterio #5',
+          influencia: -1,
+          descricao: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+        },
+      ]
+    }
+
+    let positivos = data.criterios.filter(c => c.influencia > 0)
+    let negativos = data.criterios.filter(c => c.influencia < 0)
+
+    if(positivos.length == 0) $('#imovelAnalise .positivo').css('display', 'none')
+    if(negativos.length == 0) $('#imovelAnalise .negativo').css('display', 'none')
+
+
+    for(let d of negativos){
+      myApp.services.score.createAnalise(d, '#analise-negativo-list');
+    }
+    for(let d of positivos){
+      myApp.services.score.createAnalise(d, '#analise-positivo-list');
     }
   }
 
@@ -204,8 +252,10 @@ document.addEventListener('init', function(event) {
         success: function(data) {
           if(data.success) {
             ons.notification.alert('Obrigado por se cadastrar. Entraremos em contato em breve, com o retorno sobre sua solicitação.')
+            window.location.href = ''
           } else {
             ons.notification.alert('Problema ao cadastrar.')
+            window.location.href = ''
           }
         }
       });

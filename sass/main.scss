@@ -6,7 +6,7 @@
     background: #eceff1;
     .imovel-card{
         position: relative;
-        padding-top: 10px;
+        padding-top: 0px;
 
         img{
             object-fit: cover;
@@ -187,50 +187,157 @@
 #avaliacao-list{
     padding-bottom: 20px;
     background: #eceff1;
+    
     .avaliacao{
         display: flex;
-        flex-direction: row;
-        justify-content: space-between;
+        flex-direction: column;
 
-        padding: 15px 10px;
+        padding: 20px 20px;
         background: #fff;
-        margin-top: 2px;
+        margin-bottom: 15px;
         font-size: 1.1em;
+
+        margin-left: 10px;
+        margin-right: 10px;
+        border-radius: 8px;
+
+        &.status{
+            background: lightgray;
+            margin: 0;
+        }
     }
 
     .nome{
+        font-size: 1.1em;
+        opacity: 0.65;
+        margin-bottom: 10px;
+    }
+
+    .desc{
+        font-size: 0.825em;
+        padding: 0 15px;
     }
 
     .nota{
-        font-weight: bold;
+        font-size: 0.95em;
+        margin-top: 15px;
+        margin-left: -20px;
+        margin-right: -20px;
+        background: rgba(lightgray, 0.275);
+        padding: 3px 20px;
+        // margin-left: 20px;
+
+        span{
+            opacity: 0.625;
+            font-size: 0.85em;
+            // font-weight: bold;
+        }
     }
 
     .status{
-        font-size: 1.3em;
-        font-weight: bold;
-        width: 100%;
+        float: right;
         text-align: center;
+        margin-right: 16px;
 
         &.r{
-            color: rgb(175, 0, 0);
+            color: rgb(211, 0, 0);
+            opacity: 0.65;
         }
 
         &.a{
-            color: rgb(0, 107, 0);
+            color: rgb(0, 131, 0);
+            opacity: 0.65;
         }
     }
 
     .nota-final{
-        font-size: 1.3em;
         font-weight: bolder;
         width: 100%;
         text-align: center;
 
         span{
-            display: block;
-            font-weight: 300;
-            font-size: 0.65em;
-            opacity: 0.9;
+            opacity: 0.6;
+            margin-right: 10px;
+        }
+    }
+}
+
+#imovelAnalise{
+
+    .title{
+        width: 100%;
+        padding: 20px;
+        background: #fff;
+        // margin-bottom: 15px;   
+
+
+        .nota-futura{
+            display: flex;
+            align-items: center;
+            padding: 0 10px;
+
+            div{
+                text-align: center;
+            }
+
+            #nota_prevista{
+                padding-left: 25px;
+                font-size: 1.5em;
+                font-weight: bold;
+            }
+        }
+    }
+}
+
+#analise-positivo-list, #analise-negativo-list{
+    background: #eceff1;
+    border-left: 3px solid black;
+    // border-top-left-radius: 7px;
+    // border-bottom-left-radius: 7px;
+    overflow: hidden;
+    
+    &#analise-positivo-list{
+        border-left: 3px solid rgb(0, 161, 0);
+        border-right: 3px solid rgb(0, 161, 0);
+    }
+    
+    &#analise-negativo-list{
+        border-left: 3px solid rgb(194, 0, 0);
+        border-right: 3px solid rgb(194, 0, 0);
+    }
+
+
+    .inf{
+        position: relative;
+        background: #fff;
+
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+
+        padding: 10px;
+        border-bottom: 2px solid #eceff1;
+
+
+        .influence{
+            font-size: 1.3em;
+            margin: 0 15px;
+        }
+
+        .nome{
+
+        }
+
+        &.inf-3, &.inf-2, &.inf-1{
+            .influence{
+                color: green;
+            }
+        }
+        &.inf--3, &.inf--2, &.inf--1{
+            .influence{
+                color: rgb(197, 0, 0);
+            }
         }
     }
 }
