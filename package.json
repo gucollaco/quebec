@@ -6,8 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "sass:preview": "node-sass preview -o preview",
-    "sass:build": "node-sass sass -o public/css",
-    "sass:watch": "nodemon --watch sass -x \"npm run sass:build\"",
+    "build:sass": "node-sass sass -o public/css",
+    "watch:sass": "npm run build:sass && npm run build:sass -- -w",
     "start": "node index.js"
   },
   "repository": {
