@@ -10,6 +10,7 @@ CREATE TABLE usuario (
 	perfil TEXT [],
 	credenciais JSONB,
 	nome VARCHAR (200),
+	pendente BOOLEAN,
 	foto TEXT,
 	locais TEXT [],
 	data_hora TIMESTAMP

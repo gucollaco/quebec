@@ -159,14 +159,15 @@ document.addEventListener('init', function(event) {
       let url = '/api/usuario/'
 
       let nome = $('#nome').val()
-      let username = $('#usernameRegister').val()
-      let password = $('#passwordRegister').val()
+      let username = $('#email').val()
+      let password = $('#passwordUsuario').val()
       let endereco = $('#endereco').val()
       let numero = $('#numero').val()
       
       let data = {
         nome: nome,
         perfil: 'COLABORADOR',
+        pendente: true,
         credenciais: {
           usuario: username,
           senha: password,

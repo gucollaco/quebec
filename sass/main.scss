@@ -234,3 +234,39 @@
         }
     }
 }
+
+#loginPage{
+    
+    .page__content {
+        display: flex;
+        align-items: center;
+
+        &>div{
+            width: 100%;
+        }
+    }
+
+    ons-input{
+        width: 70%;
+    }
+
+    button{
+        width: 70%;
+    }
+}
+
+#cadastrarPage{
+    .carousel{
+        ons-input{
+            width: 70%;
+        }
+    }
+}
+
+#areaProximo, #areaConfirmar{
+    position: fixed;
+    bottom: 5px;
+    width: 100%;
+    button{
+    }
+}

@@ -206,6 +206,37 @@
             console.log(this.data)
             $(document.querySelector('ons-back-button')).click()
         })
+
+        $(document).on('change', '.confirmar-cadastro', function(){
+            let selected_values = $('.confirmar-cadastro').toArray().map((v) => {
+                return {
+                    name: $(v).attr('id'),
+                    value: $(v).val()
+                }
+            })
+
+            let confirm = selected_values.filter(v => v.value == '').length > 0
+            if(confirm) { 
+                $('#areaConfirmar').css('display', 'none')
+                $('#areaProximo').css('display', '')
+            } else {
+                $('#areaConfirmar').get(0).data = selected_values
+                $('#areaConfirmar').css('display', '')
+                $('#areaProximo').css('display', 'none')
+            }
+        })
+
+        $(document).on('click', '#areaConfirmar button', function(){
+            console.log('SEND TO API')
+            console.log(this.data)
+
+            document.querySelector('#myNavigator').resetToPage('html/splitter.html', {
+                data: {
+                    imovel: this.data,
+                    title: 'Quebec'
+                }
+            })
+        })
     </script>
 </body>
 
