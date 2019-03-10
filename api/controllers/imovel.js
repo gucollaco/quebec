@@ -19,11 +19,6 @@ class ImovelController {
     }
 
     static async buscaFiltrada(filtros) {
-        // datahora: '10/03/2019 02:30',
-        // endereco: 'Av. Paulista, 1578 - Bela Vista, São Paulo - SP, 01310-200',
-        // nota: 5.0,
-        // foto: 'https://www.ligadoemviagem.com.br/wp-content/uploads/2018/09/masp-museu-artes-sao-paulo-19.jpg'
-
         let result = await Imovel.selectFiltered(filtros)
 
         result.map(imovel => {

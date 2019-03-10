@@ -164,8 +164,11 @@ myApp.services = {
     },
     // Creates a new task and attaches it to the pending task list.
     create: function(data, at="#pending-list") {
+<<<<<<< HEAD
       let title = '.' + at.slice(1).split('-')[0] + 'title'
       $(title).css('display', '')
+=======
+>>>>>>> 3d1725a77d2dd52cb65105e9fe7faab41fa7d0f9
 
       let address = data.endereco.split('-')
       let grade = !data.nota ? ['-', '-'] : parseFloat(data.nota).toFixed(1).split('.')

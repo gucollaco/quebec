@@ -23,13 +23,12 @@ document.addEventListener('init', function(event) {
   // Fill the lists with initial data when the pages we need are ready.
   // This only happens once at the beginning of the app.
   if (page.id === 'menuPage' || page.id === 'pendingTasksPage') {
-    $('#titleNome').val(SPLITTER.usuario.user.nome)
+    $('#titleNome').text(SPLITTER.usuario.user.nome)
     if (document.querySelector('#menuPage')
       && document.querySelector('#pendingTasksPage')
       && !document.querySelector('#pendingTasksPage ons-list-item')
     ) {
-
-      let url = '/api/imovel?pontuacao=true'
+      var url = '/api/imovel?pontuacao=true'
       $.ajax({
         type: "GET",
         url: url,
@@ -46,6 +45,7 @@ document.addEventListener('init', function(event) {
         }
       });
 
+<<<<<<< HEAD
       if(navigator.geolocation){
             
         navigator.geolocation.getCurrentPosition(function(position) {
@@ -72,6 +72,25 @@ document.addEventListener('init', function(event) {
 
         })
       }
+=======
+      url = '/api/imovel?proximidade=true'
+      $.ajax({
+        type: "GET",
+        url: url,
+        data: {},
+        success: function(data) {
+          datas = data.data.result
+          if(data.success) {
+            datas.forEach(function(data) {
+              myApp.services.imovel.create(data, '#notification-list');
+            });
+            console.log('load ok')
+          } else {
+            console.log('load problem')
+          }
+        }
+      });
+>>>>>>> 3d1725a77d2dd52cb65105e9fe7faab41fa7d0f9
     }
   }
 
@@ -189,7 +208,7 @@ document.addEventListener('init', function(event) {
       url: url,
       data: null,
       success: function(data) {
-        var datas = data.data[0]
+        var datas = data.data[0] || []
         // var datas = {
         //   avaliacao: {
         //     status: 'Reprovada',
@@ -351,7 +370,7 @@ document.addEventListener('init', function(event) {
     });
 
     $(document).on('click', '#cadastrar', function(){
-      document.querySelector('#myNavigator').pushPage('html/cadastrar.html', {
+      document.querySelector('#myNavigator').resetToPage('html/cadastrar.html', {
           data: {
               imovel: this.data,
               title: 'Cadastro'
@@ -407,44 +426,60 @@ document.addEventListener('init', function(event) {
         success: function(data) {
           if(data.success) {
             ons.notification.alert('Obrigado por se cadastrar. Entraremos em contato em breve, com o retorno sobre sua solicitação.')
-            window.location.href = ''
           } else {
             ons.notification.alert('Problema ao cadastrar.')
-            window.location.href = ''
           }
         }
       });
     })
   }
   if(page.id === 'cadastrosPage'){
-    let data = [
-      {
-        nome: 'Usuário #1',
-        email: 'usuario.1@host.com',
-        datahora: "10/03/2019 05:56"
-      },
-      {
-        nome: 'Usuário #2',
-        email: 'usuario.2@host.com',
-        datahora: "10/03/2019 05:56"
-      },
-      {
-        nome: 'Usuário #3',
-        email: 'usuario.3@host.com',
-        datahora: "08/03/2019 05:56",
-        tag: 'Atrasado'
-      },
-      {
-        nome: 'Usuário #4',
-        email: 'usuario.4@host.com',
-        datahora: "10/02/2019 05:56",
-        tag: 'Urgente'
-      },
-    ]
+    let url = '/api/usuario/pendente'
 
-    data.forEach(function(d) {
-      myApp.services.cadastro.create(d)
-    })
+    $.ajax({
+      type: "GET",
+      url: url,
+      data: {},
+      success: function(data) {
+        if(data.success) {
+          datas = data.data
+
+          datas.forEach(function(d) {
+            myApp.services.cadastro.create(d)
+          })
+        } else {
+          ons.notification.alert('Problema encontrado.')
+        }
+      }
+    });
+    // let data = [
+    //   {
+    //     nome: 'Usuário #1',
+    //     email: 'usuario.1@host.com',
+    //     datahora: "10/03/2019 05:56"
+    //   },
+    //   {
+    //     nome: 'Usuário #2',
+    //     email: 'usuario.2@host.com',
+    //     datahora: "10/03/2019 05:56"
+    //   },
+    //   {
+    //     nome: 'Usuário #3',
+    //     email: 'usuario.3@host.com',
+    //     datahora: "08/03/2019 05:56",
+    //     tag: 'Atrasado'
+    //   },
+    //   {
+    //     nome: 'Usuário #4',
+    //     email: 'usuario.4@host.com',
+    //     datahora: "10/02/2019 05:56",
+    //     tag: 'Urgente'
+    //   },
+    // ]
+
+    // data.forEach(function(d) {
+    //   myApp.services.cadastro.create(d)
+    // })
   }
   
   if(page.id === 'pendenciasPage'){
