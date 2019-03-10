@@ -3,14 +3,6 @@ const router = express.Router();
 
 const UsuarioController = require('../controllers/usuario');
 
-
-router.post('/', (req, res, next) => {
-    UsuarioController.criar(req.body).then(dados => {
-        res.json({ success: true })
-
-    }).catch(next)
-})
-
 router.get('/:id', (req, res, next) => {
     UsuarioController.buscar(req.params.id).then(dados => {
         res.json({ success: true, data: dados })

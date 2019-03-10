@@ -29,8 +29,13 @@ app.use('/jquery', express.static(__dirname + '/node_modules/jquery'));
 app.use('/bootstrap', express.static(__dirname + '/node_modules/bootstrap'));
 app.use('/bootstrap-select', express.static(__dirname + '/node_modules/bootstrap-select'));
 
+const UsuarioController = require('./api/controllers/usuario')
+app.post('/api/usuario', (req, res, next) => {
+    UsuarioController.criar(req.body).then(() => {
+        res.json({ success: true })
+    }).catch(next)
+})
 app.post('/api/usuario/login', (req, res, next) => {
-    const UsuarioController = require('./api/controllers/usuario')
     UsuarioController.login(req.body).then(dados => {
         res.json({ success: true, data: dados })
     }).catch(next)
