@@ -1,4 +1,4 @@
-const { Avaliacao } = require('../models')
+const { Avaliacao, Criterio } = require('../models')
 const dateTime = require('date-time');
 
 class AvaliacaoController {
@@ -8,18 +8,18 @@ class AvaliacaoController {
         await Avaliacao.insert(dados)
     }
 
-    static async alterar(dados) {
+    static async aprovar(dados) {
         let data = new Date()
-        dados.atualizacao.data_hora = dateTime()
+        dados.data_hora = dateTime()
+        dados.estado = 'APROVADA'
         await Avaliacao.update(dados)
     }
 
-    static async aprovar(id) {
-        await Avaliacao.approve(id)
-    }
-
-    static async reprovar(id) {
-        await Avaliacao.disapprove(id)
+    static async reprovar(dados) {
+        let data = new Date()
+        dados.data_hora = dateTime()
+        dados.estado = 'REPROVADA'
+        await Avaliacao.update(dados)
     }
 
     static async buscar(id) {
@@ -29,9 +29,32 @@ class AvaliacaoController {
     static async buscarPorImovel(id) {
         let result = await Avaliacao.getByImovel(id)
 
-        result.map(av => {
-            av.status = av.historico[av.historico.length-1].estado
-            av.nota = 0
+        result = result.map(av => {
+            return {
+                criterios: av.criterios,
+                status: av.historico[av.historico.length-1].estado
+            }
+        })
+
+        var aval = 0;
+        for (let av of result) {
+            for(let a of av.criterios) {
+                let [modelo] = await Criterio.select({ id: a.id_criterio })
+                a.nome = modelo.nome
+                modelo = modelo.notas.modelo
+                a.notas = modelo,
+                a.resultado = a.nota
+            }
+            aval += global.SCORE.evaluate(av.criterios).final
+            let a = 'oi'
+        }
+
+        aval /= result.length
+        
+        result = { ...result[0], nota: aval }
+
+        result.criterios.forEach(item => {
+            item.descricao = item.observacao
         })
 
         return result
@@ -104,3 +127,4 @@ class AvaliacaoController {
 }
 
 module.exports = AvaliacaoController
+

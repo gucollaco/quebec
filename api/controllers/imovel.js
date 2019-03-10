@@ -1,4 +1,4 @@
-const { Imovel } = require('../models')
+const { Imovel, Avaliacao } = require('../models')
 
 class ImovelController {
     static async criar(dados) {
@@ -8,12 +8,14 @@ class ImovelController {
     static async buscar(id) {
         let result = await Imovel.select(id)
 
-        result.map(imovel => {
+        for (let imovel of result) {
             imovel.datahora = imovel.data_hora
             imovel.endereco = `${imovel.localizacao.logradouro} - ${imovel.localizacao.bairro}, ${imovel.localizacao.cidade} - ${imovel.localizacao.estado}`
             imovel.nota = Math.random(0, 5)
             imovel.foto = imovel.links[0]
-        })
+            let r = await this.buscarPorImovel(imovel.id_imovel)
+            imovel.score = r.nota
+        }
 
         return { result }
     }
@@ -21,14 +23,31 @@ class ImovelController {
     static async buscaFiltrada(filtros) {
         let result = await Imovel.selectFiltered(filtros)
 
-        result.map(imovel => {
+        for (let imovel of result) {
             imovel.datahora = imovel.data_hora
             imovel.endereco = `${imovel.localizacao.logradouro} - ${imovel.localizacao.bairro}, ${imovel.localizacao.cidade} - ${imovel.localizacao.estado}`
             imovel.nota = Math.random(0, 5)
             imovel.foto = imovel.links[0]
-        })
+            let r = await this.buscarPorImovel(imovel.id_imovel)
+            imovel.score = r.nota
+        }
 
         return { result }
+    }
+
+    static async buscarPorImovel(id) {
+        let result = await Avaliacao.getByImovel(id)
+
+        var aval = 0;
+        for (let av of result) {
+            aval += global.SCORE.evaluate(av.criterios).final
+        }
+
+        aval /= result.length
+        
+        result = { ...result[0], nota: aval }
+
+        return result
     }
 
     static async buscaGeolocation(lat, lng, radius) {
