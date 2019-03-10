@@ -126,7 +126,7 @@ document.addEventListener('init', function(event) {
       url: url,
       data: null,
       success: function(data) {
-        var datas = data.data.result
+        var datas = data.data[0]
         // var datas = {
         //   avaliacao: {
         //     status: 'Reprovada',
@@ -145,9 +145,9 @@ document.addEventListener('init', function(event) {
         //     ]
         //   }
         // }
-        if(datas.avaliacao){
-          myApp.services.imovel.createAvaliacaoNotaFinal(datas.avaliacao);
-          datas.avaliacao.criterios.forEach(function(data) {
+        if(datas.length > 0){
+          myApp.services.imovel.createAvaliacaoNotaFinal(datas);
+          datas.criterios.forEach(function(data) {
             myApp.services.imovel.createAvaliacao(data);
           });
         }
