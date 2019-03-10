@@ -17,11 +17,17 @@ router.get('/:id', (req, res, next) => {
 })
 
 router.get('/', (req, res, next) => {
-    if (req.query.localizacao) {
-        ImovelController.buscarPorLocalicazao(req.query).then(dados => {
-            res.json({ success: true, data: dados })
-        }).catch(next)
-    }
+    ImovelController.buscaFiltrada(req.query).then(dados => {
+        res.json({ success: true, data: dados })
+    }).catch(next)
+})
+
+router.put('/:id', (req, res, next) => {
+    AvaliacaoController.alterar({ id: req.params.id, ...req.body }).then(dados => {
+        res.json({ success: true })
+    }).catch(next)
+
+    STRI
 })
 
 module.exports = router;

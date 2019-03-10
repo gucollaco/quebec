@@ -20,8 +20,15 @@ CREATE TABLE imovel (
 	tipo VARCHAR (50),
 	preco NUMERIC,
 	localizacao JSONB,
-	data_hora TIMESTAMP
+	data_hora TIMESTAMP,
+	tags TEXT []
 );
+
+CREATE TABLE tag(
+	id_tag VARCHAR (10) PRIMARY KEY,
+	descricao TEXT[]
+);
+
 -- criterios {{id, nota[], observacao}, {id, nota[], observacao}, ... }
 -- historico {{estado, id_usuario,data_hora}, {estado, id_usuario,data_hora}, ...}
 CREATE TABLE avaliacao (
@@ -29,7 +36,7 @@ CREATE TABLE avaliacao (
 	data_hora TIMESTAMP,
 	criterios JSONB,
 	historico JSONB,
-	
+	id_imovel VARCHAR (10) REFERENCES imovel(id_imovel),
 	id_usuario VARCHAR (10) REFERENCES usuario(id_usuario)
 );
 

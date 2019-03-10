@@ -18,16 +18,25 @@ document.addEventListener('init', function(event) {
     ) {
       var datas = [
         {
-          title: 'Download OnsenUI',
-          category: 'Programming',
-          description: 'Some description.',
-          highlight: false,
-          urgent: false
+          endereço: 'Av. Paulista, 1578 - Bela Vista, São Paulo - SP, 01310-200',
+          nota: 5.0,
+          foto: 'https://www.ligadoemviagem.com.br/wp-content/uploads/2018/09/masp-museu-artes-sao-paulo-19.jpg'
         },
       ]
       datas.forEach(function(data) {
-        // myApp.services.tasks.createImage(data);
+        // myApp.services.imovel.create(data);
       });
     }
   }
+
+  if(page.id === 'pendingTasksPage'){
+    if (document.querySelector('#map')){
+      initMap()
+    }
+  }
+
+  if(page.id === 'newTaskPages'){
+    $('.selectpicker').selectpicker();
+  }
+
 });

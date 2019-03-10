@@ -10,7 +10,7 @@ class Avaliacao {
 
     static insert(dados) {
         let query = `INSERT INTO avaliacao
-                    VALUES ('${dados.id_avaliacao}', NOW(), '${JSON.stringify(dados.criterios)}', '${JSON.stringify(dados.historico)}', '${dados.id_usuario}')`
+                    VALUES ('${dados.id_avaliacao}', NOW(), '${JSON.stringify(dados.criterios)}', '${JSON.stringify(dados.historico)}', ${dados.id_imovel}, '${dados.id_usuario}')`
 
         return database.query(query)
     }
@@ -30,8 +30,6 @@ class Avaliacao {
 
         return database.query(query)
     }
-
-
 }
 
 module.exports = Avaliacao

@@ -9,6 +9,8 @@
 
     <link rel="stylesheet" href="/onsenui/css/onsenui.css">
     <link rel="stylesheet" href="/onsenui/css/onsen-css-components.css">
+    <link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/bootstrap-select/dist/css/bootstrap.select.css">
     {{/if}}
 
     <link rel="stylesheet" href="/css/main.css">
@@ -22,6 +24,11 @@
 
 {{{body}}}
 
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBXkuJm0jYAjeyqsqxeT8fByvvUPa8Atts"></script> 
+    <script src="/jquery/dist/jquery.min.js"></script>   
+    <script src="/bootstrap/dist/js/bootstrap.bundle.min.js"></script>   
+    <script src="/bootstrap-select/dist/js/bootstrap-select.js"></script>   
+    
     <script>
         var map
         var options
@@ -33,10 +40,11 @@
                 zoom: 15,
                 center: {lat: -23.2237,lng: -45.9009}
             }
+            
             map = new google.maps.Map(document.getElementById('map'), options);
 
             // Call the codeAddress function (once) when the map is idle (ready)
-            google.maps.event.addListenerOnce(map, 'idle', codeAddress);
+            //google.maps.event.addListenerOnce(map, 'idle', codeAddress);
 
             // // Marker
             // function addMarker(props) {
@@ -72,8 +80,8 @@
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(function(position) {
                     var pos = {
-                    lat: position.coords.latitude,
-                    lng: position.coords.longitude
+                        lat: position.coords.latitude,
+                        lng: position.coords.longitude
                     };
 
                     infoWindow.setPosition(pos);
@@ -130,8 +138,13 @@
             infoWindow.open(map);
         }
     </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBXkuJm0jYAjeyqsqxeT8fByvvUPa8Atts&callback=initMap" async defer></script>    
-
+    <script>
+        $(document).on('change', '#rangeDistancia', function() {
+            console.log($("#rangeDistancia").val() + ' km')
+            $("#inputDistancia").show();
+            $("#inputDistancia").text($("#rangeDistancia").val() + ' km');
+        });
+    </script>
 </body>
 
 </html>
