@@ -24,7 +24,7 @@ document.addEventListener('init', function(event) {
         },
       ]
       datas.forEach(function(data) {
-        myApp.services.imovel.create(data);
+        // myApp.services.imovel.create(data);
       });
     }
   }
@@ -34,4 +34,9 @@ document.addEventListener('init', function(event) {
       initMap()
     }
   }
+
+  if(page.id === 'newTaskPages'){
+    $('.selectpicker').selectpicker();
+  }
+
 });

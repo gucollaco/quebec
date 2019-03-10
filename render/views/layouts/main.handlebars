@@ -9,6 +9,8 @@
 
     <link rel="stylesheet" href="/onsenui/css/onsenui.css">
     <link rel="stylesheet" href="/onsenui/css/onsen-css-components.css">
+    <link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/bootstrap-select/dist/css/bootstrap.select.css">
     {{/if}}
 
     <link rel="stylesheet" href="/css/main.css">
@@ -24,6 +26,8 @@
 
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBXkuJm0jYAjeyqsqxeT8fByvvUPa8Atts"></script> 
     <script src="/jquery/dist/jquery.min.js"></script>   
+    <script src="/bootstrap/dist/js/bootstrap.bundle.min.js"></script>   
+    <script src="/bootstrap-select/dist/js/bootstrap-select.js"></script>   
     
     <script>
         var map
@@ -136,9 +140,9 @@
     </script>
     <script>
         $(document).on('change', '#rangeDistancia', function() {
-            var range = document.getElementById('rangeDistancia');
-            //$("#inputDistancia").val(range);
-            $("#inputDistancia").text(range);
+            console.log($("#rangeDistancia").val() + ' km')
+            $("#inputDistancia").show();
+            $("#inputDistancia").text($("#rangeDistancia").val() + ' km');
         });
     </script>
 </body>

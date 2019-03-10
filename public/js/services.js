@@ -136,7 +136,7 @@ myApp.services = {
 
   imovel: {
     
-  }
+  },
 
   //////////////////////
   // Animation Service //
