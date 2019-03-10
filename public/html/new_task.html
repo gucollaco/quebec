@@ -13,38 +13,42 @@
 
   <ons-list-title>Filtrar</ons-list-title>
   <ons-list>
-    <ons-list-item modifier="nodivider">
-      <div class="center">
+    <ons-list-item modifier="nodivider" style="width: 100%">
+      <div class="center" style="width: 85%">
         <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Rua, bairro, cidade...">
+      </div>
+      <div class="right" style="width: 15%">
+        <button type="button" class="btn btn-dark" id="btnMostrarMais"><i class="fa fa-filter"></i></button>
       </div>
     </ons-list-item>
   </ons-list>
 
-  <ons-list-title>Mais Filtros</ons-list-title>
-  <ons-list>
-    <ons-list-item modifier="nodivider" style="width:100%">
-      <label class="center" for="inner-highlight-input" style="width:40%">
-        Distância máxima
-      </label>
-      <div class="right" style="width:60%">
-        <ons-range id="rangeDistancia" style="width: 60%;" value="100"></ons-range><label style="width: 30%; margin-left:15px" id="inputDistancia">100 km</label>
-      </div>
-    </ons-list-item>
-    <ons-list-item modifier="nodivider" style="width:100%">
-      <label class="center" for="inner-highlight-input" style="width:40%">
-        Palavras chave
-      </label>
-      <div class="right" style="width:60%">
-        <select multiple class="form-control" id="selectTags">
-          <option>1</option>
-          <option>2</option>
-          <option>3</option>
-          <option>4</option>
-          <option>5</option>
-        </select>
-      </div>
-    </ons-list-item>
-  </ons-list>
+  <div style="display:none" id="divMaisFiltros">
+    <ons-list-title>Mais Filtros</ons-list-title>
+    <ons-list>
+      <ons-list-item modifier="nodivider" style="width:100%">
+        <label class="center" for="inner-highlight-input" style="width:40%">
+          Distância máxima
+        </label>
+        <div class="right" style="width:60%">
+          <ons-range id="rangeDistancia" style="width: 60%;" value="100"></ons-range><label style="width: 30%; margin-left:15px" id="inputDistancia">100 km</label>
+        </div>
+      </ons-list-item>
+      <ons-list-item modifier="nodivider" style="width:100%">
+        <label class="center" for="inner-highlight-input" style="width:40%">
+          Palavras chave
+        </label>
+        <div class="right" style="width:60%">
+          <select multiple class="form-control" id="selectTags">
+            <option>Pets</option>
+            <option>Piscina</option>
+            <option>Vista</option>
+            <option>Parque</option>
+          </select>
+        </div>
+      </ons-list-item>
+    </ons-list>
+  </div>
 
   <ons-if platform="ios other">
     <ons-button modifier="large" component="button/save-task">Add New Task</ons-button>
