@@ -3,14 +3,14 @@ const router = express.Router();
 
 const UsuarioController = require('../controllers/usuario');
 
-router.get('/:id', (req, res, next) => {
-    UsuarioController.buscar(req.params.id).then(dados => {
+router.get('/pendente', (req, res, next) => {
+    UsuarioController.buscarPendentes().then(dados => {
         res.json({ success: true, data: dados })
     }).catch(next)
 })
 
-router.get('/pendente', (req, res, next) => {
-    UsuarioController.buscarPendentes().then(dados => {
+router.get('/:id', (req, res, next) => {
+    UsuarioController.buscar(req.params.id).then(dados => {
         res.json({ success: true, data: dados })
     }).catch(next)
 })

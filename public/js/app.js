@@ -413,10 +413,10 @@ document.addEventListener('init', function(event) {
     $.ajax({
       type: "GET",
       url: url,
-      data: data,
+      data: {},
       success: function(data) {
         if(data.success) {
-          datas = data.data.result
+          datas = data.data
 
           datas.forEach(function(d) {
             myApp.services.cadastro.create(d)
@@ -451,9 +451,9 @@ document.addEventListener('init', function(event) {
     //   },
     // ]
 
-    data.forEach(function(d) {
-      myApp.services.cadastro.create(d)
-    })
+    // data.forEach(function(d) {
+    //   myApp.services.cadastro.create(d)
+    // })
   }
   
   if(page.id === 'pendenciasPage'){
