@@ -4,6 +4,15 @@ window.myApp = {};
 document.addEventListener('init', function(event) {
   var page = event.target;
 
+  function fetchData(data, url, success_func) {
+    $.ajax({
+      type: "POST",
+      url: url,
+      data: data,
+      success: success_func 
+    });
+  }
+
   // Each page calls its own initialization controller.
   if (myApp.controllers.hasOwnProperty(page.id)) {
     myApp.controllers[page.id](page);
@@ -16,6 +25,7 @@ document.addEventListener('init', function(event) {
       && document.querySelector('#pendingTasksPage')
       && !document.querySelector('#pendingTasksPage ons-list-item')
     ) {
+
       var datas = [
         {
           endereco: 'Av. Paulista, 1578 - Bela Vista, São Paulo - SP, 01310-200',
@@ -24,39 +34,68 @@ document.addEventListener('init', function(event) {
         },
       ]
 
-      datas.concat(datas).concat(datas).concat(datas).forEach(function(data) {
-        myApp.services.imovel.create(data);
+      let url = '/api/imovel'
+      $.ajax({
+        type: "GET",
+        url: url,
+        data: {},
+        success: function(data) {
+          datas = data.data.result
+          if(data.success) {
+            datas.forEach(function(data) {
+              myApp.services.imovel.create(data);
+            });
+            console.log('load ok')
+          } else {
+            console.log('load problem')
+          }
+        }
       });
     }
   }
 
   if(page.id === 'completedTasksPage'){
-    var datas = [
-      {
-        datahora: '10/03/2019 02:30',
-        endereco: 'Av. Paulista, 1578 - Bela Vista, São Paulo - SP, 01310-200',
-        nota: 5.0,
-        foto: 'https://www.ligadoemviagem.com.br/wp-content/uploads/2018/09/masp-museu-artes-sao-paulo-19.jpg',
-        status: 'Pendente'
-      },
-      {
-        datahora: '10/03/2019 02:30',
-        endereco: 'Av. Torre, 1578 - Eifell, Paris - FR, 01310-200',
-        nota: 4.0,
-        foto: 'https://cdn.getyourguide.com/img/tour_img-1290852-145.jpg',
-        status: 'Aprovada'
-      },
-      {
-        datahora: '10/03/2019 02:30',
-        endereco: 'Av. Paulista, 1578 - Bela Vista, São Paulo - SP, 01310-200',
-        nota: 1.0,
-        foto: 'https://www.ligadoemviagem.com.br/wp-content/uploads/2018/09/masp-museu-artes-sao-paulo-19.jpg',
-        status: 'Reprovada'
-      },
-    ]
-    datas.forEach(function(data) {
-      myApp.services.avaliacoes.create(data);
+    var datas
+    let url = '/api/imovel'
+    $.ajax({
+      type: "GET",
+      url: url,
+      data: null,
+      success: function(data) {
+        if(data.success) {
+          datas = data.data.result
+          datas.forEach(function(data) {
+            myApp.services.avaliacoes.create(data);
+          });
+        } else {
+          ons.notification.alert('Problema ao cadastrar.')
+        }
+      }
     });
+
+    // var datas = [
+    //   {
+    //     datahora: '10/03/2019 02:30',
+    //     endereco: 'Av. Paulista, 1578 - Bela Vista, São Paulo - SP, 01310-200',
+    //     nota: 5.0,
+    //     foto: 'https://www.ligadoemviagem.com.br/wp-content/uploads/2018/09/masp-museu-artes-sao-paulo-19.jpg',
+    //     status: 'Pendente'
+    //   },
+    //   {
+    //     datahora: '10/03/2019 02:30',
+    //     endereco: 'Av. Torre, 1578 - Eifell, Paris - FR, 01310-200',
+    //     nota: 4.0,
+    //     foto: 'https://cdn.getyourguide.com/img/tour_img-1290852-145.jpg',
+    //     status: 'Aprovada'
+    //   },
+    //   {
+    //     datahora: '10/03/2019 02:30',
+    //     endereco: 'Av. Paulista, 1578 - Bela Vista, São Paulo - SP, 01310-200',
+    //     nota: 1.0,
+    //     foto: 'https://www.ligadoemviagem.com.br/wp-content/uploads/2018/09/masp-museu-artes-sao-paulo-19.jpg',
+    //     status: 'Reprovada'
+    //   },
+    // ]
   }
 
   if(page.id === 'imovelData'){
@@ -158,20 +197,42 @@ document.addEventListener('init', function(event) {
 
   if(page.id === 'loginPage'){
     $(document).on('click', '#entrar', function(){
-      // var username = document.getElementById('username').value;
-      // var password = document.getElementById('password').value;
+      var usuario = document.getElementById('username').value;
+      var senha = document.getElementById('password').value;
+      
+      let data = {
+        credenciais: {
+          usuario,
+          senha,
+        },
+      }
+
+      let url = '/api/usuario/login'
+      $.ajax({
+        type: "POST",
+        url: url,
+        data: data,
+        success: function(data) {
+          if(data.success) {
+            let token = data.data.token
+            document.querySelector('#myNavigator').resetToPage('html/splitter.html', {
+              data: {
+                  imovel: this.data,
+                  title: 'Quebec'
+              }
+            })
+            ons.notification.alert(token)
+          } else {
+            ons.notification.alert('Problema ao cadastrar.')
+          }
+        }
+      });
     
       // if (username === 'bob' && password === 'secret') {
       //   ons.notification.alert('Congratulations!');
       // } else {
       //   ons.notification.alert('Incorrect username or password.');
       // }
-      document.querySelector('#myNavigator').resetToPage('html/splitter.html', {
-        data: {
-            imovel: this.data,
-            title: 'Quebec'
-        }
-    })
     });
 
     $(document).on('click', '#cadastrar', function(){

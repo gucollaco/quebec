@@ -11,8 +11,8 @@ class UsuarioController {
         return await Usuario.select(id)
     }
 
-    static async login(credenciais) {
-        let [user] = await Usuario.selectByCredenciais(credenciais)
+    static async login(dados) {
+        let [user] = await Usuario.selectByCredenciais(dados.credenciais)
 
         if (!user) throw new Error("Credenciais inválidas.")
         else {

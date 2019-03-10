@@ -17,8 +17,8 @@ router.get('/:id', (req, res, next) => {
 })
 
 router.get('/', (req, res, next) => {
-    ImovelController.buscaFiltrada(req.query).then(dados => {
-        res.json({ success: true, data: dados })
+    ImovelController.buscaFiltrada(req.query).then(result => {
+        res.json({ success: true, data: result })
     }).catch(next)
 })
 
