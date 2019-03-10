@@ -35,8 +35,11 @@ document.addEventListener('init', function(event) {
     }
   }
 
-  // if(page.id === 'newTaskPages'){
-  //   $('.selectpicker').selectpicker();
-  // }
+  if(page.id === 'newTaskPage'){
+    if (document.querySelector('#map')){
+      console.log('aa', document.querySelector('#map'))
+      initMap()
+    }
+  }
 
 });
