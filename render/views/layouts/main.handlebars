@@ -160,16 +160,23 @@
             let value = $(this).val()
 
             if(value != lastSearch){
+                $('#result-list').empty()
                 
-                var datas = [
-                    {
-                        endereco: 'Av. Resultado, ??? - Da Pesquisa, São Paulo - SP, 01310-200',
-                        nota: 4.0,
-                        foto: 'https://cdn.getyourguide.com/img/tour_img-1290852-145.jpg'
-                    },
-                ]
-                datas.forEach(function(data) {
-                    myApp.services.imovel.create(data, '#result-list');
+                let url = '/api/imovel'
+                $.ajax({
+                    type: "GET",
+                    url: url,
+                    data: {localizacao: value},
+                    success: function(data) {
+                    datas = data.data.result
+                    if(data.success) {
+                        datas.forEach(function(data) {
+                            myApp.services.imovel.create(data, '#result-list');
+                        });
+                    } else {
+                        console.log('load problem')
+                    }
+                    }
                 });
             }
 

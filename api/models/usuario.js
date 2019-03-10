@@ -29,7 +29,8 @@ class Usuario {
         let query = `SELECT *
                     FROM usuario
                     WHERE credenciais->>'usuario' = '${credenciais.usuario}'
-                    AND credenciais->>'senha' = '${credenciais.senha}'`
+                    AND credenciais->>'senha' = '${credenciais.senha}'
+                    AND estado != 'PENDENTE'`
 
         return database.query(query)
     }
