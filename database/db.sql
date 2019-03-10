@@ -30,7 +30,8 @@ CREATE TABLE imovel (
 	titulo TEXT,
 	descricao TEXT,
 	estacionamento INTEGER,
-	links TEXT[]
+	links TEXT[],
+	coords POINT;
 );
 
 CREATE TABLE tag(

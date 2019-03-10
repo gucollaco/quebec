@@ -2,7 +2,7 @@
     font-size: 1.1em;
 }
 
-#pending-list, #result-list, #completed-list{
+#pending-list, #result-list, #completed-list, #notification-list{
     background: #eceff1;
     .imovel-card{
         position: relative;
@@ -88,6 +88,24 @@
             margin-top: 10px;
             font-size: 0.8em;
             opacity: 0.75;
+        }
+    }
+}
+
+#pendingTasksPage{
+    .notification-title{
+        color: royalblue !important;
+    }
+
+    .distance{
+        margin-top: 15px;
+        color: royalblue;
+        font-weight: bold;
+        text-align: center;
+
+        span{
+            font-weight: 300;
+            color: #333;
         }
     }
 }

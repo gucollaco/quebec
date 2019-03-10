@@ -34,9 +34,8 @@ document.addEventListener('init', function(event) {
         url: url,
         data: {},
         success: function(data) {
-          datas = data.data.result
           if(data.success) {
-            datas.forEach(function(data) {
+            data.data.forEach(function(data) {
               myApp.services.imovel.create(data);
             });
             console.log('load ok')
@@ -46,6 +45,34 @@ document.addEventListener('init', function(event) {
         }
       });
 
+<<<<<<< HEAD
+      if(navigator.geolocation){
+            
+        navigator.geolocation.getCurrentPosition(function(position) {
+          var pos = {
+              lat: position.coords.latitude,
+              lng: position.coords.longitude
+          };
+          
+          url = `/api/imovel?proximidade=true&lat=${pos.lat}&lng=${pos.lng}`
+          $.ajax({
+            type: "GET",
+            url: url,
+            data: {},
+            success: function(data) {
+              if(data.success) {
+                data.data.forEach(function(data) {
+                  myApp.services.imovel.createProximity(data, '#notification-list');
+                });
+              } else {
+                console.log('load problem')
+              }
+            }
+          });
+
+        })
+      }
+=======
       url = '/api/imovel?proximidade=true'
       $.ajax({
         type: "GET",
@@ -63,6 +90,7 @@ document.addEventListener('init', function(event) {
           }
         }
       });
+>>>>>>> 3d1725a77d2dd52cb65105e9fe7faab41fa7d0f9
     }
   }
 
@@ -165,11 +193,6 @@ document.addEventListener('init', function(event) {
         }
       }
     });
-    // datas.fotos.forEach(function(data) {
-    //   myApp.services.imovel.createImage(data, '#imovelPage .carousel');
-    // });
-    // initMap($('#imovelPage .map').get(0))
-    // myApp.services.imovel.createPanel(datas, '#imovelPage .panel');
   }
 
   if(page.id === 'imovelAvaliacao'){
@@ -181,42 +204,13 @@ document.addEventListener('init', function(event) {
       data: null,
       success: function(data) {
         var datas = data.data[0] || []
-        // var datas = {
-        //   avaliacao: {
-        //     status: 'Reprovada',
-        //     nota: 3.2,
-        //     criterios: [
-        //       {
-        //         nome: 'Critério #1',
-        //         descricao: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-        //         nota: '5'
-        //       },
-        //       {
-        //         nome: 'Critério #2',
-        //         descricao: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-        //         nota: 'Danificada, Pintura Ruim'
-        //       },
-        //     ]
-        //   }
-        // }
+
         if(datas.length > 0){
           myApp.services.imovel.createAvaliacaoNotaFinal(datas);
           datas.criterios.forEach(function(data) {
             myApp.services.imovel.createAvaliacao(data);
           });
         }
-        // if(data.success) {
-        //   datas = data.data.result[0]
-
-        //   datas.links.forEach(function(data) {
-        //     myApp.services.imovel.createImage(data, '#imovelPage .carousel');
-        //   });
-
-        //   initMap($('#imovelPage .map').get(0))
-        //   myApp.services.imovel.createPanel(datas, '#imovelPage .panel');
-        // } else {
-        //   // ons.notification.alert('Problema ao cadastrar.')
-        // }
       }
     });
     // var datas = {
@@ -299,20 +293,18 @@ document.addEventListener('init', function(event) {
 
   if(page.id === 'loginPage'){
     $(document).on('click', '#entrar', function(){
-      // return document.querySelector('#myNavigator').resetToPage('html/splitter.html', {
-      //   data: {
-      //       title: 'Quebec'
-      //   }
-      // })
+            
+      // var usuario = document.getElementById('username').value;
+      // var senha = document.getElementById('password').value;
 
-      var usuario = document.getElementById('username').value;
-      var senha = document.getElementById('password').value;
+      var usuario = 'gustavo'
+      var senha = 'gustavo'
       
       let data = {
         credenciais: {
           usuario,
           senha,
-        },
+        }
       }
 
       let url = '/api/usuario/login'
