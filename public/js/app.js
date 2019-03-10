@@ -4,6 +4,15 @@ window.myApp = {};
 document.addEventListener('init', function(event) {
   var page = event.target;
 
+  function fetchData(data, url, success_func) {
+    $.ajax({
+      type: "POST",
+      url: url,
+      data: data,
+      success: success_func 
+    });
+  }
+
   // Each page calls its own initialization controller.
   if (myApp.controllers.hasOwnProperty(page.id)) {
     myApp.controllers[page.id](page);
@@ -16,6 +25,7 @@ document.addEventListener('init', function(event) {
       && document.querySelector('#pendingTasksPage')
       && !document.querySelector('#pendingTasksPage ons-list-item')
     ) {
+
       var datas = [
         {
           endereco: 'Av. Paulista, 1578 - Bela Vista, São Paulo - SP, 01310-200',
@@ -23,8 +33,22 @@ document.addEventListener('init', function(event) {
           foto: 'https://www.ligadoemviagem.com.br/wp-content/uploads/2018/09/masp-museu-artes-sao-paulo-19.jpg'
         },
       ]
-      datas.concat(datas).concat(datas).concat(datas).forEach(function(data) {
-        myApp.services.imovel.create(data);
+
+      let url = '/api/imovel'
+      $.ajax({
+        type: "GET",
+        url: url,
+        data: {},
+        success: function(data) {
+          if(data.success) {
+            data.data.forEach(function(data) {
+              myApp.services.imovel.create(data);
+            });
+            console.log('load ok')
+          } else {
+            console.log('load problem')
+          }
+        }
       });
     }
   }
