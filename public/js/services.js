@@ -208,6 +208,41 @@ myApp.services = {
     }
   },
 
+  score: {
+    createAvaliacao: function(data, at){
+      let scoreItem = ons.createElement(
+        `<ons-carousel-item style="background-color: transparent;">
+          <ons-card class="criterio-data">
+              <div class="title">
+                  ${data.nome}
+              </div>
+              <div class="content">
+                  ${data.descricao}
+              </div>
+          </ons-card>
+          
+          <ons-card class="criterio-nota">
+              <select class="submit-avaliacao form-control">
+                  <option value="">Nenhuma</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+              </select>
+          </ons-card>
+        </ons-carousel-item>`
+      )
+
+      // Store data within the element.
+      scoreItem.data = data;
+
+      // Insert urgent tasks at the top and non urgent tasks at the bottom.
+      var pendingList = document.querySelector(at);
+      pendingList.insertBefore(scoreItem, null);
+    }
+  },
+
   //////////////////////
   // Animation Service //
   /////////////////////

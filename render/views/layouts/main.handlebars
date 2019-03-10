@@ -193,10 +193,18 @@
         })
         $(document).on('change', '.submit-avaliacao', function(){
             let selected_values = $('.submit-avaliacao').toArray().map((v) => $(v).val())
+            console.log(selected_values)
             if(selected_values.includes('') || selected_values.reduce((acc, cur) => acc || (cur.constructor.name == `Array` && cur.length == 0), false)) { 
             } else {
-                $('#areaSubmitAvaliacao').show()
+                $('#areaSubmitAvaliacao button').get(0).data = selected_values
+                $('#areaSubmitAvaliacao button').prop('disabled', false)
             }
+        })
+
+        $(document).on('click', '#areaSubmitAvaliacao button', function(){
+            console.log('SEND TO API')
+            console.log(this.data)
+            $(document.querySelector('ons-back-button')).click()
         })
     </script>
 </body>
