@@ -14,8 +14,8 @@ class Tag {
         return database.query(query)
     }
 
-    static delete(dados) {
-        let query = `DELETE from tag WHERE id_tag = ${dados.id_tag}`
+    static delete(id) {
+        let query = `DELETE from tag WHERE id_tag = '${id}'`
         
         return database.query(query)
     }

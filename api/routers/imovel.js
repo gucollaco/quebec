@@ -22,8 +22,8 @@ router.get('/', (req, res, next) => {
     }).catch(next)
 })
 
-router.put('/:id', (req, res, next) => {
-    AvaliacaoController.alterar({ id: req.params.id, ...req.body }).then(dados => {
+router.put('/:id/tags', (req, res, next) => {
+    ImovelController.adicionarTags({ id: req.params.id, ...req.body }).then(dados => {
         res.json({ success: true })
     }).catch(next)
 })

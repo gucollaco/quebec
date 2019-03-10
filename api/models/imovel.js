@@ -19,7 +19,7 @@ class Imovel {
 
     static addTags(dados) {
         let query = `UPDATE imovel SET tags = (select array_agg(distinct E) 
-        FROM unnest(tags || '${dados.ids_tags}') E) 
+        FROM unnest(tags || '{${dados.ids_tags}}') E) 
         WHERE id_imovel = '${dados.id}';`
         
         return database.query(query)
