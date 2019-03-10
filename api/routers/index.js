@@ -11,5 +11,5 @@ router.use('/usuario', usuarioRouter);
 router.use('/imovel', imovelRouter);
 router.use('/avaliacao', avaliacaoRouter);
 router.use('/criterio', criterioRouter);
-router.use('/tag', tagRoute);
+router.use('/tag', tagRouter);
 module.exports = router;
