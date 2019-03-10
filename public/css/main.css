@@ -129,10 +129,7 @@
     padding: 20px 20px;
     background: #fff;
     margin-bottom: 15px;
-    font-size: 1.1em;
-    margin-left: 10px;
-    margin-right: 10px;
-    border-radius: 8px; }
+    font-size: 1.1em; }
     #avaliacao-list .avaliacao.status {
       background: lightgray;
       margin: 0; }

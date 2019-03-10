@@ -23,6 +23,7 @@ document.addEventListener('init', function(event) {
           foto: 'https://www.ligadoemviagem.com.br/wp-content/uploads/2018/09/masp-museu-artes-sao-paulo-19.jpg'
         },
       ]
+      
       datas.concat(datas).concat(datas).concat(datas).forEach(function(data) {
         myApp.services.imovel.create(data);
       });
