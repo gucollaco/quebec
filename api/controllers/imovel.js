@@ -8,6 +8,12 @@ class ImovelController {
     static async buscar(id) {
         return await Imovel.select(id)
     }
+
+    static async adicionarTag(dados) {
+        await Imovel.addTag(dados)
+    }
+
+    
 }
 
 module.exports = ImovelController

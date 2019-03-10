@@ -22,6 +22,14 @@ class Imovel {
 
         return database.query(query)
     }
+
+    static addTag(dados) {
+        let query = `UPDATE avaliacao
+        SET tag = tag || '[${JSON.stringify(dados.id_tag)}]'
+        WHERE id_avaliacao = '${dados.id}'`
+
+        return database.query(query)
+    }
 }
 
 module.exports = Imovel
