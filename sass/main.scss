@@ -120,6 +120,14 @@
     .map{
         height: 500px;
     }
+    
+    #fabAvaliar{
+        background: royalblue !important;
+
+        .fab--material__icon{
+            color: #fff !important;
+        }
+    }
 }
 
 #map {

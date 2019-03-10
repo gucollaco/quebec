@@ -82,5 +82,10 @@
 #imovelPage .map {
   height: 500px; }
 
+#imovelPage #fabAvaliar {
+  background: royalblue !important; }
+  #imovelPage #fabAvaliar .fab--material__icon {
+    color: #fff !important; }
+
 #map {
   height: 600px; }
