@@ -16,6 +16,18 @@ router.put('/:id', (req, res, next) => {
     }).catch(next)
 })
 
+router.put('/:id/aprovar', (req, res, next) => {
+    AvaliacaoController.alterar(req.params.id).then(() => {
+        res.json({ success: true })
+    }).catch(next)
+})
+
+router.put('/:id/reprovar', (req, res, next) => {
+    AvaliacaoController.alterar(req.params.id).then(() => {
+        res.json({ success: true })
+    }).catch(next)
+})
+
 router.get('/:id/imovel', (req, res, next) => {
     AvaliacaoController.buscarPorImovel(req.params.id).then(dados => {
         res.json({ success: true, data: dados })
@@ -24,7 +36,7 @@ router.get('/:id/imovel', (req, res, next) => {
 
 router.get('/:id', (req, res, next) => {
     AvaliacaoController.buscar(req.params.id).then(dados => {
-        res.json({ success: true, data: dados })
+        res.json({ success: true, data: { result }})
     }).catch(next)
 })
 

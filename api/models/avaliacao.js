@@ -8,8 +8,8 @@ class Avaliacao {
         return database.query(query)
     }
 
-    static getAllByImovel(id) {
-        let query = `SELECT * FROM avaliacao WHERE id_imovel = ${id}`
+    static getByImovel(id) {
+        let query = `SELECT * FROM avaliacao WHERE id_imovel = '${id}'`
 
         return database.query(query)
     }

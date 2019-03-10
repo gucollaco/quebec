@@ -19,8 +19,14 @@ class AvaliacaoController {
     }
 
     static async buscarPorImovel(id) {
-        return await Avaliacao.getByImovel(id)
-    }
-}
+        let result = await Avaliacao.getByImovel(id)
+
+        result.map(av => {
+            av.status = av.historico[av.historico.length-1].estado
+            av.nota = 0
+        })
+
+        return result
+    }}
 
 module.exports = AvaliacaoController
