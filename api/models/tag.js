@@ -13,6 +13,12 @@ class Tag {
         
         return database.query(query)
     }
+
+    static delete(dados) {
+        let query = `DELETE from tag WHERE id_tag = ${dados.id_tag}`
+        
+        return database.query(query)
+    }
 }
 
 module.exports = Tag

@@ -13,6 +13,12 @@ class TagController {
 
         return await Tag.insert(dados)
     }
+
+    static async criar(id) {
+        if (!id) throw new Error("Sem dados")
+
+        await Tag.delete(dados)
+    }
 }
 
 module.exports = TagController
