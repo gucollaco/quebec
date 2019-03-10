@@ -155,35 +155,44 @@ document.addEventListener('init', function(event) {
     })
   }
   if(page.id === 'cadastrarPage'){
-    let url = '/api/usuario/'
+    $(document).on('click', '#confirmarCadastro', function(){
+      let url = '/api/usuario/'
 
-    let nome = $('#nome').val()
-    let username = $('#username').val()
-    let password = $('#password').val()
-    let endereco = $('#endereco').val()
-
-    let data = {
-      nome: nome,
-      perfil: 'COLABORADOR',
-      credenciais: {
-        usuario: username,
-        senha: password,
-      },
-      locais: endereco
-    }
-
-    $.ajax({
-      type: "POST",
-      url: url,
-      data: data,
-      success: function(data) {
-        if(data.success) {
-          alert('Obrigado por se cadastrar. Entraremos em contato em breve, com o retorno sobre sua solicitação.')
-        } else {
-          alert('Problema ao cadastrar.')
-        }
+      let nome = $('#nome').val()
+      let username = $('#usernameRegister').val()
+      let password = $('#passwordRegister').val()
+      let endereco = $('#endereco').val()
+      let numero = $('#numero').val()
+      
+      let data = {
+        nome: nome,
+        perfil: 'COLABORADOR',
+        credenciais: {
+          usuario: username,
+          senha: password,
+        },
+        locais: endereco + ' ' + numero
       }
-    });
+
+      $.ajax({
+        type: "POST",
+        url: url,
+        data: data,
+        success: function(data) {
+          if(data.success) {
+            alert('Obrigado por se cadastrar. Entraremos em contato em breve, com o retorno sobre sua solicitação.')
+            document.querySelector('#myNavigator').resetToPage('html/login.html', {
+              data: {
+                  imovel: this.data,
+                  title: ''
+              }
+            })
+          } else {
+            alert('Problema ao cadastrar.')
+          }
+        }
+      });
+    })
   }
 
 });

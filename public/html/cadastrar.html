@@ -26,8 +26,8 @@
                 <div class="card" style="background-color:lightsteelblue; height:600px">
                     <div class="card-body">
                         <div style="text-align: center; margin-top: 30px;">
-                            <p class="card-text">Agora, do seu <p>e-mail</p>, que será usado para entrar na aplicação.</p>
-                            <p><ons-input id="username" modifier="underbar" placeholder="Usuário" style="margin-top: 20px;" float></ons-input></p>
+                            <p class="card-text">Agora, do seu e-mail, que será usado para entrar na aplicação.</p>
+                            <p><ons-input id="usernameRegister" modifier="underbar" placeholder="Usuário" style="margin-top: 20px;" float></ons-input></p>
                         </div>
                     </div>
                 </div>
@@ -37,7 +37,7 @@
                     <div class="card-body">
                         <div style="text-align: center; margin-top: 30px;">
                             <p class="card-text">Insira sua senha, que também vai ser necessária para realizar o login.</p>
-                            <p><ons-input id="password" modifier="underbar" type="password" placeholder="Senha" style="margin-top: 20px;" float></ons-input></p>
+                            <p><ons-input id="passwordRegister" modifier="underbar" type="password" placeholder="Senha" style="margin-top: 20px;" float></ons-input></p>
                         </div>
                     </div>
                 </div>
@@ -48,6 +48,7 @@
                         <div style="text-align: center; margin-top: 30px;">
                             <p class="card-text">Por último, nos informe seu endereço, para que possamos te trazer informações relevantes.</p>
                             <p><ons-input id="endereco" modifier="underbar" type="endereco" placeholder="Endereço" style="margin-top: 20px;" float></ons-input></p>
+                            <p><ons-input id="numero" modifier="underbar" type="numero" placeholder="Número" float></ons-input></p>
                         </div>
                     </div>
                 </div>
@@ -62,7 +63,6 @@
             <span class="sr-only">Next</span>
         </a>
     </div>
-    <div id="areaConfirmar" style="padding: 0px 10px 0px 10px; display: none">
-        <button type="button" id="confirmarCadastro" class="btn btn-dark btn-lg btn-block" style="margin-top: 20px;">Confirmar</button>
-    </div>
+    <button type="button" id="confirmarCadastro" class="btn btn-dark btn-lg btn-block" style="margin-top: 20px;">Confirmar</button>
+
 </ons-page>

@@ -10,7 +10,7 @@ class Usuario {
     }
 
     static insert(dados) {
-        var id = crypto.randomBytes(7).toString('hex');
+        var id = crypto.randomBytes(3).toString('hex');
         let query = `INSERT INTO usuario
                     VALUES ('${id}', '{${dados.perfil}}', '${JSON.stringify(dados.credenciais)}', '${dados.nome}', '', '{${dados.locais}}', NOW())`
 
