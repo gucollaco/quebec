@@ -36,8 +36,51 @@
       border-top-left-radius: 2px;
       border-top-right-radius: 2px; }
 
-#areaCard .list {
-  background: #eceff1; }
+#imovelPage .carousel ons-carousel-item {
+  text-align: center;
+  height: 200px; }
+  #imovelPage .carousel ons-carousel-item img {
+    max-height: 100%;
+    width: 100%;
+    object-fit: cover; }
+
+#imovelPage .panel {
+  margin-top: 7px; }
+  #imovelPage .panel > div {
+    display: flex;
+    flex-direction: column; }
+  #imovelPage .panel .title {
+    background: #fff;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 25px; }
+    #imovelPage .panel .title .address {
+      padding: 15px 0;
+      font-size: 1.3em; }
+      #imovelPage .panel .title .address .low {
+        display: block;
+        font-size: 0.7em; }
+        #imovelPage .panel .title .address .low .fa {
+          color: royalblue; }
+    #imovelPage .panel .title .grade {
+      font-size: 1.8em;
+      font-weight: bold;
+      color: white;
+      background: royalblue;
+      padding: 7px 10px;
+      height: 100%;
+      display: flex;
+      align-items: center; }
+  #imovelPage .panel .desc {
+    background: #fff;
+    padding: 15px 25px;
+    font-size: 0.9em;
+    margin-top: 3px; }
+
+#imovelPage .map {
+  height: 500px; }
 
 #map {
   height: 600px; }

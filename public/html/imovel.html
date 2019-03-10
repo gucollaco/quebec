@@ -1,6 +1,6 @@
 <ons-page id="imovelPage">
     <ons-toolbar>
-        <div class="left"><ons-back-button>Voltar</ons-back-button></div>
+        <div class="left"><ons-back-button></ons-back-button></div>
         <div class="center">Imóvel</div>
         <!-- <div class="right">
         <ons-if platform="android">
@@ -14,9 +14,15 @@
 
 
     <ons-carousel swipeable auto-scroll class="carousel">
-        <ons-carousel-item class="map">
-            <div class="map">
-            </div>
-        </ons-carousel-item>
     </ons-carousel>
+
+    <div class="panel">
+    </div>
+    
+    <div class="map"></div>
+
+    
+    <ons-fab position="right bottom" id="fabAvaliar">
+        <i class="fa fa-marker"></i>
+    </ons-fab>
 </ons-page>

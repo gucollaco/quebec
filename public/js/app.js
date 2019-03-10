@@ -36,20 +36,25 @@ document.addEventListener('init', function(event) {
   }
 
   if(page.id === 'imovelPage'){
-    var datas = [
-      {
-        foto: 'https://www.ligadoemviagem.com.br/wp-content/uploads/2018/09/masp-museu-artes-sao-paulo-19.jpg'
-      }, {
-        foto: 'https://cdn.getyourguide.com/img/tour_img-1290852-145.jpg'
-      },
-    ]
-    datas.forEach(function(data) {
-      myApp.services.imovel.create(data, '');
+    var datas = {
+        endereco: 'Av. Paulista, 1578 - Bela Vista, São Paulo - SP, 01310-200',
+        nota: 5.0,
+        descricao: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
+        fotos: [
+          'https://www.ligadoemviagem.com.br/wp-content/uploads/2018/09/masp-museu-artes-sao-paulo-19.jpg', 
+          'https://cdn.getyourguide.com/img/tour_img-1290852-145.jpg'
+        ]
+    }
+
+    datas.fotos.forEach(function(data) {
+      myApp.services.imovel.createImage(data, '#imovelPage .carousel');
     });
-    
+    initMap($('#imovelPage .map').get(0))
+    myApp.services.imovel.createPanel(datas, '#imovelPage .panel');
+  }
+
   if(page.id === 'newTaskPage'){
     if (document.querySelector('#map')){
-      console.log('aa', document.querySelector('#map'))
       initMap()
     }
   }

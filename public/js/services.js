@@ -163,7 +163,7 @@ myApp.services = {
     createImage: function(data, at){
       let imageItem = ons.createElement(
         `<ons-carousel-item>
-            <img src="${data.foto}" />
+            <img src="${data}" />
         </ons-carousel-item>`
       )
 
@@ -171,6 +171,40 @@ myApp.services = {
 
       var pendingList = document.querySelector(at);
       pendingList.insertBefore(imageItem, null);
+    },
+
+    createPanel: function(data, at){
+      let address = data.endereco.split('-')
+      let grade = parseFloat(data.nota).toFixed(1)
+
+      let panelItem = ons.createElement(
+        `<div>
+        <div class="title">
+          <div class="address">
+            ${address[0]}
+            <span class="low">
+              <ons-icon icon="fa-map-marker-alt"></ons-icon>
+              ${address[1]}
+            </span>
+          </div>
+
+          <div class="grade">
+            <div>
+              ${grade}
+            </div>
+          </div>
+        </div>
+
+        <div class="desc">
+          ${data.descricao}
+        </div>
+
+        </div>`)
+
+        panelItem.data = data
+  
+        var pendingList = document.querySelector(at);
+        pendingList.insertBefore(panelItem, null);
     }
   },
 

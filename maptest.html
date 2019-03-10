@@ -25,13 +25,16 @@
         var options
         var geocoder
 
-        function initMap() {
+        function initMap(at) {
+            if(at == undefined) at = document.getElementById('map')
+
             geocoder = new google.maps.Geocoder();
             options = {
                 zoom: 15,
                 center: {lat: -23.2237,lng: -45.9009}
             }
-            map = new google.maps.Map(document.getElementById('map'), options);
+            console.log(at)
+            map = new google.maps.Map(at, options);
 
             // Call the codeAddress function (once) when the map is idle (ready)
             google.maps.event.addListenerOnce(map, 'idle', codeAddress);

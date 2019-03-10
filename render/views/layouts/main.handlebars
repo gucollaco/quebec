@@ -32,14 +32,14 @@
         var options
         var geocoder
 
-        function initMap() {
-            geocoder = new google.maps.Geocoder();
+        function initMap(at) {
+            if(at == undefined) at = document.getElementById('map')
             options = {
                 zoom: 15,
                 center: {lat: -23.2237,lng: -45.9009}
             }
             
-            map = new google.maps.Map(document.getElementById('map'), options);
+            map = new google.maps.Map(at, options);
 
             // Call the codeAddress function (once) when the map is idle (ready)
             google.maps.event.addListenerOnce(map, 'idle', codeAddress);
@@ -100,6 +100,7 @@
             // Define address to center map to
             var address = 'Rua Professor Luiz Eurico Ferreira 119';
 
+            let geocoder = new google.maps.Geocoder();
             geocoder.geocode({
                 'address': address
             }, function (results, status) {
@@ -175,11 +176,18 @@
             lastSearch = value
         })
         $(document).on('click', '.imovel-card', function(){
-            console.log(document.querySelector('#myNavigator'))
             document.querySelector('#myNavigator').pushPage('html/imovel.html', {
                 data: {
                     imovel: this.data,
                     title: 'Imóvel'
+                }
+            })
+        })
+        $(document).on('click', '#fabAvaliar', function(){
+            document.querySelector('#myNavigator').pushPage('html/avaliar.html', {
+                data: {
+                    imovel: this.data,
+                    title: 'Avaliação'
                 }
             })
         })
