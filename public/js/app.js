@@ -68,7 +68,26 @@ document.addEventListener('init', function(event) {
     });
   }
 
+  if(page.id === 'tabbarPage'){    
+    let _tabs = event.target.data.tabs
+
+    if(_tabs){
+      let tabs = $('#tabbarPage ons-tabbar ons-tab').toArray()
+
+      let result = false
+      for(let tab of tabs){
+        result = _tabs.filter(t => tab.page.includes(t)).length > 0
+        
+        if(!result){
+          $(tab).hide()
+        }
+      }
+    }
+  }
+
   if(page.id === 'imovelPage'){
+    IMOVEL = event.target.data.imovel
+
     let _tabs = event.target.data.tabs
 
     if(_tabs){
@@ -83,10 +102,6 @@ document.addEventListener('init', function(event) {
         }
       }
     }
-  }
-
-  if(page.id === `imovelPage`){
-    IMOVEL = event.target.data.imovel
   }
 
   if(page.id === 'imovelData'){
