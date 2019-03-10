@@ -1,4 +1,5 @@
 const { Imovel } = require('../models')
+const AvaliacaoController = require('./avaliacao.js')
 
 class ImovelController {
     static async criar(dados) {
@@ -13,6 +14,7 @@ class ImovelController {
             imovel.endereco = `${imovel.localizacao.logradouro} - ${imovel.localizacao.bairro}, ${imovel.localizacao.cidade} - ${imovel.localizacao.estado}`
             imovel.nota = Math.random(0, 5)
             imovel.foto = imovel.links[0]
+            imovel.score = (await AvaliacaoController.buscarPorImovel(imovel.id_imovel)).nota
         })
 
         return { result }
@@ -26,6 +28,7 @@ class ImovelController {
             imovel.endereco = `${imovel.localizacao.logradouro} - ${imovel.localizacao.bairro}, ${imovel.localizacao.cidade} - ${imovel.localizacao.estado}`
             imovel.nota = Math.random(0, 5)
             imovel.foto = imovel.links[0]
+            imovel.score = (await AvaliacaoController.buscarPorImovel(imovel.id_imovel)).nota
         })
 
         return { result }
