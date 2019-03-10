@@ -14,7 +14,7 @@ class TagController {
         return await Tag.select(dados)
     }
 
-    static async criar(id) {
+    static async excluir(id) {
         if (!id) throw new Error("Sem dados")
 
         await Tag.delete(dados)
