@@ -34,6 +34,7 @@
     "express-handlebars": "^3.0.2",
     "express3-handlebars": "^0.5.2",
     "handlebars": "^4.1.0",
+    "jquery": "^3.3.1",
     "jquery-mobile": "^1.5.0-alpha.1",
     "onsenui": "^2.10.6",
     "pg-promise": "^8.6.3",
