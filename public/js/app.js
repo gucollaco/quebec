@@ -77,9 +77,9 @@ document.addEventListener('init', function(event) {
     let perfil = SPLITTER.usuario.user.perfil
 
     let tabs_por_perfil = {
-      'IMOBILIARIA': ['pending_tasks', 'completed_tasks'],
+      'COLABORADOR': ['pending_tasks', 'completed_tasks'],
       'PROPRIETARIO': ['pending_tasks'],
-      'COLABORADOR': ['pending_tasks', 'cadastros_pendentes', 'avaliacoes_pendentes']
+      'IMOBILIARIA': ['pending_tasks', 'cadastros_pendentes', 'avaliacoes_pendentes']
     }
 
     let __tabs = perfil.map(p => tabs_por_perfil[p]).reduce((acc, cur) => acc.concat(cur || []), [])
