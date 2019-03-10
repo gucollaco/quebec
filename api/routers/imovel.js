@@ -26,8 +26,6 @@ router.put('/:id', (req, res, next) => {
     AvaliacaoController.alterar({ id: req.params.id, ...req.body }).then(dados => {
         res.json({ success: true })
     }).catch(next)
-
-    STRI
 })
 
 module.exports = router;
