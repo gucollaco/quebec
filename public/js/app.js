@@ -23,13 +23,12 @@ document.addEventListener('init', function(event) {
   // Fill the lists with initial data when the pages we need are ready.
   // This only happens once at the beginning of the app.
   if (page.id === 'menuPage' || page.id === 'pendingTasksPage') {
-    $('#titleNome').val(SPLITTER.usuario.user.nome)
+    $('#titleNome').text(SPLITTER.usuario.user.nome)
     if (document.querySelector('#menuPage')
       && document.querySelector('#pendingTasksPage')
       && !document.querySelector('#pendingTasksPage ons-list-item')
     ) {
-
-      let url = '/api/imovel?pontuacao=true'
+      var url = '/api/imovel?pontuacao=true'
       $.ajax({
         type: "GET",
         url: url,
@@ -47,7 +46,7 @@ document.addEventListener('init', function(event) {
         }
       });
 
-      let url = '/api/imovel?proximidade=true'
+      url = '/api/imovel?proximidade=true'
       $.ajax({
         type: "GET",
         url: url,
