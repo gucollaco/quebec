@@ -46,7 +46,7 @@ class Usuario {
                     FROM usuario
                     WHERE credenciais->>'usuario' = '${credenciais.usuario}'
                     AND credenciais->>'senha' = '${credenciais.senha}'
-                    AND estado != 'PENDENTE'`
+                    AND pendente = false`
 
         return database.query(query)
     }
