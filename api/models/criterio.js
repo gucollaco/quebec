@@ -14,6 +14,12 @@ class Criterio {
         return database.query(query)
     }
 
+    static buscar(id) {
+        let query = `SELECT * from criterio WHERE id_criterio = '${id}'`
+        
+        return database.query(query)
+    }
+
     static select_all() {
         let query = `SELECT * from criterio`
         

@@ -1,4 +1,4 @@
-const { Imovel, Avaliacao } = require('../models')
+const { Imovel, Avaliacao, Criterio } = require('../models')
 
 class ImovelController {
     static async criar(dados) {
@@ -40,7 +40,14 @@ class ImovelController {
 
         var aval = 0;
         for (let av of result) {
-            aval += global.SCORE.evaluate(av.criterios).final
+            let criterios = []
+            for(let c of av.criterios){
+                let criterio = (await Criterio.buscar(c.id_criterio))[0]
+                criterio.resultado = c.nota
+                criterios.push(criterio)
+            }
+
+            aval += global.SCORE.evaluate(criterios).final
         }
 
         aval /= result.length
