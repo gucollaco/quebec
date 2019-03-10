@@ -14,6 +14,14 @@ class AvaliacaoController {
         await Avaliacao.update(dados)
     }
 
+    static async aprovar(id) {
+        await Avaliacao.approve(id)
+    }
+
+    static async reprovar(id) {
+        await Avaliacao.disapprove(id)
+    }
+
     static async buscar(id) {
         return await Avaliacao.select(id)
     }

@@ -29,6 +29,22 @@ class Avaliacao {
         return database.query(query)
     }
 
+    static approve(id) {
+        let query = `UPDATE avaliacao
+                    SET estada = 'APROVADA'
+                    WHERE id_avaliacao = '${id}'`
+
+        return database.query(query)
+    }
+
+    static disapprove(dados) {
+        let query = `UPDATE avaliacao
+                    SET estado = 'REPROVADA'
+                    WHERE id_avaliacao = '${id}'`
+
+        return database.query(query)
+    }
+
     static select(id) {
         let query = `SELECT *
                     FROM avaliacao
