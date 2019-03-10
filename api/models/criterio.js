@@ -13,6 +13,12 @@ class Criterio {
         
         return database.query(query)
     }
+
+    static select_all() {
+        let query = `SELECT * from criterio`
+        
+        return database.query(query)
+    }
 }
 
 module.exports = Criterio

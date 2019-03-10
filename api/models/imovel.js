@@ -58,6 +58,11 @@ class Imovel {
         
         return database.query(query)
     }
+    static selectTop(){
+        let query = `
+        SELECT * FROM 
+        `
+    }
 
     // static selectByTag(tags_ids) {
     //     let query = `SELECT I.*
