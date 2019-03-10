@@ -72,30 +72,10 @@ document.addEventListener('init', function(event) {
         }
       }
     });
+  }
 
-    // var datas = [
-    //   {
-    //     datahora: '10/03/2019 02:30',
-    //     endereco: 'Av. Paulista, 1578 - Bela Vista, São Paulo - SP, 01310-200',
-    //     nota: 5.0,
-    //     foto: 'https://www.ligadoemviagem.com.br/wp-content/uploads/2018/09/masp-museu-artes-sao-paulo-19.jpg',
-    //     status: 'Pendente'
-    //   },
-    //   {
-    //     datahora: '10/03/2019 02:30',
-    //     endereco: 'Av. Torre, 1578 - Eifell, Paris - FR, 01310-200',
-    //     nota: 4.0,
-    //     foto: 'https://cdn.getyourguide.com/img/tour_img-1290852-145.jpg',
-    //     status: 'Aprovada'
-    //   },
-    //   {
-    //     datahora: '10/03/2019 02:30',
-    //     endereco: 'Av. Paulista, 1578 - Bela Vista, São Paulo - SP, 01310-200',
-    //     nota: 1.0,
-    //     foto: 'https://www.ligadoemviagem.com.br/wp-content/uploads/2018/09/masp-museu-artes-sao-paulo-19.jpg',
-    //     status: 'Reprovada'
-    //   },
-    // ]
+  if(page.id === 'imovelPage'){
+    console.log(event.data)
   }
 
   if(page.id === 'imovelData'){
@@ -197,6 +177,12 @@ document.addEventListener('init', function(event) {
 
   if(page.id === 'loginPage'){
     $(document).on('click', '#entrar', function(){
+      return document.querySelector('#myNavigator').resetToPage('html/splitter.html', {
+        data: {
+            title: 'Quebec'
+        }
+      })
+
       var usuario = document.getElementById('username').value;
       var senha = document.getElementById('password').value;
       
