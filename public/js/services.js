@@ -68,35 +68,6 @@ myApp.services = {
       pendingList.insertBefore(taskItem, taskItem.data.urgent ? pendingList.firstChild : null);
     },
 
-    // Creates a new task and attaches it to the pending task list.
-    createImage: function(data) {
-      // Task item template.
-      var taskItem = ons.createElement(
-        `<ons-page>
-          <ons-toolbar>
-            <div class="center">Carousel</div>
-          </ons-toolbar>
-          <ons-carousel swipeable overscrollable auto-scroll fullscreen var="carousel">
-            <ons-carousel-item style="background-color: gray;">
-              <div class="item-label">GRAY</div>
-            </ons-carousel-item>
-            <ons-carousel-item style="background-color: #085078;">
-              <div class="item-label">BLUE</div>
-            </ons-carousel-item>
-            <ons-carousel-item style="background-color: #373B44;">
-              <div class="item-label">DARK</div>
-            </ons-carousel-item>
-            <ons-carousel-item style="background-color: #D38312;">
-              <div class="item-label">ORANGE</div>
-            </ons-carousel-item>
-            <ons-carousel-cover>
-              <div class="cover-label">Swipe left or right</div>
-            </ons-carousel-cover>
-          </ons-carousel>
-        </ons-page>`
-      );
-    },
-
     // Modifies the inner data and current view of an existing task.
     update: function(taskItem, data) {
       if (data.title !== taskItem.data.title) {
