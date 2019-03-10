@@ -19,7 +19,7 @@ CREATE TABLE imovel (
 	id_imovel VARCHAR (10) PRIMARY KEY,
 	tipo VARCHAR (50),
 	preco NUMERIC,
-	localizacao TEXT,
+	localizacao JSONB,
 	data_hora TIMESTAMP
 );
 -- criterios {{id, nota[], observacao}, {id, nota[], observacao}, ... }
